@@ -1,0 +1,29 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+array	lenarray.f90	/^      integer, DIMENSION(5) :: array$/;"	v	program:main
+bar	foobarbaz_mod.f90	/^   REAL:: bar$/;"	v	module:foobarbaz
+baz	foobarbaz_mod.f90	/^   REAL:: baz$/;"	v	module:foobarbaz
+flushing	flushing.f90	/^PROGRAM flushing$/;"	p
+foo	foobarbaz_mod.f90	/^   REAL:: foo$/;"	v	module:foobarbaz
+foobarbaz	foobarbaz_mod.f90	/^MODULE  foobarbaz$/;"	m
+hello	hello1.f90	/^    program hello$/;"	p
+i	misMatchDim.f90	/^        INTEGER         :: i,/;"	v	program:misMatchDim
+j	misMatchDim.f90	/^        INTEGER         :: i,j,/;"	v	program:misMatchDim
+k	misMatchDim.f90	/^        INTEGER         :: i,j,k,/;"	v	program:misMatchDim
+l	misMatchDim.f90	/^        INTEGER         :: i,j,k,l=/;"	v	program:misMatchDim
+main	lenarray.f90	/^      program main$/;"	p
+misMatchDim	misMatchDim.f90	/^        PROGRAM misMatchDim$/;"	p
+printArray	misMatchDim.f90	/^        SUBROUTINE printArray(/;"	s
+simple	simple.f90	/^      PROGRAM simple$/;"	p
+test	syntax.f90	/^program test$/;"	p
+test	testcode.f90	/^program test$/;"	p
+test1	testpointer.f90	/^        REAL, POINTER :: test1$/;"	v	module:testPointer_mod
+testPointer_mod	testpointer.f90	/^        module testPointer_mod$/;"	m
+theArr	misMatchDim.f90	/^        COMPLEX         :: theArr(/;"	v	program:misMatchDim
+theSizeArr	misMatchDim.f90	/^        INTEGER         :: theSizeArr$/;"	v	program:misMatchDim
+var1	syntax.f90	/^real::var1$/;"	v	program:test
+whatisgoingon	wtf.f90	/^    PROGRAM whatisgoingon$/;"	p

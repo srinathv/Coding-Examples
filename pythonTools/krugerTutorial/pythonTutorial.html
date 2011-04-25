@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.7: http://docutils.sourceforge.net/" />
+<title>Python for Scientists in 60 minutes</title>
+<meta name="author" content="S.E. Kruger" />
+<meta name="organization" content="Tech-X Corporation" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 6253 2010-03-02 00:24:53Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: left }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="python-for-scientists-in-60-minutes">
+<h1 class="title">Python for Scientists in 60 minutes</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>S.E. Kruger</td></tr>
+<tr><th class="docinfo-name">Organization:</th>
+<td>Tech-X Corporation</td></tr>
+</tbody>
+</table>
+<!-- Definitions of interpreted text roles (classes) for S5/HTML data. -->
+<!-- This data file has been placed in the public domain. -->
+<!-- Colours
+======= -->
+<!-- Text Sizes
+========== -->
+<!-- Display in Slides (Presentation Mode) Only
+========================================== -->
+<!-- Display in Outline Mode Only
+============================ -->
+<!-- Display in Print Only
+===================== -->
+<!-- Display in Handout Mode Only
+============================ -->
+<!-- Incremental Display
+=================== -->
+<div class="center line-block">
+<div class="line">Winter coding camp</div>
+<div class="line">Tech-X</div>
+<div class="line">January 20, 2011</div>
+</div>
+<div class="contents handout topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#what-does-python-for-scientists-mean" id="id1">What does &quot;python for scientists&quot; mean?</a></li>
+<li><a class="reference internal" href="#build-installation-issues" id="id2">Build/Installation issues</a></li>
+<li><a class="reference internal" href="#basic-python-concepts" id="id3">Basic python concepts</a></li>
+<li><a class="reference internal" href="#general-tips-for-writing-modules-scripts" id="id4">General tips for writing modules/scripts</a></li>
+<li><a class="reference internal" href="#options-do-not-hardcode-your-stuff" id="id5">Options: do not hardcode your stuff</a></li>
+<li><a class="reference internal" href="#ipython" id="id6">iPython</a></li>
+<li><a class="reference internal" href="#introduction-to-numpy" id="id7">Introduction to numpy</a></li>
+<li><a class="reference internal" href="#numpy-types-and-array-allocation" id="id8">Numpy types and array allocation</a></li>
+<li><a class="reference internal" href="#numpy-examples-continued" id="id9">Numpy examples (continued)</a></li>
+<li><a class="reference internal" href="#array-slicing-in-numpy" id="id10">Array slicing in numpy</a></li>
+<li><a class="reference internal" href="#matplotlib-the-best-1d-2d-python-package-system" id="id11">Matplotlib - the best 1D/2D python package system</a></li>
+<li><a class="reference internal" href="#matplotlib-2d-plots" id="id12">Matplotlib - 2D Plots</a></li>
+<li><a class="reference internal" href="#matplotlib-loading-data-from-text-files" id="id13">Matplotlib - Loading data from text files</a></li>
+<li><a class="reference internal" href="#tables-making-hdf5-more-usable" id="id14">Tables -- Making HDF5 more usable</a></li>
+<li><a class="reference internal" href="#tables-reading-a-file" id="id15">Tables -- Reading a file</a></li>
+<li><a class="reference internal" href="#important-tech-x-python-stuff" id="id16">Important Tech-X python stuff</a></li>
+</ul>
+</div>
+<div class="section" id="what-does-python-for-scientists-mean">
+<h1><a class="toc-backref" href="#id1">What does &quot;python for scientists&quot; mean?</a></h1>
+<p>Python is often said to have the &quot;batteries included&quot; because the
+standard library is extensive.  However, this is not true for
+scientists.  The standard Tech-X python package looks like:</p>
+<dl class="docutils">
+<dt>numpy</dt>
+<dd>Enables true typed-arrays which is needed for performance reasons.
+Syntax is very similar to matplot.</dd>
+<dt>scipy</dt>
+<dd>Interpolation, linear algebra, statistics, ...
+(depends on numpy).</dd>
+<dt>matplotlib</dt>
+<dd>Best 1D and 2D plotting package for python
+(depends on numpy).</dd>
+<dt>tables</dt>
+<dd>Excellent python interface to the HDF5 library
+(depends on numpy).</dd>
+<dt>ipython</dt>
+<dd>Interactive shell -- not necessary but useful for development</dd>
+</dl>
+</div>
+<div class="section" id="build-installation-issues">
+<h1><a class="toc-backref" href="#id2">Build/Installation issues</a></h1>
+<p>Getting the python packages installed can be difficult, especially if
+the set of packages becomes large.  There are a few efforts to attempt
+solving this problem:</p>
+<dl class="docutils">
+<dt>SAGE (<a class="reference external" href="http://www.sagemath.org">http://www.sagemath.org</a> )</dt>
+<dd>Set of 95 packages for mathematic usage</dd>
+<dt>Scientific Python</dt>
+<dd>Packages oriented towards the biological sciences.</dd>
+<dt>Enthought</dt>
+<dd>Commercial software company that bundles the packages
+together into nice pre-built binaries.  The company
+sponsors the SciPy conference and supports many of the
+scientifically-relevant packages.</dd>
+</dl>
+<p>For Tech-X, the main ones are built via bilder for the facets project
+(except for ipython which should be installed by hand).</p>
+<p>To use on our systems:</p>
+<pre class="literal-block">
+source /contrib/facetspkgs.sh    # for bash users
+source /contrib/facetspkgs.csh   # for tcsh users
+</pre>
+<p>This sets the <tt class="docutils literal">PYTHONPATH</tt> variable to point to the installed
+site-packages in <tt class="docutils literal">/contrib</tt>.</p>
+</div>
+<div class="section" id="basic-python-concepts">
+<h1><a class="toc-backref" href="#id3">Basic python concepts</a></h1>
+<p>There are many books around Tech-X for learning python (I have a few)
+and many online tutorials.  I will assume that there some basic
+knowledge is known.</p>
+<p>Important to understand basic module functionality however.  There is a
+difference between:</p>
+<pre class="literal-block">
+import numpy
+</pre>
+<p>and:</p>
+<pre class="literal-block">
+from numpy import *
+</pre>
+<p>The difference between the two is in the namespacing:</p>
+<pre class="literal-block">
+a=numpy.exp(b)
+</pre>
+<p>versus:</p>
+<pre class="literal-block">
+a=exp(b)
+</pre>
+<p>Numpy is one of the most common modules that are not imported as
+namespaced modules.  Important in debugging a script from someone else.</p>
+</div>
+<div class="section" id="general-tips-for-writing-modules-scripts">
+<h1><a class="toc-backref" href="#id4">General tips for writing modules/scripts</a></h1>
+<ul>
+<li><p class="first">Newbies generally write flat python scripts.  The more quickly you
+start putting things into functions or classes, the better.</p>
+</li>
+<li><p class="first">Typical python idiom for doing this:</p>
+<pre class="literal-block">
+#!/bin/env python
+import foobarmodule
+def veryUsefulMethod1(input1,input2,input3):
+   ...
+def main():
+   ...
+
+if __name__ == &quot;__main__&quot;:
+        main()
+</pre>
+</li>
+<li><p class="first">Above idiom  allows one to either execute it from the command line, or
+do an <tt class="docutils literal">import foo</tt> get access to <tt class="docutils literal">foo.veryUsefulMethod1</tt>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="options-do-not-hardcode-your-stuff">
+<h1><a class="toc-backref" href="#id5">Options: do not hardcode your stuff</a></h1>
+<ul>
+<li><p class="first">Newbies also tend to hard code parameters when really you want to pass
+them in.  Here is the section of code that shows how to use optparse
+for two kinds of input parameters:</p>
+<pre class="literal-block">
+parser = optparse.OptionParser(usage=%prog [options] inputFile)
+parser.add_option('-d', '--do', dest='doSomething',
+                  help='Set a logical variable (default is true) ',
+                  action='store_true')
+parser.add_option('-n','--number', dest='number', default='20',
+                  help='Number of something to control something else')
+
+options, args = parser.parse_args()
+</pre>
+</li>
+</ul>
+<p>See <tt class="docutils literal">pythonTemplate.py</tt> for the full code and how to use the input
+parameters.</p>
+<p>In the examples directory, we have &quot;snippets&quot; and examples.</p>
+<p>snippets are the quick and dirty; examples follow the above notation.</p>
+<p>If it's good enough to <tt class="docutils literal">svn commit</tt>, then it's good enough to have a
+better structure.</p>
+</div>
+<div class="section" id="ipython">
+<h1><a class="toc-backref" href="#id6">iPython</a></h1>
+<p>See: <a class="reference external" href="http://ipython.scipy.org/doc/manual/html/interactive/tutorial.html">http://ipython.scipy.org/doc/manual/html/interactive/tutorial.html</a></p>
+<p>Many features, but one that will make life easier is the <tt class="docutils literal">run</tt>
+command.  This is useful for all of the &quot;snippets&quot; that will
+be shown.</p>
+<p>We will also be using tab completion in ipython -- the killer feature
+over <tt class="docutils literal">python <span class="pre">-i</span></tt>  (in addition to better command history support).</p>
+</div>
+<div class="section" id="introduction-to-numpy">
+<h1><a class="toc-backref" href="#id7">Introduction to numpy</a></h1>
+<p>See: <a class="reference external" href="http://www.scipy.org/Tentative_NumPy_Tutorial">http://www.scipy.org/Tentative_NumPy_Tutorial</a></p>
+<p>The two key concepts to understanding numpy:</p>
+<ul class="simple">
+<li>types</li>
+<li>arrays
+- allocation
+- indexing</li>
+</ul>
+<p>To get an idea of what numpy provides:</p>
+<pre class="literal-block">
+iter 1: ipython
+Python 2.6 (r26:66714, Mar 17 2009, 11:44:14)
+...
+
+IPython 0.9.1 -- An enhanced Interactive Python.
+?         -&gt; Introduction and overview of IPython's features.
+%quickref -&gt; Quick reference.
+%help      -&gt; Python's own help system.
+%object?   -&gt; Details about 'object'. ?object also works, ?? prints
+%more.
+%
+%In [1]: import numpy
+%
+%In [2]: numpy.&lt;TAB&gt;
+%Display all 566 possibilities? (y or n)
+</pre>
+</div>
+<div class="section" id="numpy-types-and-array-allocation">
+<h1><a class="toc-backref" href="#id8">Numpy types and array allocation</a></h1>
+<p>There are 4 common ways of allocating a numpy array:</p>
+<ol class="arabic simple">
+<li>Use <tt class="docutils literal">arange</tt> command for defining arrays with equally spaced data.</li>
+<li>Perform operation on existing numpy array.</li>
+<li>Use <tt class="docutils literal">array</tt> commands for converting lists (from normal python usage).</li>
+<li>Use <tt class="docutils literal">zeros</tt> commands for allocating a blank array and initializing to zero.</li>
+</ol>
+<p>The types of the first two are generally &quot;automatic&quot;, but the latter
+usually is best done explicitly.  Examples (<tt class="docutils literal">snippet1.py</tt>):</p>
+<pre class="literal-block">
+import numpy
+x=numpy.arange(10)
+type(x)
+x.dtype
+# Create periodic grid
+xp=numpy.arange(10)*2*numpy.pi/9
+print xp
+xp.dtype
+# Create numpy array via an operation on existing array
+y=numpy.sin(x)
+type(y)
+</pre>
+</div>
+<div class="section" id="numpy-examples-continued">
+<h1><a class="toc-backref" href="#id9">Numpy examples (continued)</a></h1>
+<p>Next two examples (<tt class="docutils literal">snippet2.py</tt>):</p>
+<pre class="literal-block">
+# Create x as a list and then convert
+xlist=range(10)
+type(xlist)
+x=numpy.array(xlist)
+type(x)
+x.dtype
+# Create an empty array and fill it.  Note that default is double so
+# don't really need it here, but good for illustration
+yp=numpy.zeros([10],numpy.double)
+for i in range(10): yp[i]=numpy.cos(xp[i])
+</pre>
+<p>See <tt class="docutils literal">numpyExamples.py</tt>.</p>
+</div>
+<div class="section" id="array-slicing-in-numpy">
+<h1><a class="toc-backref" href="#id10">Array slicing in numpy</a></h1>
+<p>numpy has array slicing capabilities similar to fortran.  The only
+gotcha (if you are a fortran programmer), is that the second index
+represents an open set (<tt class="docutils literal">snippet3.py</tt>):</p>
+<pre class="literal-block">
+s=numpy.arange(10)
+t=numpy.zeros( [2,20], numpy.int)
+t[0,:]=numpy.arange(20)
+t[1,5:15]=s
+print t.shape
+print t
+</pre>
+</div>
+<div class="section" id="matplotlib-the-best-1d-2d-python-package-system">
+<h1><a class="toc-backref" href="#id11">Matplotlib - the best 1D/2D python package system</a></h1>
+<p>Maptlotlib is huge and complex.  Generally, only need to know pylab
+then start looking at the gallery to find the plot you want.
+See <a class="reference external" href="http://matplotlib.sourceforge.net/gallery.html">http://matplotlib.sourceforge.net/gallery.html</a></p>
+<p>Going through a few examples will cover most routine uses however (<tt class="docutils literal">snippet4.py</tt>):</p>
+<pre class="literal-block">
+from matplotlib import pylab
+pylab.plot(x,y)
+pylab.show()
+xaxmin=x.min(); xaxmax=x.max(); yaxmin=1.2*y.min(); yaxmax=1.2*y.max()
+pylab.axis([xaxmin,xaxmax,yaxmin,yaxmax])
+pylab.xlabel(&quot; X (m) &quot;)
+pylab.ylabel(&quot; Signal (eV) &quot;)
+pylab.plot(x,y)
+pylab.plot(xp,yp,marker=&quot;+&quot;, linestyle=&quot;-&quot;, color=&quot;red&quot;,ms=10)
+pylab.show()
+</pre>
+</div>
+<div class="section" id="matplotlib-2d-plots">
+<h1><a class="toc-backref" href="#id12">Matplotlib - 2D Plots</a></h1>
+<p>Two-D line plots and contour plots are useful(<tt class="docutils literal">snippet5.py</tt>):</p>
+<pre class="literal-block">
+# 2D line plot
+xcirc=4.*yp; ycirc=4.*y
+pylab.plot(xcirc,ycirc)
+pylab.axis('equal')
+pylab.show()
+# Contour plot
+xg,yg=numpy.meshgrid(x,xp)
+z=numpy.cos(xg)*numpy.sin(yg)
+print z.shape
+pylab.imshow(z)
+pylab.show()
+</pre>
+<ul class="simple">
+<li></li>
+</ul>
+</div>
+<div class="section" id="matplotlib-loading-data-from-text-files">
+<h1><a class="toc-backref" href="#id13">Matplotlib - Loading data from text files</a></h1>
+<p>Often data you want to plot is in simple text files.</p>
+<p>Python makes it easy to parse, but pylab adds a function to make
+loading data easy (<tt class="docutils literal">snippet6.py</tt>):</p>
+<pre class="literal-block">
+rdArray=pylab.loadtxt('dataFile1.txt',comments='x1')
+rdArray.shape
+x1=rdArray[:,0]
+y1=rdArray[:,1]
+x2=rdArray[:,2]
+y2=rdArray[:,3]
+from plotExamples import *
+makeXyPlot(x1,y1,x2,y2)
+</pre>
+</div>
+<div class="section" id="tables-making-hdf5-more-usable">
+<h1><a class="toc-backref" href="#id14">Tables -- Making HDF5 more usable</a></h1>
+<p>Tables is a killer library making working with HDF5 more enjoyable.  It
+is easy to use once basic concepts are understood.</p>
+<p>Start by writing out an hdf5 file that is vizSchema compliant (<tt class="docutils literal">snippet7.py</tt>):</p>
+<pre class="literal-block">
+import tables
+hf=tables.openFile('dataFile1.h5','w')
+x1n=hf.createArray(hf.root,&quot;x1&quot;,x1)
+hf.setNodeAttr(x1n,&quot;vsType&quot;, &quot;mesh&quot;)
+hf.setNodeAttr(x1n,&quot;vsKind&quot;, &quot;structured&quot;)
+y1n=hf.createArray(hf.root,&quot;y1&quot;,y1)
+hf.setNodeAttr(x1n,&quot;vsType&quot;, &quot;variable&quot;)
+hf.setNodeAttr(x1n,&quot;vsMesh&quot;, &quot;x1&quot;)
+hf.close()
+</pre>
+</div>
+<div class="section" id="tables-reading-a-file">
+<h1><a class="toc-backref" href="#id15">Tables -- Reading a file</a></h1>
+<p>Reading tables is a straitforward reverse of a writing a file,
+but ipython's tab completion is even more useful here.  The key
+is to look under root (<tt class="docutils literal">snippet8.py</tt>):</p>
+<pre class="literal-block">
+hf=tables.openFile('dataFile1.h5','r')
+hf.&lt;TAB&gt;
+hf.root.&lt;TAB&gt;
+newx1=hf.root.x1.read()
+newy1=hf.root.y1.read()
+hf.close()
+</pre>
+</div>
+<div class="section" id="important-tech-x-python-stuff">
+<h1><a class="toc-backref" href="#id16">Important Tech-X python stuff</a></h1>
+<p>We have a few common python scripts:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>txutils/vsh5plot</dt>
+<dd><ul class="first last simple">
+<li>Scripts for reading in vizSchema h5 files</li>
+<li>Various VORPAL analysis scripts</li>
+<li>Other</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>fcutils</dt>
+<dd><ul class="first last simple">
+<li>Things useful for facets.</li>
+<li>Includes file convertors so has parsing examples.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Of course there are many others.</p>
+</div>
+</div>
+</body>
+</html>

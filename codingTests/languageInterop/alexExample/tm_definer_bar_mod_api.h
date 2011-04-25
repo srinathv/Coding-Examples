@@ -1,0 +1,1 @@
+#define TmGetBar_typeString FC_FUNC(tmgetbar_typestring,TMGETBAR_TYPESTRING)
