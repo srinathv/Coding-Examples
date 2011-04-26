@@ -1,0 +1,12 @@
+
+Mon Apr 25 12:57:34 MDT 2011
+This directory will hold a simple autool project to 
+help understand how libtool on the Mac OS  X works with ranlib.
+Particularly, we want to:
+
+1) build a library
+2) add to another library
+3) link to an executable
+4) all while using common global symbols.
+
+
