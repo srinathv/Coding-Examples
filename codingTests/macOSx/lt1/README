@@ -9,4 +9,4 @@ Particularly, we want to:
 3) link to an executable
 4) all while using common global symbols.
 
-
+gcc -c a.c b.c; rm -rf libab.a a.out; ar -q libab.a a.o b.o; gcc m.c libab.a

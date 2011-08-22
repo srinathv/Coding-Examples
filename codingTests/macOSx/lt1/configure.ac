@@ -6,14 +6,14 @@
 # 2006, see the COPYRIGHT file for more information.
 
 ## This puts the cvs ID tag in the output configure script.
-AC_REVISION([$Id: configure.ac 714 2011-04-22 18:02:17Z pletzer $])
+AC_REVISION([$Id: configure.ac 714 2011-04-22 18:02:17Z srinath $])
 
 ## Running autoconf on this file will trigger a warning if 
 ## autoconf is not at least the specified version.
 AC_PREREQ([2.59])
 
 ## Initialize with name, version, and support email address. 
-AC_INIT([libcf], [1.0-beta1], [support@unidata.ucar.edu])
+AC_INIT([macosxlibs], [1.0-beta1], [srinath@txcorp.com])
 AC_CONFIG_MACRO_DIR([m4])
 
 AC_MSG_NOTICE([libcf AC_PACKAGE_VERSION])
@@ -49,7 +49,6 @@ AC_CONFIG_HEADERS([nfconfig.inc:nfconfig.in],
 AM_INIT_AUTOMAKE([foreign no-installinfo subdir-objects -Wall])
 
 # Check for the existance of this file before proceeding.
-AC_CONFIG_SRCDIR([src/nccoord.c])
 
 AC_MSG_NOTICE([checking user options])
 

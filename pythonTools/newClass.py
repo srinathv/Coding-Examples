@@ -8,7 +8,7 @@ class simplePrint:
     "print the input to screen"
     def __init__(self):
       pass
-    def what(toPrint):
+    def what(self,toPrint):
       print "You say " + toPrint
 
 
