@@ -46,7 +46,7 @@ int main()
         printf( "That's not my name.\n" );
     }
     // Find the length of your name
-    printf( "Your name is %d letters long", strlen ( name ) );
+    printf( "Your name is %d letters long",  (unsigned int)strlen ( name), ".\n" );
     printf( "Enter your last name: " );
     fgets( lastname, 50, stdin );
     strip_newline( lastname, 50 );
