@@ -2,6 +2,7 @@ from netCDF4 import Dataset
 import numpy as np
 import pylab as py
 import sys, os, re
+import math as mt
 
 files=sys.argv
 
@@ -64,7 +65,6 @@ def scrip_remap_matrix(filename):
     rowLoc=scripGrp.variables['dst_address'][i]-1
     colLoc=scripGrp.variables['src_address'][i]-1
     scripWeights[rowLoc,colLoc]=scripGrp.variables['remap_matrix'][i][0]
-
   return scripWeights
 
 
@@ -73,11 +73,54 @@ scripLinWeights=scrip_remap_matrix('rmp_longlat_2b2_to_4b4_lin.nc')
 scripConsWeights=scrip_remap_matrix('rmp_longlat_2b2_to_4b4_conserv.nc')
 
 #get the grid locations
-orgGrp=Dataset('tst_lonlat_to_lonlat_grid_ori_scrip.nc')
-desGrp=Dataset('tst_lonlat_to_lonlat_grid_tgt_scrip.nc')
+#orgGrp=Dataset('tst_lonlat_to_lonlat_grid_ori_scrip.nc')
+#desGrp=Dataset('tst_lonlat_to_lonlat_grid_tgt_scrip.nc')
 
+def get_vertices(filename):
+  libcfGrp=Dataset(filename)
+  tempLon=libcfGrp.variables['lon'][:].flatten()
+  tempLat=libcfGrp.variables['lon'][:].flatten()
+  vertices=np.zeros([tempLon.size,2])
+  for i in range(vertices.shape[0]):
+    vertices[i,0]=tempLon[i]
+    vertices[i,1]=tempLat[i]
+  return vertices
+  
+
+src_vertices=get_vertices('tst_lonlat_to_lonlat_ori.nc')
+dst_vertices=get_vertices('tst_lonlat_to_lonlat_tgt.nc')
+
+#def get_dst_vertices
+#  scripGrp=Dataset(filename)
+
+
+def get_src_cellCenters(filename):
+  scripGrp=Dataset(filename)
+  src_cellCenters=np.zeros([scripGrp.variables['src_grid_center_lat'].shape[0],2])
+  for i in range(src_cellCenters.shape[0]):
+    src_cellCenters[i,0]=scripGrp.variables['src_grid_center_lon'][i]
+    src_cellCenters[i,1]=scripGrp.variables['src_grid_center_lat'][i]
+  return src_cellCenters
+
+def get_dst_cellCenters(filename):
+  scripGrp=Dataset(filename)
+  dst_cellCenters=np.zeros([scripGrp.variables['dst_grid_center_lat'].shape[0],2])
+  for i in range(dst_cellCenters.shape[0]):
+    dst_cellCenters[i,0]=scripGrp.variables['dst_grid_center_lon'][i]
+    dst_cellCenters[i,1]=scripGrp.variables['dst_grid_center_lat'][i]
+  return dst_cellCenters
+
+
+src_cellCenters=get_src_cellCenters('rmp_longlat_2b2_to_4b4_conserv.nc')
+dst_cellCenters=get_dst_cellCenters('rmp_longlat_2b2_to_4b4_conserv.nc')
 #create function eval original grid.
+def func1(gridVect):
+  z=np.zeros(gridVect.shape[0])
+  for i in range(gridVect.shape[0]):
+      z[i]=mt.sin(mt.pi/2 * gridVect[i,0])*mt.sin(mt.pi/2 * gridVect[i,1])
+  return z
 
+z1=func1(dst_cellCenters)
 
 #eval on original grid
 
