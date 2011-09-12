@@ -3,6 +3,7 @@ import numpy as np
 import pylab as py
 import sys, os, re
 import math as mt
+import mpl_toolkits.mplot3d.axes3d as p3
 
 files=sys.argv
 
@@ -82,17 +83,19 @@ scripConsWeights=scrip_remap_matrix(scripsConWeightsFile)
 
 def get_vertices(filename):
   libcfGrp=Dataset(filename)
+  londim=len(libcfGrp.variables['lon'])
+  latdim=len(libcfGrp.variables['lat'])
   tempLon=libcfGrp.variables['lon'][:].flatten()
-  tempLat=libcfGrp.variables['lon'][:].flatten()
+  tempLat=libcfGrp.variables['lat'][:].flatten()
   vertices=np.zeros([tempLon.size,2])
   for i in range(vertices.shape[0]):
     vertices[i,0]=tempLon[i]
     vertices[i,1]=tempLat[i]
-  return vertices
+  return vertices,londim,latdim
   
 
-src_vertices=get_vertices(sourceVertxFile)
-dst_vertices=get_vertices(destVertxFile)
+src_vertices,src_lonDim,dst_latDim=get_vertices(sourceVertxFile)
+dst_vertices,dst_lonDim,dst_latDim=get_vertices(destVertxFile)
 
 def get_src_cellCenters(filename):
   scripGrp=Dataset(filename)
@@ -129,15 +132,29 @@ zAtSrcCellCenters=func1(src_cellCenters)
 zAtDstVertices=func1(dst_vertices)
 zAtSrcVertices=func1(src_vertices)
 
-interpZLibcf=np.dot(libcfWeights,zAtSrcVertices)
-
-
 ####apply interpolation weights to original grid evaluation to
 ## apply libcf interpolation at vertices
-
-## apply scrip linear interpolation to cell centers
-
+interpZLibcf=np.dot(libcfWeights,zAtSrcVertices)
 ## apply scrip 1st order convervative interpolation to cell centers
+interpZscripConsv=np.dot(scripConsWeights,zAtSrcCellCenters)
+## apply scrip linear interpolation to cell centers
+interpZscripLin=np.dot(scripLinWeights,zAtSrcCellCenters)
+
+### Plot surfaces
+#plot libcf interpolation data
+fig1=py.figure(1)
+X=dst_vertices[0:dst_lonDim,0]
+Y=dst_vertices[::dst_latDim,1]
+Z=np.reshape(interpZLibcf,[dst_latDim,dst_Dim])
+#ct=py.contour(X,Y1,Z)
+ct=py.contour(X,Y,Z)
+cbar= py.colorbar()
+py.xlabel('lon')
+py.ylabel('lat')
+
+py.show()
+
+
 
 
 #get absolute difference at each point
