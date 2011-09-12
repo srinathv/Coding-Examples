@@ -42,17 +42,15 @@ for i in range(libcfWeights.shape[0]):
   for j in range(libcfIndicesTemp.shape[1]):
     libcfWeights[i,libcfIndicesTemp[i,j]]=libcfWeights[i,libcfIndicesTemp[i,j]]+libcfWeightsTemp[i,j]
 
-
+##Plot the libcf transform matrix
 #fig1=py.figure()
-py.matshow(libcfWeights)
-py.colorbar()
+#py.matshow(libcfWeights)
+#py.colorbar()
 #py.show()
 
 ####LOAD the SCRIP remap matrices
 ## I think SCRIP is a cell centered remapper.
 
-#scripLinGrp=Dataset('rmp_longlat_2b2_to_4b4_lin.nc')
-#scripConsGrp=Dataset('rmp_longlat_2b2_to_4b4_conserv.nc')
 
 def scrip_remap_matrix(filename):
   scripGrp=Dataset(filename)
@@ -72,9 +70,7 @@ def scrip_remap_matrix(filename):
 scripLinWeights=scrip_remap_matrix('rmp_longlat_2b2_to_4b4_lin.nc')
 scripConsWeights=scrip_remap_matrix('rmp_longlat_2b2_to_4b4_conserv.nc')
 
-#get the grid locations
-#orgGrp=Dataset('tst_lonlat_to_lonlat_grid_ori_scrip.nc')
-#desGrp=Dataset('tst_lonlat_to_lonlat_grid_tgt_scrip.nc')
+##get the grid locations
 
 def get_vertices(filename):
   libcfGrp=Dataset(filename)
@@ -89,10 +85,6 @@ def get_vertices(filename):
 
 src_vertices=get_vertices('tst_lonlat_to_lonlat_ori.nc')
 dst_vertices=get_vertices('tst_lonlat_to_lonlat_tgt.nc')
-
-#def get_dst_vertices
-#  scripGrp=Dataset(filename)
-
 
 def get_src_cellCenters(filename):
   scripGrp=Dataset(filename)
@@ -114,20 +106,30 @@ def get_dst_cellCenters(filename):
 src_cellCenters=get_src_cellCenters('rmp_longlat_2b2_to_4b4_conserv.nc')
 dst_cellCenters=get_dst_cellCenters('rmp_longlat_2b2_to_4b4_conserv.nc')
 #create function eval original grid.
+#simple constant [2] function
 def func1(gridVect):
   z=np.zeros(gridVect.shape[0])
   for i in range(gridVect.shape[0]):
-      z[i]=mt.sin(mt.pi/2 * gridVect[i,0])*mt.sin(mt.pi/2 * gridVect[i,1])
+      #z[i]=mt.sin(mt.pi/2 * gridVect[i,0])*mt.cos(mt.pi/2 * gridVect[i,1])
+      #z[i]=mt.sin(mt.pi/2 * gridVect[i,0]) * gridVect[i,1]
+      z[i]=2.
   return z
 
-z1=func1(dst_cellCenters)
+zAtDstCellCenters=func1(dst_cellCenters)
+zAtSrcCellCenters=func1(src_cellCenters)
 
-#eval on original grid
+zAtDstVertices=func1(dst_vertices)
+zAtSrcVertices=func1(src_vertices)
 
-#eval on destination grid
+interpZLibcf=np.dot(libcfWeights,zAtSrcVertices)
 
-#apply interpolation weights to original grid evaluation to
-#obtain interpolated values
+
+####apply interpolation weights to original grid evaluation to
+## apply libcf interpolation at vertices
+
+## apply scrip linear interpolation to cell centers
+
+## apply scrip 1st order convervative interpolation to cell centers
 
 
 #get absolute difference at each point
