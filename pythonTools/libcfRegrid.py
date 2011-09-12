@@ -9,7 +9,15 @@ files=sys.argv
 
 #read in regrid from from libcf
 
-rootgrp=Dataset('tst_lonlat_to_lonlat_regrid_weights.nc')
+
+libcfWeightsFile='tst_lonlat_to_lonlat_regrid_weights.nc'
+scripsLinWeightsFile='rmp_longlat_8b8_to_8b8_lin.nc'
+scripsConWeightsFile='rmp_longlat_8b8_to_8b8_conserv.nc'
+
+sourceVertxFile='tst_lonlat_to_lonlat_ori.nc'
+destVertxFile='tst_lonlat_to_lonlat_tgt.nc'
+
+rootgrp=Dataset(libcfWeightsFile)
 
 #get  temp weight matrix
 libcfWeightsTemp=np.zeros(rootgrp.variables['weights'].shape)
@@ -67,8 +75,8 @@ def scrip_remap_matrix(filename):
 
 
 
-scripLinWeights=scrip_remap_matrix('rmp_longlat_2b2_to_4b4_lin.nc')
-scripConsWeights=scrip_remap_matrix('rmp_longlat_2b2_to_4b4_conserv.nc')
+scripLinWeights=scrip_remap_matrix(scripsLinWeightsFile)
+scripConsWeights=scrip_remap_matrix(scripsConWeightsFile)
 
 ##get the grid locations
 
@@ -83,8 +91,8 @@ def get_vertices(filename):
   return vertices
   
 
-src_vertices=get_vertices('tst_lonlat_to_lonlat_ori.nc')
-dst_vertices=get_vertices('tst_lonlat_to_lonlat_tgt.nc')
+src_vertices=get_vertices(sourceVertxFile)
+dst_vertices=get_vertices(destVertxFile)
 
 def get_src_cellCenters(filename):
   scripGrp=Dataset(filename)
@@ -103,8 +111,8 @@ def get_dst_cellCenters(filename):
   return dst_cellCenters
 
 
-src_cellCenters=get_src_cellCenters('rmp_longlat_2b2_to_4b4_conserv.nc')
-dst_cellCenters=get_dst_cellCenters('rmp_longlat_2b2_to_4b4_conserv.nc')
+src_cellCenters=get_src_cellCenters(scripsConWeightsFile)
+dst_cellCenters=get_dst_cellCenters(scripsConWeightsFile)
 #create function eval original grid.
 #simple constant [2] function
 def func1(gridVect):
