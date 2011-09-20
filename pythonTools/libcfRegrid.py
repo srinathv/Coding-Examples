@@ -145,8 +145,7 @@ interpZscripLin=np.dot(scripLinWeights,zAtSrcCellCenters)
 fig1=py.figure(1)
 X=dst_vertices[0:dst_lonDim,0]
 Y=dst_vertices[::dst_latDim,1]
-Z=np.reshape(interpZLibcf,[dst_latDim,dst_Dim])
-#ct=py.contour(X,Y1,Z)
+Z=np.reshape(interpZLibcf,[dst_lonDim,dst_latDim])
 ct=py.contour(X,Y,Z)
 cbar= py.colorbar()
 py.xlabel('lon')
