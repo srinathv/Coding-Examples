@@ -18,7 +18,6 @@
   allocate(array(n1,n2,n3))
 
   ranks=shape(shape(array))
-  write(*,*) "ranks= ", ranks
   allocate(dims(ranks(1)))
   dims=shape(array)
   write(*,*) "shape of array = ", dims
