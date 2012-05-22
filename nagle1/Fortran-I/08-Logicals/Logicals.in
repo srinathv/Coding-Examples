@@ -1,0 +1,4 @@
+both are true       T  T
+left is true        T  F
+right is true       F  T
+both are false      F  F
