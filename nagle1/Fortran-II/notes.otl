@@ -52,4 +52,7 @@ Pointer19:
 
 
 
+43-operators:
+	overloading 
+		addition of vector derived type and more.
 
