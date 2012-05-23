@@ -1,0 +1,33 @@
+
+Questions:
+1) git_id value?
+2) titling loop like 
+    foo : do
+
+
+
+    end do foo
+
+
+NOTES:
+    13-Derived types
+      constructor idea 
+
+ 16-attributes:
+    forall and where
+
+
+ 17-attributes:
+  target and pointers 
+    -target: may be aliased
+
+pointers:
+  compilers treat pointer cautiously
+
+ continue -- marks end of declaration block and beginning of executable
+
+
+case ( a, b) is a or b
+  23-executables
+
+
