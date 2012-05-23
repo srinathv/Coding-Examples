@@ -1,0 +1,55 @@
+Notes from talk:
+
+| this is to help with this.
+|
+|
+
+array constructor 
+  use square brackets
+
+ 
+when using advanced slicing, treat it just like a standard loop and
+
+edit descriptor
+reversion
+
+
+Array09:
+	merge function
+
+Array11:
+	pack:
+		*where ever the condition is true in the array, it will make a vector
+
+			iand(a,1) == 1 => odd numbers
+
+		*use in cuda fortran??
+
+Array12:
+	spread 
+
+Array13:
+	move_alloc
+		grow an array by creating the second array and doing the "pointer" switch
+
+Array14:
+	pointer:
+		Good use:
+			array is the 2d domain
+			pointers to the boundaries of the domain
+
+Pointer16:
+	c_loc 
+
+indecies can be called extent
+
+Pointer19:
+	pointer bounds and rank remapping
+
+35-intrinsic:
+	cshift for quick looping
+	eoshift (allows for loading of boundaries after shift)
+
+
+
+
