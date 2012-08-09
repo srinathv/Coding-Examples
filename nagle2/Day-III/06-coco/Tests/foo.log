@@ -1,0 +1,52 @@
+coco message: 9 -1 20 0 4  
+predefined symbols
+name: file                           
+value: foo.fpp
+never referenced
+name: line                           
+value: 12
+never referenced
+name: date                           
+value: 2011/12/22
+never referenced
+name: time                           
+value: 15:26:49.281
+never referenced
+name: coco                           
+value: $Id: coco.f90,v 2.5 2011/12/22 20:24:02 dan Exp $
+never referenced
+name: setfile                        
+value: foo.set
+never referenced
+name: logfile                        
+value: foo.log
+never referenced
+name: output                         
+value: foo.f90
+never referenced
+name: cmdline                        
+value: ../coco -a3 -p -l foo.log foo
+never referenced
+symbols
+next symbol
+name: a                              
+declared in file: foo.fpp at line: 1
+referenced in file: foo.fpp at line: 6
+type: integer variable
+value:          4
+defined in file: foo.fpp at line: 1
+next symbol
+name: b                              
+declared in file: foo.fpp at line: 1
+referenced in file: foo.fpp at line: 6
+type: integer variable
+value:          5
+defined in file: foo.fpp at line: 1
+next symbol
+name: debug                          
+declared in file: foo.fpp at line: 2
+referenced in file: foo.fpp at line: 7
+type: logical variable
+value: .false.
+defined in file: foo.set at line: 4
+end symbols

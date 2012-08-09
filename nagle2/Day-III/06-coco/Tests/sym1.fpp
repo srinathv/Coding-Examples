@@ -1,0 +1,2 @@
+?? integer :: one = 1
+! ?

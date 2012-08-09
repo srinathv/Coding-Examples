@@ -1,0 +1,1524 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.1//EN" "TextWrangler">
+
+<html>
+<head>
+
+	<meta http-equiv="Content-type" content="text/html; charset=iso-8859-1">
+
+	<base target=_top>
+
+<!--$Id$ -->
+
+<!--Copyright 2010 Dan Nagle -->
+
+</head>
+
+<body bgcolor="#ffffff" text="#000000">
+
+<!--This is the wider right side frame. -->
+
+<!--The Banner running across the top -->
+	<h1 align="CENTER"><font face="sans-serif">
+		<em>Dan Nagle's Technical Site</em></font></h1>
+
+<!--The main page starts here. -->
+	<p align="CENTER"><em> <a name="top">Program CoCo</a></em></p>
+
+<!--This is the navigation bar across the top. -->
+	<p align="CENTER"><a href="index.html" type="text/html">Home</a>
+		<font face="Symbol">--&gt;</font> <a href="fact.html" type="text/html">Fact Sheet</a>
+		<font face="Symbol">--&gt;</font> <a href="download.html" type="text/html">Free Source Code</a>
+		<font face="Symbol">--&gt;</font> CoCo </p>
+
+<!--This is the main title. -->
+	<h2 align="CENTER"><font face="sans-serif">About the Program CoCo</font></h2>
+
+	<p align="CENTER"><a href="#download" target=_self>Go directly to Downloads</a></p>
+
+	<p align="CENTER"><a href="#intro" target=_self>Go directly to Standard CoCo</a></p>
+
+	<p align="CENTER"><a href="#setfile" target=_self>Go directly to The CoCo Set File</a></p>
+
+	<p align="CENTER"><a href="#using" target=_self>Go directly to Using CoCo</a></p>
+
+	<p align="CENTER"><a href="#topics" target=_self>Go directly to Using CoCo Topics</a></p>
+
+	<p align="CENTER"><a href="#extensions" target=_self>Go directly to Extensions to the Standard CoCo</a></p>
+
+	<p align="CENTER"><a href="#example" target=_self>Go directly to An Example of Using CoCo</a></p>
+
+<!--The main page content starts here. -->
+	<p align="LEFT"><a href="#download" target=_self>CoCo</a> provides preprocessing
+		as per Part 3 of the Fortran Standard (CoCo is short for "conditional
+		compilation"). It implements the auxiliary third part of ISO/IEC 1539 (better
+		known as Programming Languages- Fortran), and supports
+		<a href="#extensions" target=_self>several extensions</a>. (Part 1 of the standard defines the Fortran Language
+		proper. Part 2 is the ISO_VARYING_STRINGS standard, which is sometimes implemented as a
+		<a href="ftp://ftp.nag.co.uk/sc22wg5/ISO_VARYING_STRING/Sample_Module/iso_vsta.f95.gz">module</a>.)
+		A <a href="#download" target=_self>restore program</a>, similar to that described in the
+		CoCo standard, is also available for download.</p>
+
+	<p>Note that Part 2 and Part 3 of the Fortran Standard have been withdrawn.
+		Neither is available from ISO or ANSI.  Either may be available from an alternate source,
+		for example, from Bitsavers, or a similar site.</p>
+
+	<p align="LEFT">Generally, CoCo programs are interpreted line by
+		line. A line is either a CoCo line or a source line. Lines that start with the
+		characters "??" in columns 1 and 2 are CoCo lines. All other lines are expected
+		to be Fortran source lines (of course, the other lines need not actually be
+		Fortran source lines, but they are called source lines in the discussion on
+		this page). Except for the "??" characters in columns 1 and 2, CoCo lines
+		follow the same rules as Fortran free form lines. Like Fortran free form
+		lines, CoCo lines are continued by placing an "&amp;" as the last character of
+		the line to be continued. A CoCo comment is any text following a "!" following
+		the "??" characters. A CoCo comment may not follow the "&amp;" used to continue
+		a quoted string onto the next line. Text in CoCo lines may appear in upper case
+		or lower case interchangeably, CoCo preserves case in CoCo lines written to the output file
+		and ignores case in source lines. Either single quotes or double quotes may be used to
+		delimit strings.  CoCo directives are rendered in upper case on this page for clarity,
+		and because the standard document uses upper case.</p>
+
+	<p align="LEFT">CoCo directives may define integer constants and variables, and
+		logical constants and variables. CoCo uses a strong type system, which means
+		that integer symbols and logical symbols are not interchangable. The
+		distinction between constants and variables provides a further level of
+		control. Conditional compilation is effected by CoCo IF blocks, which start
+		with CoCo IF directives. The conditions are determined by CoCo logical
+		expressions, which may include relational operations between CoCo integer
+		expressions. CoCo if-blocks function analogously to Fortran if-blocks, with IF,
+		ELSE IF, ELSE and END IF directives. CoCo if-blocks select which lines will be
+		passed to the output source file for compilation. An INCLUDE directive is also
+		available so preprocessing may be applied to the included lines as well. The
+		complete set of standard directives are listed
+		<a href="#intro" target=_self>further down</a> this page.</p>
+
+	<p align="LEFT">As <a href="#using" target=_self>implemented here</a>, a one invocation of CoCo
+		reads one or more input source files and writes one output source file to be
+		compiled. A short example of a CoCo program follows, the lines with initial
+		"??" are the CoCo lines, lines without the initial "??" are Fortran source lines:</p>
+
+	<pre>
+?? ! used to choose whether the intrinsic module sets stdout
+?? logical, parameter :: has_intrinsic_module = .false.
+
+program hello_world
+
+?? ! use number or asterisk
+?? if( has_intrinsic_module )then
+!  output_unit is stdout
+use, intrinsic :: iso_fortran_env, only: output_unit
+
+write( unit= output_unit, fmt= *) 'Hello, world!'
+?? else
+!  * is stdout
+write( unit= *, fmt= *) 'Hello, world!'
+?? endif
+
+stop
+
+end program hello_world
+	</pre>
+
+	<p align="LEFT">Above, lines starting with "?? !" are CoCo comments (lines
+		starting with "!" are, of course, Fortran comments),
+		<strong>has_intrinsic_module</strong> is a CoCo logical constant given the value
+		false, and the CoCo IF block is used to select which of two sets of source
+		lines supplies the Fortran comment and write statement. If the above example is
+		contained in a file named hello_world.fpp, then a command line <strong>coco
+		hello_world</strong> produces hello_world.f90 with unit * written. A command
+		line <strong>coco -Dhas_intrinsic_module hello_world</strong> produces
+		hello_world.f90 with unit output_unit written. (<a href="#defineopt" target=_self>The -D option</a>
+		changes the value of <strong>has_intrinsic_module</strong>. See
+		<a href="#options" target=_self>command line options</a> for more.)</p>
+
+	<h4>The Portability Project and CoCo</h4>
+
+	<p align="LEFT">The <a href="make_pm.html" type="text/html">make_processor_model</a>
+		program optionally creates an include
+		file of symbol definitions which may be used by CoCo programs to control the
+		conditional compilation according to the processor dependencies of a particular
+		compiler. The programmer may then write programs with code supporting all kinds
+		available on all processors of interest, and use CoCo to select source code
+		suitable for each processor. The other software of the
+		<a href="port.html" type="text/html">Portability Project</a> can provide
+		constants giving the kind values within the programs. This include file,
+		conventionally named <strong>coco.inc</strong>, contains the CoCo symbol
+		definitions written by make_processor_model and may be included in the Fortran
+		source file via the CoCo include directive, or the programmer may manually
+		copy-and-paste its contents into the CoCo program. The definitions in coco.inc
+		are consistent with the definitions in the
+		<a href="stdtype.html" type="text/html">processor_dependencies module</a>,
+		written by the same execution of make_processor_model. This means that a
+		programmer may base CoCo's preprocessing decisions automatically on the
+		processor dependent kinds actually supported by the processor being used, and
+		automatically use the correct values via the names in the
+		processor_dependencies module.</p>
+
+<!--Return to top of this page. -->
+	<p align="CENTER"><a href="#top" target=_self>Back to the Top</a></p>
+
+<!--Explain a little about CoCo. -->
+	<h2 align="CENTER"><font face="sans-serif"><a name="intro">Standard CoCo</a></font> </h2>
+
+	<p align="LEFT">A CoCo program consists of CoCo lines and source lines.
+	The source lines comprise the Fortran program proper. The CoCo lines direct
+		CoCo in preprocessing the program. A CoCo program may have an optional
+		<a href="#setfile" target=_self>set file</a> associated with it. The set file may be used to
+		control what CoCo does with CoCo lines and with source lines which are not
+		intended to be part of the output source code. Some directives may appear only
+		in the set file, some may appear only with the source code, and some may appear
+		in either. The set file may define CoCo symbols and if so, the set file values
+		override the value contained in the program definition. The definitions must
+		match, however, as far as type and whether the symbol is a constant (this keeps
+		a CoCo program self-contained and self-consistent). As an
+		<a href="#setexten" target=_self>extension</a>, the set file also allows the programmer to set
+		some values that may also be set by <a href="#options" target=_self>command line options</a>
+		in case CoCo doesn't have access to the command line on your processor.</p>
+
+	<p align="LEFT">The <a href="#stddir" target=_self>standard CoCo directives</a>
+		are the <a href="#includedir" target=_self>INCLUDE</a> directive, <a
+		href="#intdir" target=_self>INTEGER</a> and <a href="#logdir" target=_self>LOGICAL</a> declarations and
+		<a href="#assigndir" target=_self>assignments</a>, <a href="#ifdir" target=_self>IF</a>/<a
+		href="#elseifdir" target=_self>ELSE IF</a>/<a href="#elsedir" target=_self>ELSE</a>/<a
+		href="#endifdir" target=_self>END IF</a> directives, and <a href="#messagedir" target=_self>MESSAGE</a>
+		and <a href="#stopdir" target=_self>STOP</a> directives. An integer or logical variable may
+		be given a value where declared, and if so, it may be declared to be a
+		constant. Any directive may appear in upper case or lower case interchangeably.
+		Names of CoCo symbols are interpreted without regard to case.</p>
+
+	<p align="LEFT">A source line in the input is said to be
+		<em>active</em> when it is selected to appear in the output as a source line
+		(that is, not as a comment). A line not selected to appear in the output as a
+		source line is said to be <em>inactive</em>. The fate of inactive source lines
+		and CoCo lines is controlled by <a href="#alterdir" target=_self>the ALTER directive</a> in
+		the set file. Active lines and inactive lines are selected by CoCo IF blocks,
+		analogously to the selection of executed statements by Fortran IF blocks.</p>
+
+	<p><a name="stddir"> The standard CoCo directives are described on the list below:</a></p>
+
+	<ul>
+		<li><strong><a name="includedir">?? INCLUDE 'file-name'</a></strong>
+		<p align="LEFT">The INCLUDE directive is replaced in the output
+			by the contents of the named file. There must not be a comment after the file name.</p>
+
+		<p align="LEFT">The file name may appear in single quotes or
+			double quotes. The include directive may <em>not</em> be continued onto
+			subsequent lines. Depending on the mode selected by <a href="#alterdir" target=_self>the
+			ALTER directive</a>, the include file's contents may be marked in the output
+			source file with INCLUDE and END INCLUDE comments identifying the file included.</p></li>
+
+		<li><strong><a name="intdir">?? INTEGER [, PARAMETER ] :: name [ =
+			expression ] [, name [ = expression ] ] ...</a></strong>
+		<p align="LEFT">The INTEGER directive declares one or more
+			integer variables with the names given; the values are assigned if the
+			expressions are present. A value must be <a href="#assigndir" target=_self>assigned</a>
+			before the variable may be used. If the PARAMETER attribute is present, the
+			expressions must be as well, and the names are the names of constants and may
+			not be assigned value subsequently in any source file.  An integer declaration
+			in the set file <em>must</em> supply a value for either a constant or a variable.</p></li>
+
+		<li><strong><a name="logdir">?? LOGICAL [, PARAMETER ] :: name [ =
+			expression ] [, name [ = expression ] ] ...</a></strong>
+		<p align="LEFT">The LOGICAL directive declares one or more
+			logical variables with the names given, the values are assigned if the
+			expressions are present. A value must be <a href="#assigndir" target=_self>assigned</a>
+			before the variable may be used. If the PARAMETER attribute is present, the
+			expressions must be as well, and the names are the names of constants and may
+			not be assigned value subsequently in any source file.  A logical declaration
+			in the set file <em>must</em> supply a value for either a constant or a variable.</p> </li>
+
+		<li><strong><a name="ifdir">?? IF( logical-expression )THEN</a></strong>
+		<p align="LEFT">Introduces an if-block, the if-block must be closed by an END IF directive.</p>
+
+		<p align="LEFT">If-blocks function analogously to Fortran if-blocks. Lines
+			in the block following the IF or ELSE IF directive with the first true
+			expression are active (copied to the output as source lines), lines following
+			other IF or ELSE IF directives in a block are inactive (are not copied to the
+			output as source lines). Lines following the ELSE directive are active if none
+			of the logical expressions on the preceding IF or ELSE IF directives in the
+			block evaluated to true.</p></li>
+
+		<li><strong><a name="elseifdir">?? ELSE IF( logical-expression )THEN</a></strong>
+		<p align="LEFT">Introduces an elseif portion of an if-block. The
+			logical expression is evaluated to see whether it is true, the lines following
+			the first true expression encountered in an if-block are active.  There may optionally
+			be whitespace between the ELSE and the IF.</p></li>
+
+		<li><strong><a name="elsedir">?? ELSE</a></strong>
+		<p align="LEFT">This directive must follow all ELSEIF directives
+			in an if-block. The lines following an ELSE directive are active if no other
+			lines within the if-block were. If no ELSE directive is present in an if-block
+			and no expression evaluates to true, no lines from the block are active.</p></li>
+
+		<li><strong><a name="endifdir">?? END IF</a></strong>
+		<p align="LEFT">Ends an if-block.  There may optionally be whitespace
+			between the END and the IF.</p> </li>
+
+		<li><strong><a name="messagedir">?? MESSAGE [ item [, item ] ... ]</a></strong>
+		<p align="LEFT">Each item is a quoted string or an expression
+			whose value is printed to the log file, or to stderr.</p></li>
+
+		<li><strong><a name="stopdir">?? STOP</a></strong>
+		<p align="LEFT">Causes CoCo processing to halt. A message is
+			printed to the log file, or to stderr.</p></li>
+
+		<li><strong><a name="assigndir">?? name = expression</a></strong>
+		<p align="LEFT">Assigns a new value to the integer or logical
+			variable whose name appears on the left side of the equals.</p>
+
+		<p align="LEFT">The expression may be a literal value (for example, 42
+			or .true.), a CoCo variable, or a CoCo expression using CoCo operators (+, -,
+			*, / with integers; .and., .or., .eqv., .neqv., .not. with logical operands;
+			relational .eq.,==, .ne., /=, .lt., &lt;, .le., &lt;=, .ge., &gt;=, and .gt., &gt; produce
+			a logical result between integer operands). The usual Fortran precedence rules
+			apply. Parentheses are honored.  As an extension, the \ character
+			is treated as a modulus operator, with the precedence of the multiply operator
+			and the division operator.</p></li>
+
+		<li><strong><a name="comentdir">?? ! [ commentary ]</a></strong>
+		<p align="LEFT">Is ignored by CoCo and may be used to document
+			the CoCo program, as with any CoCo line its fate is set by the ALTER directive.
+			A CoCo comment may appear on any CoCo directive (except the INCLUDE directive
+			or when continuing a quoted string) following a ! character. A line which is
+			blank after the ?? characters is considered to be a comment.</p></li>
+
+	</ul>
+
+	<p align="LEFT">The name and name=expression forms of the integer
+		variable and logical variable declarations may be mixed; a name declared to be
+		a constant, of course, must be supplied with a value.  A declaration
+		in the set file must have a value, the purpose of the set file declaration
+		(or a command line value) is to supply alternative initial values.</p>
+
+	<p align="LEFT">All the statements comprising an if construct must appear
+		in the same source file and CoCo directives in blocks not appearing in the output
+		must be well formed directives.  This implementation does minimal checking
+		of directives in inactive lines.  Input lines in <a href="#textdir">TEXT blocks</a>
+		are treated similarly.  An if block within a text block is interpreted
+		during execution of <a href="#copydir">the COPY directive</a>.</p>
+
+	<p align="LEFT">An example CoCo program follows. As in the example above, there
+		are CoCo comments, CoCo lines, Fortran comments and Fortran source lines:</p>
+
+	<pre>
+?? ! the logical variable will be used
+?? ! to choose whether to use array syntax
+?? ! or explicit loops
+?? logical :: array_syntax
+
+?? ! suppose the compiler is either v1.0 or v2.0
+?? ! the integer variable here supplies
+?? ! the default value here and might be overridden
+?? ! by a value from the set file or command line
+?? integer, parameter :: version = 20
+
+?? ! which version selects whether array syntax is used
+?? if( version == 20 )then       ! efficient array code
+??    array_syntax = .true.      ! so use array syntax
+?? else if( version == 10 )then  ! inefficient array code
+??    array_syntax = .false.     ! so no array syntax
+?? else                          ! unknown version
+??    message 'error: unknown version: ', version
+??    stop                       ! go no further
+?? end if
+
+program sum_arrays
+implicit none
+
+real, dimension( 100) :: a, b, c
+
+?? ! need loop index when using explicit loops
+?? if( .not. array_syntax )then
+integer :: i              ! loop index
+?? endif
+
+read( unit= *, fmt= *) b, c
+
+! element-wise sum
+?? if( array_syntax )then
+a = b + c
+?? else
+do i = 1, 100
+   a(i) = b(i) + c(i)
+end do
+?? end if
+
+! evaluate the final sum and print it
+write( unit= *, fmt= *) 'sum of a: ', sum(a)
+stop
+
+end program sum_arrays
+	</pre>
+
+	<p align="LEFT">Above, a CoCo integer, <strong>version</strong>, is used to choose a value for a
+		CoCo logical variable, <strong>array_syntax</strong>. If version has been set incorrectly (the
+		CoCo else clause), CoCo will print the explanatory message and stop. The
+		CoCo logical variable is then used to choose whether an auxiliary integer is
+		compiled into the Fortran program to serve as the index of the explicit loop.
+		Then the CoCo logical variable is used to select either explicit loops or array syntax.</p>
+
+	<p align="LEFT">Note the strong typing CoCo uses: the value of the logical symbol
+		can be true or false, while the value of the integer is numeric. This provides
+		a degree of error checking. As extensions, macros, and text blocks
+		also have distinct declarations and uses.</p>
+
+<!--Return to top of this page. -->
+	<p align="CENTER"><a href="#top" target=_self>Back to the Top</a></p>
+
+<!--Explain a little about the set file. -->
+	<h2 align="CENTER"><font face="sans-serif"><a name="setfile">The CoCo Set File</a></font></h2>
+
+	<p align="LEFT">The programmer may use a separate file, called a
+		<em>set file</em>, which permits the programmer to change the values of
+		variables and constants outside the CoCo program, and to specify what happens
+		to inactive source text and CoCo directives.  At most, one set file is read and processed
+		for each invocation of CoCo.  Within the set file, variable declarations and
+		constant definitions may appear, the values supplied override those of
+		the same name which appear in any of the input files. There must be a
+		declaration of the same variable or constant within one of the input files and
+		the declaration must appear before any use of the name, only
+		the value may be changed by the set file. See also <a href="#setextens" target=_self>the
+		set file extensions</a> for more directives which may appear in the set file.
+		A declaration in a set file <em>must</em> supply a value.  The value can, and likely will,
+		differ from that in a source file.  Other attributes of a set file declaration
+		must match those in the source file.  A declaration is unknown to CoCo until
+		the declaration in a source file is found.  This keeps a CoCo program self-consistent
+		and self-contained.</p>
+
+	<p align="LEFT">Note that while CoCo can't tell that a symbol defined in the
+		set file or command line isn't defined within a source file until it's finished
+		processing, CoCo complains if the symbol is referenced before a definition
+		appears in a source file. It's required to declare a CoCo variable in the source file
+		before using it, otherwise a missing set file or forgotten command line option
+		would cause the preprocessor to operate unexpectedly.  The set file is appended, following a message,
+		to the end of the output file, the command line options are available via
+		<a href="#cmdlinemac">cmdline</a> predefined macro and <a href="#cmdlinedir">the CMDLINE directive</a>.
+		The effects of the command line and set file may also be checked
+		via <a href="#optionsdir">the OPTIONS directive</a>.</p>
+
+	<p align="LEFT">The set file is appended to the end of the CoCo program's output
+		(depending on the mode set by <a href="#alterdir" target=_self>the ALTER directive</a>). If
+		visible, its contents are separated from the program source by a
+		standard-specified Fortran comment (thus, the set file may be the cause of
+		several blank lines after the last line of source).</p>
+
+	<p align="LEFT">The set file is named according to the <a href="#setfileopt">-s command line option</a>.
+	   If there isn't one, the name is set according to the output file
+		name.  The file name suffix is discarded and ".set" is appended to make
+		the set file name. If a file with that name is not found, the value
+		of the environment variable COCO_SET_FILE is checked.  If a file with that name
+		is not found, a file with the
+		default name of "coco.set" is sought. This allows a programmer to have a
+		default set file for a project or directory, or to control the preprocessing on
+		a file-by-file basis. There is only one set file read for a multi-input file
+		invocation of CoCo. See <a href="#using" target=_self>Using CoCo</a> for more on the command line.</p>
+
+	<h4><a name="alterdir">The ALTER Directive</a></h4>
+
+	<p align="LEFT">The fate of inactive source lines and of CoCo
+		directives (that is, of all lines not appearing in the output file as active
+		source lines) is controlled by the ALTER directive. At most one alter directive
+		may appear in a set file. The <a href="#alteropt" target=_self>-a command line option</a>
+		overrides the alter directive. The possible alter modes and their effects are
+		described in the following list:</p>
+
+	<ul>
+		<li><strong>?? ALTER: DELETE</strong>
+		<p align="LEFT">All CoCo lines and inactive source lines are
+			deleted from the output file. These lines will not be seen by the compiler.
+			While this produces the easiest to read output source file, it does potentially change line
+			numbering (<a href="#numberdir" target=_self>see Line Numbering</a> for more details).</p></li>
+
+		<li><strong>?? ALTER: BLANK</strong>
+		<p align="LEFT">All CoCo lines and inactive source lines are
+			replaced by blank lines in the output file. These lines will not be seen by the compiler,
+			but line numbers are preserved.</p></li>
+
+		<li><strong>?? ALTER: SHIFT0</strong>
+		<p align="LEFT">All CoCo lines are printed with the leading "?"
+			replaced by a "!". Inactive source lines are printed with a "!" in place of the
+			character in column one. These lines will be seen by the compiler as comments.</p></li>
+
+		<li><strong>?? ALTER: SHIFT1</strong>
+		<p align="LEFT">All CoCo lines are printed with a leading "!"
+			before the leading "?". Inactive source lines are printed with a "!" preceding
+			the leading character, CoCo issues a warning if a line so extended exceeds 131
+			characters. These lines will be seen by the compiler as comments.</p></li>
+
+		<li><strong>?? ALTER: SHIFT3</strong>
+		<p align="LEFT">All CoCo lines are printed with a leading
+			"!?&gt;" before the leading "?". Inactive source lines are printed with
+			"!?&gt;" preceding the leading character, CoCo issues a warning if a line so
+			extended exceeds 131 characters. These lines will be seen by the compiler as
+			comments. The leading "!?&gt;" makes it easy to write a program to undo the
+			effects of the CoCo preprocessor (at least so long as the use of CoCo conforms
+			to the standard without use of any extensions and the source code doesn't have
+			any comments beginning with "!?&gt;" which would confound the restore process).
+			See the restore program available in the <a href="#download" target=_self>Downloads</a>
+			section (this is similar to the program specified in the standard).</p></li>
+	</ul>
+
+	<p align="LEFT">The following table summarizes the effects of the alter modes:</p>
+
+	<table border="1" align="CENTER">
+		<tr>
+			<td>ALTER Mode</td>
+			<td>Preserve Line Numbers?</td>
+			<td>Preserve Lengthen Line?</td>
+			<td>Undo?</td>
+		</tr>
+		<tr>
+			<td>DELETE</td>
+			<td>NO</td>
+			<td>N/A</td>
+			<td>NO</td>
+		</tr>
+		<tr>
+			<td>BLANK</td>
+			<td>YES</td>
+			<td>N/A</td>
+			<td>NO</td>
+		</tr>
+		<tr>
+			<td>SHIFT0</td>
+			<td>YES</td>
+			<td>YES</td>
+			<td>NO</td>
+		</tr>
+		<tr>
+			<td>SHIFT1</td>
+			<td>YES</td>
+			<td>NO</td>
+			<td>NO</td>
+		</tr>
+		<tr>
+			<td>SHIFT3</td>
+			<td>YES</td>
+			<td>NO</td>
+			<td>YES</td>
+		</tr>
+	</table>
+
+	<p align="LEFT">A good default set file contains the line
+		<strong>?? ALTER: DELETE</strong>, which overrides the standard specified default of
+		SHIFT3. The same effect may be had by adding <strong>-ad</strong> to the CoCo
+		command line. An example set file follows:</p>
+
+	<pre>
+?? ! no CoCo lines or inactive source lines
+?? ! appear in the source to be compiled
+?? alter: delete
+?? ! no debugging (unless -Ddebug is on the command line)
+?? ! debug should be declared in a source file
+?? ! before being used in a source file
+?? logical, parameter :: debug = .false.
+	</pre>
+
+	<p align="LEFT">The alter line causes CoCo lines and inactive source lines to
+		disappear from the output source file, and the declaration of the logical
+		constant in the set file may override or confirm the declaration of the same name
+		appearing in the source input file.  (There should be a declaration in the source input.)</p>
+
+<!--Return to top of this page. -->
+	<p align="CENTER"><a href="#top" target=_self>Back to the Top</a> </p>
+
+<!--Explain a little about using this CoCo. -->
+	<h2 align="CENTER"><font face="sans-serif"><a name="using">Using CoCo</a></font></h2>
+
+	<p align="LEFT"> <a name="usage">CoCo</a> is distributed as source code and is written in
+		standard Fortran 2003. The only features of Fortran 2003 actually used are the command line access
+		and simple type extension.  You will have to find a replacement for the command line access routines
+		if your processor does not support them (but most compilers do support them),
+		or code them yourself using the command line routines your processor does support
+		(for example, iargc() and getarg()).
+		Procedures mimicing the standard procedures are available from I.S.S. Ltd. via their free
+		<a href="http://www.winteracter.com/f2kcli" type="text/html">F2KCLI Module</a>
+		for a very wide variety of compilers.</p>
+
+	<h3 align="LEFT"><strong>SYNOPSIS:</strong></h3>
+
+	<p align="LEFT"><strong>coco</strong> <em>-V</em></p>
+
+	<p align="LEFT"><strong>coco</strong> <em>-h</em></p>
+
+	<p align="LEFT"><strong>coco</strong> [ [<em>options</em>] [--] ] [
+		<em>base-name</em> | <em>output input</em> [...] ]</p>
+
+	<p align="LEFT">CoCo responds to the "-V" option by printing its version
+		information and quitting. CoCo responds to the "-h" option by printing its
+		command line options and quitting. If it finds no file name arguments on its
+		command line, CoCo reads its input from stdin and writes its output to stdout.
+		A lone file name command line argument is a file basename: it has ".fpp"
+		appended to it and used as the single input file name, ".f90" is appended and
+		used as the output file name. If more than one file name argument appears on
+		the command line the <em>first</em> is taken to be the <em>output</em> file
+		name, the rest are treated, in the order of occurrence, as input file names.
+		Examples of CoCo usage follow:</p>
+
+	<ul>
+		<li><strong>coco &lt;input.f &gt;output.f90</strong>
+		<p align="LEFT">causes CoCo to read the file input.f and to write
+			the file output.f90. A set file named "coco.set" is sought.</p></li>
+
+		<li><strong>coco -V</strong>
+		<p align="LEFT">causes CoCo to print its version information to
+			stderr and stop. See also <a href="#cocomac" target=_self>the coco macro</a>.</p></li>
+
+		<li><strong>coco -h</strong>
+		<p align="LEFT">causes CoCo to print short summary of its command
+			line options to stderr and stop. </p></li>
+
+		<li><strong>coco source</strong>
+		<p align="LEFT">causes CoCo to read source.fpp and write
+			source.f90. The file name source.set is checked to see if it exists, if so, it
+			is processed as the set file. If source.set is not found, the value of the environment variable
+			COCO_SET_FILE is checked to see if it exists, if so, it is processed as as the set file.
+			If not, coco.set is checked to see if it exists, if so, it is processed as the set file.
+			If coco.set is not found, no set file is processed.</p></li>
+
+		<li><strong>coco output.f90 input1.f90 input2.f90 input3.f90</strong>
+		<p align="LEFT">causes CoCo to read input1.f90, input2.f90,
+			input3.f90 in that order and to write output.f90. The file name output.set is
+			checked to see if it exists, if so, it is processed as the set file. If
+			output.set is not found, the value of the environment variable
+			COCO_SET_FILE is checked to see if it exists, if so, it is processed as as the set file.
+			If not, coco.set is checked to see if it exists, if so, it is
+			processed as the set file. If coco.set is not found, no set file is processed.</p></li>
+
+	</ul>
+
+	<p align="LEFT">The specification of input and output file names has a number of
+		effects. In addition to setting the name of <a href="#setfile" target=_self>the set file</a>,
+		several <a href="#macrodir" target=_self>macros</a> are <a href="#premacros" target=_self>predefined</a>
+		by CoCo. <a href="#filemac" target=_self>The input file name</a> and
+		<a href="#setfilemac" target=_self>the set file name</a> are available as macros.  Also,
+		there are <a href="#datemac" target=_self>date</a> and <a href="#timemac" target=_self>time</a>
+		macros to document the preprocessing. See
+		<a href="#premacros" target=_self>the predefined macros</a> for more information about CoCo's
+		predefined macros.</p>
+
+	<h4><a name="options">Options</a></h4>
+
+	<p align="LEFT">Generally, the option on the command line overrides
+		the set file directive controlling the same behavior. However, some options are
+		cumulative or must have a matching directive, see the description of each
+		option and directive for specifics. The following command line options are recognized:</p>
+
+	<ul>
+		<li><strong><a name="alteropt">-a</a></strong><em>?</em> sets the
+			alter mode, with <em>?</em> being one of d (delete), b (blank), 0 (shift0), 1
+			(shift1), 3 (shift3). This option overrides <a href="#alterdir" target=_self>an ALTER
+			directive</a> in the set file.  Only one -a option can appear on a command line.</li>
+
+		<li><strong><a name="defineopt">-D</a></strong><em>name[=val]</em>
+			defines a logical or integer value, as if in the set file
+			(see <a href="#drules" target=_self>the -D rules</a>). This option overrides the value provided
+			by a definition of the same name by <a href="#intdir" target=_self>an integer
+			directive</a> or <a href="#logdir" target=_self>a logical directive</a> in the set file
+			or in an input file.</li>
+
+		<li><strong><a name="formopt">-F</a></strong> specifies fixed form source.
+			By default, CoCo assumes free form source files.  This option sets the file suffix
+			for the output file to ".f" from the default ".f90" and causes line wrapping to occur
+			at column 72 rather than column 131 (see <a href="#formdir" target=_self>the form directive</a>).
+			Only one -F option can appear on a command line.</li>
+
+		<li><strong>-h</strong> makes CoCo print a short summary of the
+			command line options to stderr and stop.</li>
+
+		<li><strong><a name="incopt">-I</a></strong><em>subdirectory-name</em> adds the named
+			subdirectory to the list CoCo <a href="#irules" target=_self>searches</a> for include files
+			not found in the current directory (see <a href="#incdir" target=_self>the directory
+			directive</a>). The subdirectory occurs before those listed by directory
+			directives in the set file.</li>
+
+		<li><strong><a name="keyopt">-k</a></strong><em>cc</em> sets the left and right key characters.
+		CoCo finds macros by seeking the macro's name between the left and right key characters.
+		By default, they are both "?" characters.  See also <a href="#keysdir">the keys directive</a>.
+		(Take care to protect characters that are special to the shell in use.)
+		Only one -k option can appear on a command line.</li>
+
+		<li><strong><a name="logfileopt">-l</a></strong><em>file-name</em>
+			names a log file to receive coco's reports, stderr is the default
+			(see <a href="#logfiledir" target=_self>the logfile directive</a>). This option overrides a
+			logfile directive.  Only one -l option can appear on a command line.</li>
+
+		<li><strong><a name="markopt">-m</a></strong> turns on placing a line in the output marking
+		subsequent input source files (see <a href="#markdir" target=_self>the mark directive</a>). This option
+			overrides a mark directive.  Only one -m option can appear on a command line.</li>
+
+		<li><strong><a name="numberopt">-n</a></strong> turns on source
+			line numbering (see <a href="#numberdir" target=_self>the number directive</a>). This option
+			overrides a number directive.  Only one -n option can appear on a command line.</li>
+
+		<li><strong><a name="postopt">-p</a></strong> disables the copy of the set file
+			at the end of the output file and the separating line specified by the standard
+			(see <a href="#postdir" target=_self>the post directive</a>). This option
+			overrides a post directive.  Only one -p option can appear on a command line.</li>
+
+		<li><strong><a name="summaryopt">-r</a></strong> writes a summary report
+			to the logfile or stderr at the end of preprocessing.
+			See <a href="#summarydir" target=_self>the set file report directive</a>
+			and <a href="#reportdir">the source file report directive</a>.
+			Only one -r option can appear on a command line.</li>
+
+		<li><strong><a name="setfileopt">-s</a></strong><em>file-name</em>
+			names the set file. If the named set file does not exist, a set file named
+			from the source file names is sought.  If that file does not exist, coco.set is sought.
+			Only one -s option can appear on a command line.</li>
+
+		<li><strong><a name="verboseopt">-v</a></strong> makes CoCo work
+			verbosely, reporting all file opening and closing, and a few other events, to
+			the log file (see <a href="#verbosedir" target=_self>the verbose directive</a>).
+			Only one -v option can appear on a command line.</li>
+
+		<li><strong>-V</strong> makes CoCo print its version information to
+			stderr and stop. See also <a href="#cocomac" target=_self>the CoCo macro</a>.</li>
+
+		<li><strong><a name="wrapopt">-w</a></strong> turns off source
+			line wrapping (see <a href="#wrapdir" target=_self>the wrap directive</a>). This option
+			overrides a wrap directive.  Only one -w option can appear on a command line.</li>
+
+	</ul>
+
+	<p>In general, the value of a command line option is used in
+		preference to a value in the set file; the value in the set file is used in
+		preference to a value in a source file.</p>
+
+	<h2 align="CENTER"><font face="sans-serif">
+		<a name="topics">Topics on Using CoCo</a></font></h2>
+
+	<h4><a name="drules">About the -D rules</a></h4>
+
+	<p align="LEFT"> The following rules apply to the -D option: if the
+		"=" is present, it must be followed by an integer literal value in which case
+		the name is defined to be an <a href="#intdir" target=_self>integer name</a> with the
+		value specified. There should be an integer name with the same name declared
+		within the set file, if there is one, and within (one of) the input source file(s) (or
+		an include file). If
+		no "=" is present, then name is defined to be a <a href="#logdir" target=_self>logical
+		name</a> with a value of ".true.". There should be a logical declaration with
+		the same name declared within the set file, if there is one, and within (one of)
+		the input source file(s) (or an include file). Definitions from the command line override those
+		in the set file, but like definitions in the set file they must match definitions in
+		(one of) the source file(s). There is no way to give a value to a text variable or
+		macro directly via -D.  A name is effectively undefined until the declaration is seen
+		in a source file.  The set file value or command line value supercedes the value (if there is one)
+		defined in the source file.  A declaration is the set file <em>must</em> supply
+		a value, even for declarations of variables.</p>
+
+	<h4><a name="irules">About the INCLUDE search rules</a></h4>
+
+	<p align="LEFT">The rules for directories specified by the -I command
+		line option and DIRECTORY directive are that the directories specified by the
+		-I command line option are searched first in the order they appear on the
+		command line. Then directories appearing in DIRECTORY directives are searched
+		in the order the directives appear in the set file. This way, the command line
+		may override the set file. DIRECTORY directives may not appear in the source
+		file(s) proper so all include files with the same name are known to come from
+		the same directory, and thus each occurrence of any one named include file will
+		be the same file. CoCo guesses what the file separator character (between directory
+		names in an absolute file name) by examining the value found for the CWD predefined
+		macro.  CoCo gets this value from the PWD environment variable.  If this fails, CoCo
+		doesn't know what appropriate separator is, in that case,
+		the appropriate separator (for example, "/", "\" or ":") must be appended
+		after the directory name, whether it appears in the <a href="#incopt" target=_self>-I
+		command line option</a>, or in a <a href="#incdir" target=_self>DIRECTORY directive</a>.</p>
+
+	<h4><a name="wrapnumber">About Line Numbering and Wrapping</a></h4>
+
+	<p align="LEFT">By default, source lines are wrapped starting at column 132 for free form source,
+		and starting at column 73 for fixed form source.  This position is called the wrap length.
+		Wrapping means that if text extends beyond the wrap length, text on the line is ended,
+		a continuation character is added, and the remainder of the line is written as a continuation
+		line following the wrapped line.  This can be defeated with <a href="#wrapopt">the -w option</a>,
+		or with <a href="#wrapdir">the WRAP directive</a>.  CoCo attempts not to wrap comments.</p>
+
+	<p align="LEFT">When lines are numbered, the file name and line number are added
+		to the end of the source line.  Line numbering occurs starting past the end of the line
+		whether the source form is free form (after column 131) or fixed form (after column 72).
+		If the source line extends longer than the standard-specified length, the number appears
+		after all text on the line. Line numbering adds, after the end of a line, a comment character,
+		a blank, the file name, a colon and blank, and the line number of the source
+		input file. This may help tracing a compiler message back to the original
+		source file if CoCo is deleting inactive lines from the file seen by the compiler,
+		or when <a href="#editextens">macro expansion</a> or <a href="#assertdir">assert directives</a>
+		lengthen lines too much, causing extra lines in the output, or when <a href="#copydir">copy directives</a>
+		write text blocks or include files add source lines.</p>
+
+	<h4>About Multi-File versus Single-File Invocation</h4>
+
+	<p align="LEFT">The value of CoCo variables change whenever a new value is assigned.
+		CoCo constants, of course, do not change value during execution.  When several
+		input files are processed in sequence to make a single output file, the values
+		of CoCo variables seen for each subsequent source file depends upon values
+		that might be changed by previous input files.  This allows, for example, the programmer
+		to count the number of times a text block is copied throughout the entire preprocessing run.
+		However, it also means that not all source input files are preprocessed in identical environments.
+		Thus, the programmer must choose whether a given quantity should be represented
+		by a CoCo variable or a CoCo constant, and whether a single input file or
+		a multiple input file run is appropriate for a given purpose.</p>
+
+	<p align="LEFT">CoCo assumes a single invocation is for source files of either free form source
+		or fixed form source.  Since there is a single output file, it is difficult to mix the two.
+		Automatic conversion utilities exist and some Fortran IDEs support reformatting
+		but CoCo does not.  Mixing free form source and fixed form source in a single CoCo execution
+		may not work as intended.  In any case, free form source is preferred for many reasons,
+		so conversion of fixed form source files to free form source files is a good idea.</p>
+
+	<p align="LEFT">As discussed above, CoCo may be used to make a single output source file from one
+		or several input source files. The advantage of one input source file making
+		one output source file is that one has a clear set of CoCo symbols in use, and
+		(potentially) a different set file for each input file allowing customization. The disadvantage is that in
+		order to conveniently have the same set of CoCo symbols used to preprocess
+		several input source files, one must prepare a set file or an include file to contain the
+		CoCo symbol declarations, and use the same set file for each.  This might be done
+		by using the default name for all input files.  The advantage of
+		making one output file from several input files is that one set of CoCo symbols
+		may be used to control the preprocessing of all input files, and the compiler may be able
+		to do a better job of optimization if it can see more of the program at one time. The
+		disadvantage is that one may have a symbol present when CoCo processes a
+		subsequent input file which is unneeded and possibly confusing or having unexpected effects.
+		Of course, an include file may be used to reset a set of integer or logical variables
+		to a desired initial value for each source input file.</p>
+
+<!--Return to top of this page. -->
+	<p align="CENTER"><a href="#top" target=_self>Back to the Top</a></p>
+
+<!--Explain the extensions to standard CoCo. -->
+	<h2 align="CENTER"><font face="sans-serif">
+			<a name="extensions">Extensions to Standard CoCo</a></font></h2>
+
+	<p align="LEFT">This program supports some extensions to standard CoCo. Extensions
+		to the standard CoCo include <a href="#editextens" target=_self>editing extensions</a>,
+		<a href="#fileextens" target=_self>file handling extensions</a>, and
+		<a href="#diagextens" target=_self>diagnostic extensions</a>. These directives may appear in
+		source files. <a href="#setextens" target=_self>Other extensions</a> may appear only in the set file.</p>
+
+	<h3><a name="editextens">Editing Extensions</a></h3>
+
+		<p align="LEFT">A name of an integer, logical, or macro, when it appears between
+		the left key character and the right key character without embedded blanks, is replaced
+		by the value of the name, as described in the following.  Source lines may be edited,
+		CoCo directives are not edited.  The default left and right key character is "?"; this may
+		be changed by <a href="#keyopt">the -k option</a> or by <a href="#keydir">the KEY directive</a>.
+
+	<h4>Integers and Logicals as Macros</h4>
+
+	<p align="LEFT">The string ?name? is checked to see if name is the
+		name of a CoCo integer or logical constant or variable. If it is, it is
+		replaced by the value of the CoCo integer (as a possibly signed digit string) literal
+		or logical (as ".true." or ".false.") literal. The name may be in either case. The following
+		example illustrates the use of CoCo integers.  The repeat count in the
+		character declaration must be a character substring, which is provided by the
+		string substituted in place of ?size?:</p>
+
+	<pre>
+?? ! set problem size
+?? integer :: size = 10
+integer, parameter :: nmax = ?size?
+real, dimension( nmax) :: a
+character, parameter :: my_fmt = '(?size?es18.9)'
+	</pre>
+
+	<h4>Macros</h4>
+
+	<p align="LEFT">Macros are another extension. A macro is a name whose value is a string.
+		There may be arguments to the macro, which
+		are strings replaced by the strings used in place of the arguments when the
+		macro is referenced. The macro is used by surrounding its name with the key
+		characters, ?name?. If the macro has arguments, the arguments follow
+		the trailing key character thus, ?name?( args).  The macro args are the only substitution
+		occuring within the macro string.  No other names are checked.  Thus, a macro
+		may not appear within another macro's string.</p>
+
+	<p align="LEFT">The key characters are "?" by default.  This may be changed
+		by <a href="#keysdir">the KEYS directive</a> in the set file, or by <a href="#keyopt">the -k option</a>
+		on the command line.  In either case, the first character sets the left key character,
+		and the second character sets the right key character.  Macros and arguments to macros and text blocks
+		are found between the left key character and the right key character, with no space.
+		Only a sanity check is made when processing the key characters.  Do not use characters
+		that will confuse ordinary processing (such as "!" or "&").</p>
+
+	<p align="LEFT">The programmer may define macros via
+		<a href="#macrodir" target=_self>the MACRO directive</a>. There are some predefined macros,
+		they are listed in the following table:</p>
+
+	<h4><a name="premacros">Predefined Macros</a></h4>
+
+	<p align="LEFT">The predefined macros may not be redefined, they may be considered
+		to be constants (even if their value changes during execution).
+		These names cannot be used for any purpose, they cannot be dummy argument names
+		to macros or text blocks.</p>
+
+	<table border="1" align="CENTER">
+		<tr>
+			<td><strong>name</strong></td>
+			<td><strong>definition</strong></td>
+			<td><strong>set by</strong></td>
+		</tr>
+		<tr>
+			<td><a name="filemac">file</a></td>
+			<td>input file name</td>
+			<td>input file</td>
+		</tr>
+		<tr>
+			<td><a name="linemac">line</a></td>
+			<td>input file line number</td>
+			<td>count input lines</td>
+		</tr>
+		<tr>
+			<td><a name="datemac">date</a></td>
+			<td>date preprocessing</td>
+			<td>wall clock</td>
+		</tr>
+		<tr>
+			<td><a name="timemac">time</a></td>
+			<td>time preprocessing</td>
+			<td>wall clock</td>
+		</tr>
+		<tr>
+			<td><a name="cocomac">coco</a></td>
+			<td>coco's RCS Id string</td>
+			<td>CoCo RCS check-out</td>
+		</tr>
+		<tr>
+			<td><a name="setfilemac">setfile</a></td>
+			<td>set file name</td>
+			<td>set file</td>
+		</tr>
+		<tr>
+			<td><a name="logfilemac">logfile</a></td>
+			<td>log file name</td>
+			<td>log file</td>
+		</tr>
+		<tr>
+			<td><a name="outputmac">output</a></td>
+			<td>output file name</td>
+			<td>output file</td>
+		</tr>
+		<tr>
+			<td><a name="cmdlinemac">cmdline</a></td>
+			<td>CoCo command line</td>
+			<td>O/S shell</td>
+		</tr>
+		<tr>
+			<td><a name="cmdlinemac">user</a></td>
+			<td>user identifier</td>
+			<td>USER or LOGNAME environment variables</td>
+		</tr>
+		<tr>
+			<td><a name="cmdlinemac">cwd</a></td>
+			<td>directory where CoCo is run</td>
+			<td>PWD environment variable</td>
+		</tr>
+		<tr>
+			<td><a name="cmdlinemac">incpath</a></td>
+			<td>directories searched for include files</td>
+			<td>command line and set file</td>
+		</tr>
+	</table>
+
+	<p align="LEFT"><a href="#macrodir" target=_self>The MACRO directive</a> defines a
+		macro. If a ?name? is found which is the name of a macro, it is replaced with
+		the value of the macro. Arguments may be present, if so, they are substituted
+		in the value.  There is one name space for all symbol names,
+		but macro dummy argument names have a scope of the macro only.</p>
+
+	<h4>Text Blocks</h4>
+
+	<p align="LEFT"><a href="#textdir" target=_self>The TEXT and COPY directives</a>
+		define a text block (that is, one or more lines), and copy it into the source. A text block may be
+		considered a multi-line macro (note that Fortran distinguishes lines and statements).
+		The text block is defined by the TEXT and END TEXT directives. The COPY
+		directive copies a text block of the same name. Arguments may be present, if
+		so, they are substituted in the value.  Synbol names, including macro names,
+		are not substituted within text blocks.  However, conditional compilation
+		applies within text blocks, it is effective during the copy operation.
+		Text blocks must be nested correctly within IF blocks.</p>
+
+	<p align="LEFT">The following table summarizes CoCo substitutions where a symbol's
+		name appears between the leading key character and the trailing key character.</p>
+
+	<table border="1" align="CENTER">
+		<tr>
+			<td>CoCo Symbol</td>
+			<td>Replacement</td>
+		</tr>
+		<tr>
+			<td>Integer</td>
+			<td>Literal Value</td>
+		</tr>
+		<tr>
+			<td>Logical</td>
+			<td>Literal Value</td>
+		</tr>
+		<tr>
+			<td>Macro</td>
+			<td>String Value</td>
+		</tr>
+	</table>
+
+	<p align="LEFT">Take care with integers; a negative value could result in two Fortran operators
+		appearing consequetively.</p>
+
+	<h4>Source File Directives</h4>
+
+	<p>The following directives edit the source code:</p>
+
+	<ul align="LEFT">
+		<li><strong> <a name="assertdir">?? ASSERT ( condition )</a></strong>
+		<p align="LEFT">This causes code to be written to the output
+			Fortran source to verify that the logical condition is true during program
+			execution, and to halt execution with an error message written to unit= * if
+			it is false. The error message includes the file name and line number where the
+			assert directive was found. The assert directive should be placed only where
+			executable Fortran code is allowed, and the condition should refer only to
+			those Fortran symbols in scope at that location in the source file.  CoCo
+			cannot check that this is true.</p></li>
+
+		<li><strong> <a name="macrodir">?? MACRO [, PARENS] :: name [ ( arg [, arg ] ... ) ] =string</a></strong>
+		<p align="LEFT">This causes subsequent strings of the form ?name?
+			to be replaced by string in the source code. If the ( arg[, arg]...) is
+			present, this causes subsequent strings of the form ?name?( str[, str]... ) to
+			be replaced by string in the source code, with <em>str</em>s substituted for
+			the corresponding ?arg? within string. The macro dummy argument list must not
+			be empty. A macro definition may not appear in the set file, because a macro may not be
+			redefined (the set file overrides existing definitions). The number of actual arguments must match
+			the number of dummy arguments (the number of args must match the number of strs).
+			When PARENS is present, actual arguments are enclosed in parenthesis (if not already)
+			when substituted in the macro string.  If PARENS is present,
+			there must be a dummy argument list present as well.</p></li>
+
+		<li><strong><a name="textdir">?? TEXT [, PARENS] :: name [ ( arg [, arg ] ... ) ]</a></strong>
+		<p align="LEFT">Defines the lines which follow, up to the next
+			END TEXT directive, as being the text block with the given name. The name must not be
+			the name of an integer, logical, macro, another text block. This text may be
+			copied into the CoCo output by using <a href="#copydir" target=_self>the copy directive</a>.
+			The text dummy argument list must not be empty. See below for information about
+			which directives may appear between the text directive and the matching end
+			text directive. TEXT and COPY directives may appear only in source files. A
+			text block may not be redefined. The number of actual arguments must match the
+			number of dummy arguments (the number of args on the TEXT directive must match
+			the number of strs on the COPY directive).
+			When PARENS is present, actual arguments are enclosed in parenthesis (if not already)
+			when substituted by the COPY directive.  If PARENS is present,
+			there must be a dummy argument list present as well.</p></li>
+
+		<li><strong>?? END TEXT [ name ]</strong>
+		<p align="LEFT">Marks the end of the text block which started
+			with the previous TEXT directive. The name, if present, must match the name on
+			the preceding TEXT directive.</p> </li>
+
+		<li><strong><a name="copydir">?? COPY :: name [ ( str [, str ] ... ) ]</a></strong>
+		<p align="LEFT">Copies the text block named by name into the
+			output. If the ( arg[, arg]...) was present on the text directive, the COPY
+			directive must have the ( str[, str]... ) present with one str for each arg,
+			and causes each <em>str</em>s substituted for the corresponding ?arg? within
+			the text block. The number of actual arguments must match the number of dummy
+			arguments (the number of args on the TEXT directive must match the number of
+			strs on the COPY directive).</p></li>
+	</ul>
+
+	<p align="LEFT">There is one name space for all integer names,
+		logical names, macro names, and text block names. Also, to
+		avoid ambiguity, symbols are not substituted within macro values or text blocks.
+		A dummy argument on one macro or text block may have the same name as a dummy argument on another
+		macro or text block, but must not be the same as an integer, logical, macro or text block.
+		This also avoids ambiguity when expanding macros and copying text blocks.  Note that
+		dummay arguments are substituted within a macro value or a text block, but not
+		within CoCo directives contained within text blocks.  Therefore, conditional compilation
+		of text blocks during copying can be a function of variables, but not actual arguments.</p>
+
+	<p align="LEFT">Only the following directives may appear between the
+		TEXT and END TEXT directives: the ASSERT, IF, ELSE IF, ELSE, END IF, MESSAGE,
+		STOP and assignment directives. While a text block may appear in an include
+		file, an INCLUDE directive may not appear within a text block. Declaration
+		directives may not appear because each declaration may only occur once per
+		program. Text blocks may not be nested.</p>
+
+	<p align="LEFT"> An example of a macro declaration and use follows.
+		Note the lack of parenthesis around the actual arguments (the parentheses
+		are added by the PARENS on the macro statement), and the lack of space between
+		the macro name and opening parenthesis of the actual argument list:</p>
+
+	<pre>
+?? ! used to compute radius
+?? macro, parens :: hypot( x, y) = sqrt( ?x?*?x?+?y?*?y?)
+?? ! r1, r2, s1, s2 are variables
+! r = sqrt( (r2-r1)*(r2-r1) + (s2-s1)*(s2-s1) )
+r = ?hypot?( r2-r1, s2-s1)
+	</pre>
+
+	<p>An example of a text block follows:</p>
+
+	<pre>
+?? ! define stack operations as a text block
+?? ! with 'type' as an argument
+
+?? text :: stackops( type)
+subroutine push_?type?( item)
+type( ?type?_t), intent( in) :: item
+?type?_stack( next_?type?) = item
+next_?type? = next_?type? + 1
+return
+end subroutine push_?type?
+
+subroutine pop_?type?( item)
+type( ?type?_t), intent( out) :: item
+next_?type? = next_?type? - 1
+item = ?type?_stack( next_?type?)
+return
+end subroutine pop_?type?
+?? end text stackops
+
+?? ! write stack ops for type fermion_t
+?? copy :: stackops( fermion)
+
+?? ! write stack ops for type boson_t
+?? copy :: stackops( boson)
+	</pre>
+
+	<p>An interface block could be provided to allow the push and pop
+		routines to be called with a generic name, if desired.
+		The stack arrays and stack indexes must be declared outside the routines, as defined here.</p>
+
+	<p>An example of changing the key characters follows:</p>
+
+	<pre>
+?? ! if ??keys: {} appears in the set file
+?? ! or if -k{} appears on the command line
+?? macro, parens :: hypot( x, y) = sqrt( {x}*{x}+{y}*{y})
+?? ! r1, r2, s1, s2 are variables
+! r = sqrt( (r2-r1)*(r2-r1) + (s2-s1)*(s2-s1) )
+r = {hypot}( r2-r1, s2-s1)
+	</pre>
+
+<!--Return to top of this page. -->
+	<p align="CENTER"><a href="#top" target=_self>Back to the Top</a></p>
+
+	<h3> <a name="fileextens">File Handling Extensions</a></h3>
+
+	<p align="LEFT">These directives allow some limited control over files.
+
+	<ul align="LEFT">
+		<li><strong><a name="endfiledir">?? ENDFILE</a></strong>
+		<p align="LEFT">Causes CoCo to end processing of the current input file.
+		 The endfile directive may <em>not</em> be continued onto
+			subsequent lines.  This might be used, for example, if all interfaces lines have been processed
+		and the procedure bodies are not to appear in the output.</p></li>
+	</ul>
+
+<!--Return to top of this page. -->
+	<p align="CENTER"><a href="#top" target=_self>Back to the Top</a></p>
+
+	<h3><a name="diagextens">Diagnostic Extensions</a></h3>
+
+	<p align="LEFT">These directives allow the programmer to monitor and debug the processing of source files:</p>
+
+	<ul>
+		<li><strong><a name="cmdlinedir">?? CMDLINE</a></strong>
+		<p align="LEFT">Causes CoCo to print the command line of its invocation
+			to the logfile, or to stderr. The command line does not change during processing.
+			This may be useful capturing values set by <a href="#defineopt">-D options</a>,
+			or other options that override those from the set file.</p></li>
+
+		<li><strong><a name="documentdir">?? DOCUMENT</a></strong>
+		<p align="LEFT">Causes CoCo to act as if the following were encountered in the input file.</p>
+
+<pre>
+!
+! Preprocessor executed: ?date? ?time?
+!
+! Preprocessor command line: ?cmdline?
+! Preprocessor set file: ?setfile?
+! Preprocessor log file: ?logfile?
+! Preprocessor version: ?coco?
+!
+! Source file: ?file? line: ?line?
+! Compile file: ?output?
+! Include path: ?incpath?
+!
+! User: ?user?
+! Current directory: ?cwd?
+!
+</pre>
+		<p align="LEFT">This has the effect of documenting the particulars of the preprocessing.
+		(If this were in an include file, the ?file? and ?line? would refer
+		to the include file, which would not be especially informative.)
+		(The CoCo version information is on the line below the label
+		to attempt to avoid line wrapping when processing fixed form source.)</p></li>
+
+		<li><strong><a name="optiondir">?? OPTIONS</a></strong>
+		<p align="LEFT">Causes CoCo to print the currently in effect
+			options to the logfile, or to stderr. Since options may be set only via the
+			command line or the set file, the options report does not change during processing.
+			This may be useful capturing values set by a <a href="#setfile">set file</a>, and thus not defined
+			within the source files proper.</p></li>
+
+		<li><strong><a name="reportdir">?? REPORT</a></strong>
+		<p align="LEFT">Causes CoCo to print its end of processing report
+			to the logfile, or to stderr, with data current as of the position where the
+			directive is encountered.  Compare with <a href="#summarydir">the set file REPORT directive</a>,
+			which causes the report to be written at the end of processing.</p></li>
+
+		<li><strong><a name="dumpdir">?? SYMBOLS</a></strong>
+		<p align="LEFT">Causes CoCo to write to the logfile, or to
+			stderr, a summary of all symbols (integers, logicals, macros, and text blocks)
+			known at the point where the directive is encountered. If an
+			integer or logical variable has no value when the SYMBOL directive is
+			encountered, the value printed is "&lt;undefined&gt;". The value of a macro is
+			the replacement string without argument substitution, if any. The value of a
+			text block is printed line-by-line as if it were a multi-line macro,
+			and may contain CoCo directives such as if blocks.</p></li>
+
+	</ul>
+
+	<p align="LEFT">If CoCo is being used as part of
+		<a href="port.html" type="text/html">The Portability Project</a>, the
+		<strong>coco.inc</strong> file can be used to define CoCo symbols for the
+		compiler targeted by the CoCo.inc file. The definitions contained in the
+		CoCo.inc file match those in the
+		<a href="stdtype.html" type="text/html">processor_dependencies module</a>,
+		these two files <em>must</em> both refer to the <em>same</em> processor,
+		otherwise, unexpected, suboptimal, or incorrect results may occur.</p>
+
+<!--Return to top of this page. -->
+	<p align="CENTER"><a href="#top" target=_self>Back to the Top</a></p>
+
+	<h3><a name="setextens">Set File Extensions</a></h3>
+
+	<p align="LEFT">Some extension directives may appear only in the
+		set file, and are intended to allow the programmer to control modes of CoCo
+		otherwise controlled from the command line (for example, in case the program
+		was compiled without <a href="www.winteracter.com/f2kcli" type="text/html">the
+		f2kcli module</a>, or other access to the command line). An option on the
+		command line generally overrides the corresponding directive in the set file.
+		These directives are listed below:</p>
+
+	<ul>
+		<li><strong><a name="incdir">?? DIRECTORY 'directory-name'</a></strong>
+		<p align="LEFT">Causes CoCo to search <em>directory-name</em>
+			when an include file is not found in the current directory. Several DIRECTORY
+			directives may each specify a <em>directory-name</em>, they are searched in the
+			order they are declared. A DIRECTORY directive must appear in the set file (this is
+			so all references to an include file name in one execution refer to the same file). See
+			also <a href="#incopt" target=_self>the -I command line option</a>.</p></li>
+
+		<li><strong><a name="formdir">?? FORM: [ FREE | FIXED ]</a></strong>
+		<p align="LEFT">Causes CoCo to treat the input source files as free form source files
+		or as fixed form source files.  By default, CoCo assumes input files are free form source.
+		FIXED changes CoCo to assume fixed form source files.  FREE is allowed
+		to confirm the default choice. Only one FORM directive may occur in a set file.
+		See also <a href="#formopt">the -F command line option</a></p></li>
+
+		<li><strong><a name="infiledir">?? INPUT 'file-name'</a></strong>
+		<p align="LEFT">Names an input file. Seveal input directives may occur
+		within a set file.  Files are processed in the order the directives are encountered.
+		See also <a href="#usage" target=_self>Using CoCo</a>.  Input directives are ignored
+		when input file names appear on the command line.</p></li>
+
+		<li><strong><a name="keysdir">?? KEYS: cc</a></strong>
+		<p align="LEFT">The left and right key characters are set to the characters <em>cc</em>. See also
+			<a href="#keyopt" target=_self>the -k command line option</a>.</p></li>
+
+		<li><strong><a name="logfiledir">?? LOGFILE 'file-name'</a></strong>
+		<p align="LEFT">The logfile directive is set to the named file. The file is
+			created. Only one LOGFILE directive may occur in a set file. See also
+			<a href="#logfileopt" target=_self>the -l command line option</a>.</p></li>
+
+		<li><strong><a name="markdir">?? MARK: [ ON | OFF ]</a></strong>
+		<p align="LEFT">Turns on of off the placing a line in the output to mark
+			subsequent input source files.  Only one MARK directive may occur in a set file. See also
+			<a href="#markopt" target=_self>the -m command line option</a>.</p></li>
+
+		<li><strong><a name="numberdir">?? NUMBER: [ ON | OFF ]</a></strong>
+		<p align="LEFT">Turns on of off the numbering of source lines. If
+			on, source lines appearing in the output as active source lines have the input
+			file name and line number appearing as a Fortran comment starting at the wrap
+			column. Only one NUMBER directive may occur in a set file. See also
+			<a href="#numberopt" target=_self>the -n command line option</a> and
+			<a href="#wrapnumber" target=_self>About Line Wrapping and Numbering</a>.</p></li>
+
+		<li><strong><a name="outfiledir">?? OUTPUT 'file-name'</a></strong>
+		<p align="LEFT">Names the output file. The file is
+			created. Only one OUTPUT directive may occur in a set file. See also
+			<a href="#usage" target=_self>Using CoCo</a>.  Output directives are ignored
+		when an output file name appears on the command line.</p></li>
+
+		<li><strong><a name="postdir">?? POST: [ ON | OFF ]</a></strong>
+		<p align="LEFT">Causes CoCo to copy the set file to the end of the output file at the completion
+			of processing if ON is selected (the default, as specified by the standard).
+			If OFF is specified, the set file is not copied to the end of the output file, nor is
+			the standard-specified separating line present.  Only one POST directive may occur in a set file.
+			See <a href="#postopt" target=_self>the -p command line option</a>.</p></li>
+
+		<li><strong><a name="summarydir">?? REPORT: [ ON | OFF ]</a></strong>
+		<p align="LEFT">Causes CoCo to write a summary report at the end of processing if ON is specified,
+			the default, or if OFF is sspecified, the report is not written.
+			Only one REPORT directive may occur in a set file.
+			See <a href="#summaryopt" target=_self>the -r command line option</a>
+			and <a href="#reportdir">the REPORT directive</a> that appears in a source file.</p></li>
+
+		<li><strong><a name="verbosedir">?? VERBOSE: [ ON | OFF ]</a></strong>
+		<p align="LEFT">Turns on of off the reporting of file openings
+			and closings. Unless verbose mode is set on the command line, the opening of
+			the set file cannot be reported this way, because the set file is already being
+			read when this directive is executed. Only one VERBOSE directive may occur in a
+			set file. See also <a href="#verboseopt" target=_self>the -v command line option</a>.</p></li>
+
+		<li><strong><a name="wrapdir">?? WRAP: [ ON | OFF ]</a></strong>
+		<p align="LEFT">Turns on of off the wrapping of source lines. If
+			on, source lines appearing in the output as active source lines are wrapped starting at the wrap
+			column. Only one WRAP directive may occur in a set file. See also
+			<a href="#wrapopt" target=_self>the -w command line option</a> and
+			<a href="#wrapnumber" target=_self>About Line Wrapping and Numbering</a>.</p></li>
+
+	</ul>
+
+	<p align="LEFT">Since the set file os copied to the end of the output file,
+		a record may be kept within the source of the CoCo options used to generate the output file.</p>
+
+<!--Return to top of this page. -->
+	<p align="CENTER"><a href="#top" target=_self>Back to the Top</a></p>
+
+<!--Give an example -->
+	<h2 align="CENTER">
+		<font face="sans-serif"><a name="example">An Example of Using CoCo</a></font></h2>
+
+	<p align="LEFT">Statement of the problem to be solved: A single
+		source file is to be prepared which will specify a Fortran 95 Module containing
+		a cube root function to support all real kinds on any processor at a computing
+		center. Using the programs of the <a href="port.html" type="text/html">Portability Project</a>,
+		specifically, the <a href="stdtype.html" type="text/html">processor_dependencies module</a> to
+		provide kind parameters and the coco.inc include file, this module may be
+		written as follows:</p>
+
+	<pre>
+?? ! define the CoCo logical symbols
+?? ! single_k, double_k, quad_k (among others)
+?? include 'coco.inc'
+
+module cube_root
+
+!  define Fortran kind parameters
+!  single_k, double_k, quad_k
+use processor_dependencies, only: single_k, double_k, quad_k
+
+implicit none
+
+private
+
+interface cbrt
+?? if( single_k )then
+   module procedure single_cbrt
+?? endif
+?? if( double_k )then
+   module procedure double_cbrt
+?? endif
+?? if( quad_k )then
+   module procedure quad_cbrt
+?? endif
+end interface
+
+public :: cbrt
+
+contains
+
+?? if( single_k )then
+elemental real( kind= single_k) function single_cbrt( x)
+real( kind= single_k), intent( in) :: x
+
+   single_cbrt = sign( exp( log( abs( x)) / 3.0_single_k), x)
+
+end function single_cbrt
+?? endif
+
+?? if( double_k )then
+elemental real( kind= double_k) function double_cbrt( x)
+real( kind= double_k), intent( in) :: x
+
+   double_cbrt = sign( exp( log( abs( x)) / 3.0_double_k), x)
+
+end function double_cbrt
+?? endif
+
+?? if( quad_k )then
+elemental real( kind= quad_k) function quad_cbrt( x)
+real( kind= quad_k), intent( in) :: x
+
+   quad_cbrt = sign( exp( log( abs( x)) / 3.0_quad_k), x)
+
+end function quad_cbrt
+?? endif
+
+end module cube_root
+	</pre>
+
+	<p align="LEFT">Note that the single_k, double_k, and quad_k which
+		appear in the Fortran source proper are the three kind parameters which are
+		defined in the module <a href="stdtype.html" type="text/html">processor_dependencies</a>.
+		The single_k, double_k and quad_k appearing in the CoCo if directives are CoCo logical variables
+		which are defined in the CoCo.inc CoCo include file. Both CoCo.inc and the source code
+		for processor_dependencies are made (semi-)automatically by the
+		<a href="make_pm.html" type="text/html">make_processor_model</a> program of
+		<a href="port.html" type="text/html">the Portability Project</a> All the
+		Fortran kind parameters are valid on any processor, because if the kind isn't
+		supported, the corresponding CoCo logical variable is set to false, thereby
+		preventing the code from being present in the version of the source for that processor.</p>
+
+	<p align="LEFT">Solving the same problem, but this time using the text-copy mechanism, is shown below:</p>
+
+	<pre>
+?? ! define the CoCo logical symbols
+?? ! single_k, double_k, quad_k (among others)
+?? include 'coco.inc'
+
+module cube_root
+
+?? text :: cbrt( kind)
+elemental real( kind= ?kind?_k) function ?kind?_cbrt( x)
+real( kind= ?kind?_k), intent( in) :: x
+
+   ?kind?_cbrt = sign( exp( log( abs( x)) / 3.0_?kind?_k), &amp;
+                       x)
+
+end function ?kind?_cbrt
+?? end text cbrt
+
+!  define Fortran kind parameters
+!  single_k, double_k, quad_k
+use processor_dependencies, only: single_k, double_k, quad_k
+
+implicit none
+
+private
+
+! define the generic name cbrt
+interface cbrt
+?? if( single_k )then
+   module procedure single_cbrt
+?? endif
+?? if( double_k )then
+   module procedure double_cbrt
+?? endif
+?? if( quad_k )then
+   module procedure quad_cbrt
+?? endif
+end interface
+
+public :: cbrt
+
+contains
+
+?? if( single_k )then
+?? copy :: cbrt( single)
+?? endif
+
+?? if( double_k )then
+?? copy :: cbrt( double)
+?? endif
+
+?? if( quad_k )then
+?? copy :: cbrt( quad)
+?? endif
+
+end module cube_root
+	</pre>
+
+	<p align="LEFT">Note that this time, the source for the cbrt()
+		function need be specified only once, the text-copy mechanism performs the
+		copy-paste-substitute operation as needed.</p>
+
+<!--Return to top of this page. -->
+	<p align="CENTER"><a href="#top" target=_self>Back to the Top</a></p>
+
+<!--Show limitations -->
+	<h2 align="CENTER">
+		<font face="sans-serif"><a name="bugs">Some Known Bugs and Limitations</a></font></h2>
+
+	<p align="LEFT">CoCo does not read Fortran source beyond the minimum necessary
+	   for macro replacement.  This is done both for efficiency,
+	   and to increase CoCo's reliability by allowing a simpler design.  However, some limitations
+	   are a result of this decision.</p>
+
+	<p align="LEFT">CoCo makes a single pass through its list of macro names (including
+		the predefined names).  Therefore, a macro name within the value of another macro
+		may not expand as intended.  The way to get a string into a macro value reliably
+		is to pass it through a macro dummy argument.  Alternatively, one may conditionally
+		define the macro to contain the desired macro value.  Improving this situation
+		is an area on ongoing investigation, so even if an input file produces the desired result with this release,
+		it may be processed differently when the situation improves.</p>
+
+	<p align="LEFT">The actual arguments supplied to macro expansion and text block copying
+		should contain either no parenthesis, or balanced parenthesis.  CoCo attempts to skip
+		commas intended as part of format specifications, array index sets, and procedure argument lists by skipping
+		commas appearing between parentheses.  Unbalanced parentheses within actual arguments
+		can foil this process.</p>
+
+	<p align="LEFT">CoCo allows simple commands to change the key characters,
+		within some limits of choice of key characters.  However, changing the key characters
+		present in the source files may be more tedious, so choose non-default key characters
+		with some deliberation.</p>
+
+	<p align="LEFT">CoCo attempts to find the directory separation character by scanning
+	   the value of the ?cwd? macro, which is gotten from the PWD environment variable.
+	   If this fails, the directory separation character must be appended to directory names
+	   specified on ??directory set file directives and on -I command line options.  If
+	   a simple directory separator is inappropriate (for example, with VMS), the directory
+	   names must be specified so that simply appending the include file name produces
+	   a value that will allow the include file to be used.</p>
+
+	<p align="LEFT">CoCo accesses its command line via the usual methods.  Since file indirection
+		is ordinarily handled by the shell as part of program startup processing, CoCo cannot
+		distinguish the case where files have been redirected to stdin and stdout from the case
+		where there are no source files on the command line.  Therefore, CoCo will honor input and output
+		directives in its set file even in the case where files have been redirected from the command line.
+		Care should be taken to use a set file without input or output directives when file indirection
+		is intended, and, for clarity, to shun file indirection when input or output set file directives are intended.
+		To document CoCo's idea of its command line, see <a href="#cmdlinedir">the CMDLINE directive</a>,
+		<a href="#cmdlinemac">the cmdline macro</a>, and <a href="#documentdir">the DOCUMENT directive</a>.<p>
+
+	<p align="LEFT">As with all CoCo statements and elided source lines,
+		the set file, its standard-defined separation line, and lines marking subsequent input files
+		are invisible when the alter state is set to delete or blank.</p>
+
+<!--Return to top of this page. -->
+	<p align="CENTER"><a href="#top" target=_self>Back to the Top</a></p>
+
+<!--The download links start here. -->
+	<h2 align="CENTER"><font face="sans-serif"><a name="download">Downloads</a></font></h2>
+
+	<p align="LEFT">To download a source code for the CoCo program, click
+		<a href="pub/coco.f90" type="text/plain">CoCo preprocessor</a>. You may want to
+		use the free <a href="http://www.winteracter.com/f2kcli" type="text/html">F2KCLI Module</a>
+		from I.S.S. Ltd. to compile <a href="pub/coco.f90" type="text/plain">CoCo program</a> if your compiler
+		doesn't support the Fortran 2003 command line access intrinsic procedures.
+		Download the <a href="pub/restore.f90" type="text/plain">restore program</a>
+		which can undo CoCo processing under certain circumstances.</p>
+
+	<p align="LEFT">For more information about the processor_dependencies
+		module, click <a href="port.html" type="text/html">here</a>.</p>
+
+<!--Return to top of this page. -->
+	<p align="CENTER"><a href="#top" target=_self>Back to the Top</a></p>
+
+<!--Solicit email here. -->
+	<p align="CENTER">Please see our Fact Sheet, or
+		<a href="mailto:dannagle@verizon.net">E-mail us</a> for more information.</p>
+
+<!--The page footer -->
+	<hr size="1" noshade="NOSHADE">
+
+<!--Yet another batch of links to other pages. -->
+	<p align="CENTER"> <a href="index.html" type="text/html">Home</a> -
+		<a href="fact.html" type="text/html">Fact Sheet</a> -
+		<a href="download.html" type="text/html">Free Source Code</a> -
+		<a href="sites.html" type="text/html">Fortran Links</a> -
+		<a href="mailto:dannagle@verizon.net">Email us</a></p>
+
+<!--Return to top of this page. -->
+	<p align="CENTER"><a href="#top" target=_self>Back to the Top</a></p>
+
+</body>
+</html>

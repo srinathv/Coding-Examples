@@ -1,0 +1,6 @@
+&files incname="coco.inc" /
+
+&sw stderr = 0,
+    com_vers = "gfortran 4.6",
+    com_sern = "GPL",
+    os_vers = "Mac OS X 10.7" /

@@ -1,0 +1,6 @@
+?? logical :: mydebug=.false.
+?? if( mydebug )then
+! all is well
+?? else
+?? endfile
+?? endif

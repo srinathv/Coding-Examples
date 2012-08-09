@@ -1,0 +1,14 @@
+!?>?? integer :: a = 4, b = 5
+!?>?? logical :: debug = .false.
+!?>?? symbols
+!?>?? message a+b, a-b, a*b, a/b, a\b
+!?>9 -1 20 0 4
+!?>?? if( debug )then
+!?>! I'm debugging now!
+!?>?? else
+! Business as usual.
+!?>?? end if
+!?>?? symbols
+!?>?? This was produced using the following SET file
+!?>?? output 'stdout.f90'
+!?>?? integer :: jj = 11
