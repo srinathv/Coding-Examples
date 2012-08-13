@@ -1,8 +1,8 @@
-FC=gfortran-mp-4.7 -c
+FC=gfortran -c
 
 FFLAGS=-std=f2008 -Wall -fcheck=all
 
-LD=gfortran-mp-4.7
+LD=gfortran
 
 LDFLAGS=
 

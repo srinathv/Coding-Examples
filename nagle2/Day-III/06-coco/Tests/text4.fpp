@@ -1,0 +1,11 @@
+?? text :: foo
+! yea, foo!
+?? end text foo
+!
+?? copy :: foo
+?? text :: bar
+!  ho, bar!
+?? end text bar
+
+?? copy :: bar
+?? document

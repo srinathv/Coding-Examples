@@ -1,0 +1,14 @@
+?? logical, parameter :: BYTE_K = .true.
+?? logical, parameter :: SHORT_K = .true.
+?? logical, parameter :: INT_K = .true.
+?? logical, parameter :: LONG_K = .true.
+?? logical, parameter :: SINGLE_K = .true.
+?? logical, parameter :: DOUBLE_K = .true.
+?? logical, parameter :: QUAD_K = .true.
+?? logical, parameter :: L_BYTE_K = .true.
+?? logical, parameter :: L_SHORT_K = .true.
+?? logical, parameter :: L_INT_K = .true.
+?? logical, parameter :: L_LONG_K = .true.
+?? logical, parameter :: ASCII_K = .true.
+?? logical, parameter :: EBCDIC_K = .false.
+?? logical, parameter :: ISO_10646_K = .false.

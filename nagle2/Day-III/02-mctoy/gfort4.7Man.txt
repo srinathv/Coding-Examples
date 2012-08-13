@@ -1,0 +1,1181 @@
+GFORTRAN(1)                           GNU                          GFORTRAN(1)
+
+
+
+NNAAMMEE
+       gfortran - GNU Fortran compiler
+
+SSYYNNOOPPSSIISS
+       gfortran [--cc|--SS|--EE]
+                [--gg] [--ppgg] [--OO_l_e_v_e_l]
+                [--WW_w_a_r_n...] [--ppeeddaannttiicc]
+                [--II_d_i_r...] [--LL_d_i_r...]
+                [--DD_m_a_c_r_o[=_d_e_f_n]...] [--UU_m_a_c_r_o]
+                [--ff_o_p_t_i_o_n...]
+                [--mm_m_a_c_h_i_n_e_-_o_p_t_i_o_n...]
+                [--oo _o_u_t_f_i_l_e] _i_n_f_i_l_e...
+
+       Only the most useful options are listed here; see below for the
+       remainder.
+
+DDEESSCCRRIIPPTTIIOONN
+       The ggffoorrttrraann command supports all the options supported by the ggcccc
+       command.  Only options specific to GNU Fortran are documented here.
+
+       All GCC and GNU Fortran options are accepted both by ggffoorrttrraann and by
+       ggcccc (as well as any other drivers built at the same time, such as gg++++),
+       since adding GNU Fortran to the GCC distribution enables acceptance of
+       GNU Fortran options by all of the relevant drivers.
+
+       In some cases, options have positive and negative forms; the negative
+       form of --ffffoooo would be --ffnnoo--ffoooo.  This manual documents only one of
+       these two forms, whichever one is not the default.
+
+OOPPTTIIOONNSS
+       Here is a summary of all the options specific to GNU Fortran, grouped
+       by type.  Explanations are in the following sections.
+
+       _F_o_r_t_r_a_n _L_a_n_g_u_a_g_e _O_p_t_i_o_n_s
+           --ffaallll--iinnttrriinnssiiccss --ffbbaacckkssllaasshh --ffccrraayy--ppooiinntteerr --ffdd--lliinneess--aass--ccooddee
+           --ffdd--lliinneess--aass--ccoommmmeennttss --ffddeeffaauulltt--ddoouubbllee--88 --ffddeeffaauulltt--iinntteeggeerr--88
+           --ffddeeffaauulltt--rreeaall--88 --ffddoollllaarr--ookk --ffffiixxeedd--lliinnee--lleennggtthh--_n
+           --ffffiixxeedd--lliinnee--lleennggtthh--nnoonnee --ffffrreeee--ffoorrmm --ffffrreeee--lliinnee--lleennggtthh--_n
+           --ffffrreeee--lliinnee--lleennggtthh--nnoonnee --ffiimmpplliicciitt--nnoonnee --ffiinntteeggeerr--44--iinntteeggeerr--88
+           --ffmmaaxx--iiddeennttiiffiieerr--lleennggtthh --ffmmoodduullee--pprriivvaattee --ffnnoo--ffiixxeedd--ffoorrmm
+           --ffnnoo--rraannggee--cchheecckk --ffooppeennmmpp --ffrreeaall--44--rreeaall--1100 --ffrreeaall--44--rreeaall--1166
+           --ffrreeaall--44--rreeaall--88 --ffrreeaall--88--rreeaall--1100 --ffrreeaall--88--rreeaall--1166 --ffrreeaall--88--rreeaall--44
+           --ssttdd==_s_t_d
+
+       _P_r_e_p_r_o_c_e_s_s_i_n_g _O_p_t_i_o_n_s
+           --AA--_q_u_e_s_t_i_o_n[==_a_n_s_w_e_r] --AA_q_u_e_s_t_i_o_n==_a_n_s_w_e_r --CC --CCCC --DD_m_a_c_r_o[==_d_e_f_n] --HH --PP
+           --UU_m_a_c_r_o --ccpppp --ddDD --ddII --ddMM --ddNN --ddUU --ffwwoorrkkiinngg--ddiirreeccttoorryy --iimmuullttiilliibb _d_i_r
+           --iipprreeffiixx _f_i_l_e --iiqquuoottee --iissyyssrroooott _d_i_r --iissyysstteemm _d_i_r --nnooccpppp --nnoossttddiinncc
+           --uunnddeeff
+
+       _E_r_r_o_r _a_n_d _W_a_r_n_i_n_g _O_p_t_i_o_n_s
+           --WWaalliiaassiinngg --WWaallll --WWaammppeerrssaanndd --WWaarrrraayy--bboouunnddss --WWcchhaarraacctteerr--ttrruunnccaattiioonn
+           --WWccoonnvveerrssiioonn --WWffuunnccttiioonn--eelliimmiinnaattiioonn --WWiimmpplliicciitt--iinntteerrffaaccee
+           --WWiimmpplliicciitt--pprroocceedduurree --WWiinnttrriinnssiicc--sshhaaddooww --WWiinnttrriinnssiiccss--ssttdd
+           --WWlliinnee--ttrruunnccaattiioonn --WWnnoo--aalliiggnn--ccoommmmoonnss --WWnnoo--ttaabbss --WWrreeaall--qq--ccoonnssttaanntt
+           --WWssuurrpprriissiinngg --WWuunnddeerrffllooww --WWuunnuusseedd--ppaarraammeetteerr --ffmmaaxx--eerrrroorrss==_n
+           --ffssyynnttaaxx--oonnllyy --ppeeddaannttiicc --ppeeddaannttiicc--eerrrroorrss
+
+       _D_e_b_u_g_g_i_n_g _O_p_t_i_o_n_s
+           --ffbbaacckkttrraaccee --ffdduummpp--ffoorrttrraann--ooppttiimmiizzeedd --ffdduummpp--ffoorrttrraann--oorriiggiinnaall
+           --ffdduummpp--ppaarrssee--ttrreeee --ffffppee--ttrraapp==_l_i_s_t
+
+       _D_i_r_e_c_t_o_r_y _O_p_t_i_o_n_s
+           --II_d_i_r  --JJ_d_i_r --ffiinnttrriinnssiicc--mmoodduulleess--ppaatthh _d_i_r
+
+       _L_i_n_k _O_p_t_i_o_n_s
+           --ssttaattiicc--lliibbggffoorrttrraann
+
+       _R_u_n_t_i_m_e _O_p_t_i_o_n_s
+           --ffccoonnvveerrtt==_c_o_n_v_e_r_s_i_o_n --ffmmaaxx--ssuubbrreeccoorrdd--lleennggtthh==_l_e_n_g_t_h --ffnnoo--rraannggee--cchheecckk
+           --ffrreeccoorrdd--mmaarrkkeerr==_l_e_n_g_t_h --ffssiiggnn--zzeerroo
+
+       _C_o_d_e _G_e_n_e_r_a_t_i_o_n _O_p_t_i_o_n_s
+           --ffaaggggrreessssiivvee--ffuunnccttiioonn--eelliimmiinnaattiioonn --ffbbllaass--mmaattmmuull--lliimmiitt==_n
+           --ffbboouunnddss--cchheecckk --ffcchheecckk--aarrrraayy--tteemmppoorraarriieess
+           --ffcchheecckk==_<_a_l_l_|_a_r_r_a_y_-_t_e_m_p_s_|_b_o_u_n_d_s_|_d_o_|_m_e_m_|_p_o_i_n_t_e_r_|_r_e_c_u_r_s_i_o_n_>
+           --ffccooaarrrraayy==_<_n_o_n_e_|_s_i_n_g_l_e_|_l_i_b_> --ffeexxtteerrnnaall--bbllaass --ffff22cc
+           --ffffrroonntteenndd--ooppttiimmiizzee --ffiinniitt--cchhaarraacctteerr==_n --ffiinniitt--iinntteeggeerr==_n
+           --ffiinniitt--llooccaall--zzeerroo --ffiinniitt--llooggiiccaall==_<_t_r_u_e_|_f_a_l_s_e_>
+           --ffiinniitt--rreeaall==_<_z_e_r_o_|_i_n_f_|_-_i_n_f_|_n_a_n_|_s_n_a_n_> --ffmmaaxx--aarrrraayy--ccoonnssttrruuccttoorr==_n
+           --ffmmaaxx--ssttaacckk--vvaarr--ssiizzee==_n --ffnnoo--aalliiggnn--ccoommmmoonnss --ffnnoo--aauuttoommaattiicc
+           --ffnnoo--pprrootteecctt--ppaarreennss --ffnnoo--uunnddeerrssccoorriinngg --ffnnoo--wwhhoollee--ffiillee
+           --ffsseeccoonndd--uunnddeerrssccoorree --ffppaacckk--ddeerriivveedd --ffrreeaalllloocc--llhhss --ffrreeccuurrssiivvee
+           --ffrreeppaacckk--aarrrraayyss --ffsshhoorrtt--eennuummss --ffssttaacckk--aarrrraayyss
+
+       OOppttiioonnss ccoonnttrroolllliinngg FFoorrttrraann ddiiaalleecctt
+
+       The following options control the details of the Fortran dialect
+       accepted by the compiler:
+
+       --ffffrreeee--ffoorrmm
+       --ffffiixxeedd--ffoorrmm
+           Specify the layout used by the source file.  The free form layout
+           was introduced in Fortran 90.  Fixed form was traditionally used in
+           older Fortran programs.  When neither option is specified, the
+           source form is determined by the file extension.
+
+       --ffaallll--iinnttrriinnssiiccss
+           This option causes all intrinsic procedures (including the GNU-
+           specific extensions) to be accepted.  This can be useful with
+           --ssttdd==ff9955 to force standard-compliance but get access to the full
+           range of intrinsics available with ggffoorrttrraann.  As a consequence,
+           --WWiinnttrriinnssiiccss--ssttdd will be ignored and no user-defined procedure with
+           the same name as any intrinsic will be called except when it is
+           explicitly declared "EXTERNAL".
+
+       --ffdd--lliinneess--aass--ccooddee
+       --ffdd--lliinneess--aass--ccoommmmeennttss
+           Enable special treatment for lines beginning with "d" or "D" in
+           fixed form sources.  If the --ffdd--lliinneess--aass--ccooddee option is given they
+           are treated as if the first column contained a blank.  If the
+           --ffdd--lliinneess--aass--ccoommmmeennttss option is given, they are treated as comment
+           lines.
+
+       --ffddeeffaauulltt--ddoouubbllee--88
+           Set the "DOUBLE PRECISION" type to an 8 byte wide type.  If
+           --ffddeeffaauulltt--rreeaall--88 is given, "DOUBLE PRECISION" would instead be
+           promoted to 16 bytes if possible, and --ffddeeffaauulltt--ddoouubbllee--88 can be
+           used to prevent this.  The kind of real constants like "1.d0" will
+           not be changed by --ffddeeffaauulltt--rreeaall--88 though, so also
+           --ffddeeffaauulltt--ddoouubbllee--88 does not affect it.
+
+       --ffddeeffaauulltt--iinntteeggeerr--88
+           Set the default integer and logical types to an 8 byte wide type.
+           Do nothing if this is already the default.  This option also
+           affects the kind of integer constants like 42.
+
+       --ffddeeffaauulltt--rreeaall--88
+           Set the default real type to an 8 byte wide type.  Do nothing if
+           this is already the default.  This option also affects the kind of
+           non-double real constants like 1.0, and does promote the default
+           width of "DOUBLE PRECISION" to 16 bytes if possible, unless
+           "-fdefault-double-8" is given, too.
+
+       --ffddoollllaarr--ookk
+           Allow $$ as a valid non-first character in a symbol name. Symbols
+           that start with $$ are rejected since it is unclear which rules to
+           apply to implicit typing as different vendors implement different
+           rules.  Using $$ in "IMPLICIT" statements is also rejected.
+
+       --ffbbaacckkssllaasshh
+           Change the interpretation of backslashes in string literals from a
+           single backslash character to "C-style" escape characters. The
+           following combinations are expanded "\a", "\b", "\f", "\n", "\r",
+           "\t", "\v", "\\", and "\0" to the ASCII characters alert,
+           backspace, form feed, newline, carriage return, horizontal tab,
+           vertical tab, backslash, and NUL, respectively.  Additionally,
+           "\x"_n_n, "\u"_n_n_n_n and "\U"_n_n_n_n_n_n_n_n (where each _n is a hexadecimal
+           digit) are translated into the Unicode characters corresponding to
+           the specified code points. All other combinations of a character
+           preceded by \ are unexpanded.
+
+       --ffmmoodduullee--pprriivvaattee
+           Set the default accessibility of module entities to "PRIVATE".
+           Use-associated entities will not be accessible unless they are
+           explicitly declared as "PUBLIC".
+
+       --ffffiixxeedd--lliinnee--lleennggtthh--_n
+           Set column after which characters are ignored in typical fixed-form
+           lines in the source file, and through which spaces are assumed (as
+           if padded to that length) after the ends of short fixed-form lines.
+
+           Popular values for _n include 72 (the standard and the default), 80
+           (card image), and 132 (corresponding to "extended-source" options
+           in some popular compilers).  _n may also be nnoonnee, meaning that the
+           entire line is meaningful and that continued character constants
+           never have implicit spaces appended to them to fill out the line.
+           --ffffiixxeedd--lliinnee--lleennggtthh--00 means the same thing as
+           --ffffiixxeedd--lliinnee--lleennggtthh--nnoonnee.
+
+       --ffffrreeee--lliinnee--lleennggtthh--_n
+           Set column after which characters are ignored in typical free-form
+           lines in the source file. The default value is 132.  _n may be nnoonnee,
+           meaning that the entire line is meaningful.  --ffffrreeee--lliinnee--lleennggtthh--00
+           means the same thing as --ffffrreeee--lliinnee--lleennggtthh--nnoonnee.
+
+       --ffmmaaxx--iiddeennttiiffiieerr--lleennggtthh==_n
+           Specify the maximum allowed identifier length. Typical values are
+           31 (Fortran 95) and 63 (Fortran 2003 and Fortran 2008).
+
+       --ffiimmpplliicciitt--nnoonnee
+           Specify that no implicit typing is allowed, unless overridden by
+           explicit "IMPLICIT" statements.  This is the equivalent of adding
+           "implicit none" to the start of every procedure.
+
+       --ffiinntteeggeerr--44--iinntteeggeerr--88
+           Promote all "INTEGER(KIND=4)" entities to an "INTEGER(KIND=8)"
+           entities.  If "KIND=8" is unavailable, then an error will be
+           issued.  This option should be used with care and may not be
+           suitable for your codes.  Areas of possible concern include calls
+           to external procedures, alignment in "EQUIVALENCE" and/or "COMMON",
+           generic interfaces, BOZ literal constant conversion, and I/O.
+           Inspection of the intermediate representation of the translated
+           Fortran code, produced by --ffdduummpp--ttrreeee--oorriiggiinnaall, is suggested.
+
+       --ffccrraayy--ppooiinntteerr
+           Enable the Cray pointer extension, which provides C-like pointer
+           functionality.
+
+       --ffooppeennmmpp
+           Enable the OpenMP extensions.  This includes OpenMP "!$omp"
+           directives in free form and "c$omp", *$omp and "!$omp" directives
+           in fixed form, "!$" conditional compilation sentinels in free form
+           and "c$", "*$" and "!$" sentinels in fixed form, and when linking
+           arranges for the OpenMP runtime library to be linked in.  The
+           option --ffooppeennmmpp implies --ffrreeccuurrssiivvee.
+
+       --ffnnoo--rraannggee--cchheecckk
+           Disable range checking on results of simplification of constant
+           expressions during compilation.  For example, GNU Fortran will give
+           an error at compile time when simplifying "a = 1. / 0".  With this
+           option, no error will be given and "a" will be assigned the value
+           "+Infinity".  If an expression evaluates to a value outside of the
+           relevant range of ["-HUGE()":"HUGE()"], then the expression will be
+           replaced by "-Inf" or "+Inf" as appropriate.  Similarly, "DATA
+           i/Z'FFFFFFFF'/" will result in an integer overflow on most systems,
+           but with --ffnnoo--rraannggee--cchheecckk the value will "wrap around" and "i" will
+           be initialized to -1 instead.
+
+       --ffrreeaall--44--rreeaall--88
+       --ffrreeaall--44--rreeaall--1100
+       --ffrreeaall--88--rreeaall--44
+       --ffrreeaall--88--rreeaall--1100
+       --ffrreeaall--88--rreeaall--1166
+           Promote all "REAL(KIND=M)" entities to "REAL(KIND=N)" entities.  If
+           "REAL(KIND=N)" is unavailable, then an error will be issued.  All
+           other real kind types are unaffected by this option.  These options
+           should be used with care and may not be suitable for your codes.
+           Areas of possible concern include calls to external procedures,
+           alignment in "EQUIVALENCE" and/or "COMMON", generic interfaces, BOZ
+           literal constant conversion, and I/O.  Inspection of the
+           intermediate representation of the translated Fortran code,
+           produced by --ffdduummpp--ttrreeee--oorriiggiinnaall, is suggested.
+
+       --ssttdd==_s_t_d
+           Specify the standard to which the program is expected to conform,
+           which may be one of ff9955, ff22000033, ff22000088, ggnnuu, or lleeggaaccyy.  The default
+           value for _s_t_d is ggnnuu, which specifies a superset of the Fortran 95
+           standard that includes all of the extensions supported by GNU
+           Fortran, although warnings will be given for obsolete extensions
+           not recommended for use in new code.  The lleeggaaccyy value is
+           equivalent but without the warnings for obsolete extensions, and
+           may be useful for old non-standard programs.  The ff9955, ff22000033 and
+           ff22000088 values specify strict conformance to the Fortran 95, Fortran
+           2003 and Fortran 2008 standards, respectively; errors are given for
+           all extensions beyond the relevant language standard, and warnings
+           are given for the Fortran 77 features that are permitted but
+           obsolescent in later standards. --ssttdd==ff22000088ttss allows the Fortran
+           2008 standard including the additions of the Technical
+           Specification (TS) 29113 on Further Interoperability of Fortran
+           with C.
+
+       EEnnaabbllee aanndd ccuussttoommiizzee pprreepprroocceessssiinngg
+
+       Preprocessor related options. See section PPrreepprroocceessssiinngg aanndd ccoonnddiittiioonnaall
+       ccoommppiillaattiioonn for more detailed information on preprocessing in ggffoorrttrraann.
+
+       --ccpppp
+       --nnooccpppp
+           Enable preprocessing. The preprocessor is automatically invoked if
+           the file extension is _._f_p_p, _._F_P_P,  _._F, _._F_O_R, _._F_T_N, _._F_9_0, _._F_9_5, _._F_0_3
+           or _._F_0_8. Use this option to manually enable preprocessing of any
+           kind of Fortran file.
+
+           To disable preprocessing of files with any of the above listed
+           extensions, use the negative form: --nnooccpppp.
+
+           The preprocessor is run in traditional mode. Any restrictions of
+           the file-format, especially the limits on line length, apply for
+           preprocessed output as well, so it might be advisable to use the
+           --ffffrreeee--lliinnee--lleennggtthh--nnoonnee or --ffffiixxeedd--lliinnee--lleennggtthh--nnoonnee options.
+
+       --ddMM Instead of the normal output, generate a list of '#define'
+           directives for all the macros defined during the execution of the
+           preprocessor, including predefined macros. This gives you a way of
+           finding out what is predefined in your version of the preprocessor.
+           Assuming you have no file _f_o_o_._f_9_0, the command
+
+                     touch foo.f90; gfortran -cpp -E -dM foo.f90
+
+           will show all the predefined macros.
+
+       --ddDD Like --ddMM except in two respects: it does not include the predefined
+           macros, and it outputs both the "#define" directives and the result
+           of preprocessing. Both kinds of output go to the standard output
+           file.
+
+       --ddNN Like --ddDD, but emit only the macro names, not their expansions.
+
+       --ddUU Like ddDD except that only macros that are expanded, or whose
+           definedness is tested in preprocessor directives, are output; the
+           output is delayed until the use or test of the macro; and '#undef'
+           directives are also output for macros tested but undefined at the
+           time.
+
+       --ddII Output '#include' directives in addition to the result of
+           preprocessing.
+
+       --ffwwoorrkkiinngg--ddiirreeccttoorryy
+           Enable generation of linemarkers in the preprocessor output that
+           will let the compiler know the current working directory at the
+           time of preprocessing. When this option is enabled, the
+           preprocessor will emit, after the initial linemarker, a second
+           linemarker with the current working directory followed by two
+           slashes. GCC will use this directory, when it is present in the
+           preprocessed input, as the directory emitted as the current working
+           directory in some debugging information formats.  This option is
+           implicitly enabled if debugging information is enabled, but this
+           can be inhibited with the negated form --ffnnoo--wwoorrkkiinngg--ddiirreeccttoorryy. If
+           the --PP flag is present in the command line, this option has no
+           effect, since no "#line" directives are emitted whatsoever.
+
+       --iiddiirraafftteerr _d_i_r
+           Search _d_i_r for include files, but do it after all directories
+           specified with --II and the standard system directories have been
+           exhausted. _d_i_r is treated as a system include directory.  If dir
+           begins with "=", then the "=" will be replaced by the sysroot
+           prefix; see ----ssyyssrroooott and --iissyyssrroooott.
+
+       --iimmuullttiilliibb _d_i_r
+           Use _d_i_r as a subdirectory of the directory containing target-
+           specific C++ headers.
+
+       --iipprreeffiixx _p_r_e_f_i_x
+           Specify _p_r_e_f_i_x as the prefix for subsequent --iiwwiitthhpprreeffiixx options.
+           If the _p_r_e_f_i_x represents a directory, you should include the final
+           '/'.
+
+       --iissyyssrroooott _d_i_r
+           This option is like the ----ssyyssrroooott option, but applies only to
+           header files. See the ----ssyyssrroooott option for more information.
+
+       --iiqquuoottee _d_i_r
+           Search _d_i_r only for header files requested with "#include "file"";
+           they are not searched for "#include <file>", before all directories
+           specified by --II and before the standard system directories. If _d_i_r
+           begins with "=", then the "=" will be replaced by the sysroot
+           prefix; see ----ssyyssrroooott and --iissyyssrroooott.
+
+       --iissyysstteemm _d_i_r
+           Search _d_i_r for header files, after all directories specified by --II
+           but before the standard system directories. Mark it as a system
+           directory, so that it gets the same special treatment as is applied
+           to the standard system directories. If _d_i_r begins with "=", then
+           the "=" will be replaced by the sysroot prefix; see ----ssyyssrroooott and
+           --iissyyssrroooott.
+
+       --nnoossttddiinncc
+           Do not search the standard system directories for header files.
+           Only the directories you have specified with --II options (and the
+           directory of the current file, if appropriate) are searched.
+
+       --uunnddeeff
+           Do not predefine any system-specific or GCC-specific macros.  The
+           standard predefined macros remain defined.
+
+       --AA_p_r_e_d_i_c_a_t_e==_a_n_s_w_e_r
+           Make an assertion with the predicate _p_r_e_d_i_c_a_t_e and answer _a_n_s_w_e_r.
+           This form is preferred to the older form -A predicate(answer),
+           which is still supported, because it does not use shell special
+           characters.
+
+       --AA--_p_r_e_d_i_c_a_t_e==_a_n_s_w_e_r
+           Cancel an assertion with the predicate _p_r_e_d_i_c_a_t_e and answer _a_n_s_w_e_r.
+
+       --CC  Do not discard comments. All comments are passed through to the
+           output file, except for comments in processed directives, which are
+           deleted along with the directive.
+
+           You should be prepared for side effects when using --CC; it causes
+           the preprocessor to treat comments as tokens in their own right.
+           For example, comments appearing at the start of what would be a
+           directive line have the effect of turning that line into an
+           ordinary source line, since the first token on the line is no
+           longer a '#'.
+
+           Warning: this currently handles C-Style comments only. The
+           preprocessor does not yet recognize Fortran-style comments.
+
+       --CCCC Do not discard comments, including during macro expansion. This is
+           like --CC, except that comments contained within macros are also
+           passed through to the output file where the macro is expanded.
+
+           In addition to the side-effects of the --CC option, the --CCCC option
+           causes all C++-style comments inside a macro to be converted to
+           C-style comments. This is to prevent later use of that macro from
+           inadvertently commenting out the remainder of the source line. The
+           --CCCC option is generally used to support lint comments.
+
+           Warning: this currently handles C- and C++-Style comments only. The
+           preprocessor does not yet recognize Fortran-style comments.
+
+       --DD_n_a_m_e
+           Predefine name as a macro, with definition 1.
+
+       --DD_n_a_m_e==_d_e_f_i_n_i_t_i_o_n
+           The contents of _d_e_f_i_n_i_t_i_o_n are tokenized and processed as if they
+           appeared during translation phase three in a '#define' directive.
+           In particular, the definition will be truncated by embedded newline
+           characters.
+
+           If you are invoking the preprocessor from a shell or shell-like
+           program you may need to use the shell's quoting syntax to protect
+           characters such as spaces that have a meaning in the shell syntax.
+
+           If you wish to define a function-like macro on the command line,
+           write its argument list with surrounding parentheses before the
+           equals sign (if any). Parentheses are meaningful to most shells, so
+           you will need to quote the option. With sh and csh,
+           "-D'name(args...)=definition'" works.
+
+           --DD and --UU options are processed in the order they are given on the
+           command line. All -imacros file and -include file options are
+           processed after all -D and -U options.
+
+       --HH  Print the name of each header file used, in addition to other
+           normal activities. Each name is indented to show how deep in the
+           '#include' stack it is.
+
+       --PP  Inhibit generation of linemarkers in the output from the
+           preprocessor.  This might be useful when running the preprocessor
+           on something that is not C code, and will be sent to a program
+           which might be confused by the linemarkers.
+
+       --UU_n_a_m_e
+           Cancel any previous definition of _n_a_m_e, either built in or provided
+           with a --DD option.
+
+       OOppttiioonnss ttoo rreeqquueesstt oorr ssuupppprreessss eerrrroorrss aanndd wwaarrnniinnggss
+
+       Errors are diagnostic messages that report that the GNU Fortran
+       compiler cannot compile the relevant piece of source code.  The
+       compiler will continue to process the program in an attempt to report
+       further errors to aid in debugging, but will not produce any compiled
+       output.
+
+       Warnings are diagnostic messages that report constructions which are
+       not inherently erroneous but which are risky or suggest there is likely
+       to be a bug in the program.  Unless --WWeerrrroorr is specified, they do not
+       prevent compilation of the program.
+
+       You can request many specific warnings with options beginning --WW, for
+       example --WWiimmpplliicciitt to request warnings on implicit declarations.  Each
+       of these specific warning options also has a negative form beginning
+       --WWnnoo-- to turn off warnings; for example, --WWnnoo--iimmpplliicciitt.  This manual
+       lists only one of the two forms, whichever is not the default.
+
+       These options control the amount and kinds of errors and warnings
+       produced by GNU Fortran:
+
+       --ffmmaaxx--eerrrroorrss==_n
+           Limits the maximum number of error messages to _n, at which point
+           GNU Fortran bails out rather than attempting to continue processing
+           the source code.  If _n is 0, there is no limit on the number of
+           error messages produced.
+
+       --ffssyynnttaaxx--oonnllyy
+           Check the code for syntax errors, but do not actually compile it.
+           This will generate module files for each module present in the
+           code, but no other output file.
+
+       --ppeeddaannttiicc
+           Issue warnings for uses of extensions to Fortran 95.  --ppeeddaannttiicc
+           also applies to C-language constructs where they occur in GNU
+           Fortran source files, such as use of \\ee in a character constant
+           within a directive like "#include".
+
+           Valid Fortran 95 programs should compile properly with or without
+           this option.  However, without this option, certain GNU extensions
+           and traditional Fortran features are supported as well.  With this
+           option, many of them are rejected.
+
+           Some users try to use --ppeeddaannttiicc to check programs for conformance.
+           They soon find that it does not do quite what they want---it finds
+           some nonstandard practices, but not all.  However, improvements to
+           GNU Fortran in this area are welcome.
+
+           This should be used in conjunction with --ssttdd==ff9955, --ssttdd==ff22000033 or
+           --ssttdd==ff22000088.
+
+       --ppeeddaannttiicc--eerrrroorrss
+           Like --ppeeddaannttiicc, except that errors are produced rather than
+           warnings.
+
+       --WWaallll
+           Enables commonly used warning options pertaining to usage that we
+           recommend avoiding and that we believe are easy to avoid.  This
+           currently includes --WWaalliiaassiinngg, --WWaammppeerrssaanndd, --WWccoonnvveerrssiioonn,
+           --WWssuurrpprriissiinngg, --WWiinnttrriinnssiiccss--ssttdd, --WWnnoo--ttaabbss, --WWiinnttrriinnssiicc--sshhaaddooww,
+           --WWlliinnee--ttrruunnccaattiioonn, --WWrreeaall--qq--ccoonnssttaanntt and --WWuunnuusseedd.
+
+       --WWaalliiaassiinngg
+           Warn about possible aliasing of dummy arguments. Specifically, it
+           warns if the same actual argument is associated with a dummy
+           argument with "INTENT(IN)" and a dummy argument with "INTENT(OUT)"
+           in a call with an explicit interface.
+
+           The following example will trigger the warning.
+
+                     interface
+                       subroutine bar(a,b)
+                         integer, intent(in) :: a
+                         integer, intent(out) :: b
+                       end subroutine
+                     end interface
+                     integer :: a
+
+                     call bar(a,a)
+
+       --WWaammppeerrssaanndd
+           Warn about missing ampersand in continued character constants. The
+           warning is given with --WWaammppeerrssaanndd, --ppeeddaannttiicc, --ssttdd==ff9955, --ssttdd==ff22000033
+           and --ssttdd==ff22000088. Note: With no ampersand given in a continued
+           character constant, GNU Fortran assumes continuation at the first
+           non-comment, non-whitespace character after the ampersand that
+           initiated the continuation.
+
+       --WWaarrrraayy--tteemmppoorraarriieess
+           Warn about array temporaries generated by the compiler.  The
+           information generated by this warning is sometimes useful in
+           optimization, in order to avoid such temporaries.
+
+       --WWcchhaarraacctteerr--ttrruunnccaattiioonn
+           Warn when a character assignment will truncate the assigned string.
+
+       --WWlliinnee--ttrruunnccaattiioonn
+           Warn when a source code line will be truncated.
+
+       --WWccoonnvveerrssiioonn
+           Warn about implicit conversions that are likely to change the value
+           of the expression after conversion. Implied by --WWaallll.
+
+       --WWccoonnvveerrssiioonn--eexxttrraa
+           Warn about implicit conversions between different types and kinds.
+
+       --WWiimmpplliicciitt--iinntteerrffaaccee
+           Warn if a procedure is called without an explicit interface.  Note
+           this only checks that an explicit interface is present.  It does
+           not check that the declared interfaces are consistent across
+           program units.
+
+       --WWiimmpplliicciitt--pprroocceedduurree
+           Warn if a procedure is called that has neither an explicit
+           interface nor has been declared as "EXTERNAL".
+
+       --WWiinnttrriinnssiiccss--ssttdd
+           Warn if ggffoorrttrraann finds a procedure named like an intrinsic not
+           available in the currently selected standard (with --ssttdd) and treats
+           it as "EXTERNAL" procedure because of this.  --ffaallll--iinnttrriinnssiiccss can
+           be used to never trigger this behavior and always link to the
+           intrinsic regardless of the selected standard.
+
+       --WWrreeaall--qq--ccoonnssttaanntt
+           Produce a warning if a real-literal-constant contains a "q"
+           exponent-letter.
+
+       --WWssuurrpprriissiinngg
+           Produce a warning when "suspicious" code constructs are
+           encountered.  While technically legal these usually indicate that
+           an error has been made.
+
+           This currently produces a warning under the following
+           circumstances:
+
+           +o   An INTEGER SELECT construct has a CASE that can never be
+               matched as its lower value is greater than its upper value.
+
+           +o   A LOGICAL SELECT construct has three CASE statements.
+
+           +o   A TRANSFER specifies a source that is shorter than the
+               destination.
+
+           +o   The type of a function result is declared more than once with
+               the same type.  If --ppeeddaannttiicc or standard-conforming mode is
+               enabled, this is an error.
+
+           +o   A "CHARACTER" variable is declared with negative length.
+
+       --WWttaabbss
+           By default, tabs are accepted as whitespace, but tabs are not
+           members of the Fortran Character Set.  For continuation lines, a
+           tab followed by a digit between 1 and 9 is supported.  --WWnnoo--ttaabbss
+           will cause a warning to be issued if a tab is encountered. Note,
+           --WWnnoo--ttaabbss is active for --ppeeddaannttiicc, --ssttdd==ff9955, --ssttdd==ff22000033, --ssttdd==ff22000088
+           and --WWaallll.
+
+       --WWuunnddeerrffllooww
+           Produce a warning when numerical constant expressions are
+           encountered, which yield an UNDERFLOW during compilation.
+
+       --WWiinnttrriinnssiicc--sshhaaddooww
+           Warn if a user-defined procedure or module procedure has the same
+           name as an intrinsic; in this case, an explicit interface or
+           "EXTERNAL" or "INTRINSIC" declaration might be needed to get calls
+           later resolved to the desired intrinsic/procedure.
+
+       --WWuunnuusseedd--dduummmmyy--aarrgguummeenntt
+           Warn about unused dummy arguments. This option is implied by --WWaallll.
+
+       --WWuunnuusseedd--ppaarraammeetteerr
+           Contrary to ggcccc's meaning of --WWuunnuusseedd--ppaarraammeetteerr, ggffoorrttrraann's
+           implementation of this option does not warn about unused dummy
+           arguments (see --WWuunnuusseedd--dduummmmyy--aarrgguummeenntt), but about unused
+           "PARAMETER" values. --WWuunnuusseedd--ppaarraammeetteerr is not included in --WWaallll but
+           is implied by --WWaallll --WWeexxttrraa.
+
+       --WWaalliiggnn--ccoommmmoonnss
+           By default, ggffoorrttrraann warns about any occasion of variables being
+           padded for proper alignment inside a "COMMON" block. This warning
+           can be turned off via --WWnnoo--aalliiggnn--ccoommmmoonnss. See also --ffaalliiggnn--ccoommmmoonnss.
+
+       --WWffuunnccttiioonn--eelliimmiinnaattiioonn
+           Warn if any calls to functions are eliminated by the optimizations
+           enabled by the --ffffrroonntteenndd--ooppttiimmiizzee option.
+
+       --WWeerrrroorr
+           Turns all warnings into errors.
+
+       Some of these have no effect when compiling programs written in
+       Fortran.
+
+       OOppttiioonnss ffoorr ddeebbuuggggiinngg yyoouurr pprrooggrraamm oorr GGNNUU FFoorrttrraann
+
+       GNU Fortran has various special options that are used for debugging
+       either your program or the GNU Fortran compiler.
+
+       --ffdduummpp--ffoorrttrraann--oorriiggiinnaall
+           Output the internal parse tree after translating the source program
+           into internal representation.  Only really useful for debugging the
+           GNU Fortran compiler itself.
+
+       --ffdduummpp--ooppttiimmiizzeedd--ttrreeee
+           Output the parse tree after front-end optimization.  Only really
+           useful for debugging the GNU Fortran compiler itself.
+
+           Output the internal parse tree after translating the source program
+           into internal representation.  Only really useful for debugging the
+           GNU Fortran compiler itself.  This option is deprecated; use
+           "-fdump-fortran-original" instead.
+
+       --ffffppee--ttrraapp==_l_i_s_t
+           Specify a list of floating point exception traps to enable.  On
+           most systems, if a floating point exception occurs and the trap for
+           that exception is enabled, a SIGFPE signal will be sent and the
+           program being aborted, producing a core file useful for debugging.
+           _l_i_s_t is a (possibly empty) comma-separated list of the following
+           exceptions: iinnvvaalliidd (invalid floating point operation, such as
+           "SQRT(-1.0)"), zzeerroo (division by zero), oovveerrffllooww (overflow in a
+           floating point operation), uunnddeerrffllooww (underflow in a floating point
+           operation), iinneexxaacctt (loss of precision during operation), and
+           ddeennoorrmmaall (operation performed on a denormal value).  The first five
+           exceptions correspond to the five IEEE 754 exceptions, whereas the
+           last one (ddeennoorrmmaall) is not part of the IEEE 754 standard but is
+           available on some common architectures such as x86.
+
+           The first three exceptions (iinnvvaalliidd, zzeerroo, and oovveerrffllooww) often
+           indicate serious errors, and unless the program has provisions for
+           dealing with these exceptions, enabling traps for these three
+           exceptions is probably a good idea.
+
+           Many, if not most, floating point operations incur loss of
+           precision due to rounding, and hence the "ffpe-trap=inexact" is
+           likely to be uninteresting in practice.
+
+           By default no exception traps are enabled.
+
+       --ffnnoo--bbaacckkttrraaccee
+           When a serious runtime error is encountered or a deadly signal is
+           emitted (segmentation fault, illegal instruction, bus error,
+           floating-point exception, and the other POSIX signals that have the
+           action ccoorree), the Fortran runtime library tries to output a
+           backtrace of the error. "-fno-backtrace" disables the backtrace
+           generation. This option only has influence for compilation of the
+           Fortran main program.
+
+       OOppttiioonnss ffoorr ddiirreeccttoorryy sseeaarrcchh
+
+       These options affect how GNU Fortran searches for files specified by
+       the "INCLUDE" directive and where it searches for previously compiled
+       modules.
+
+       It also affects the search paths used by ccpppp when used to preprocess
+       Fortran source.
+
+       --II_d_i_r
+           These affect interpretation of the "INCLUDE" directive (as well as
+           of the "#include" directive of the ccpppp preprocessor).
+
+           Also note that the general behavior of --II and "INCLUDE" is pretty
+           much the same as of --II with "#include" in the ccpppp preprocessor,
+           with regard to looking for _h_e_a_d_e_r_._g_c_c files and other such things.
+
+           This path is also used to search for _._m_o_d files when previously
+           compiled modules are required by a "USE" statement.
+
+       --JJ_d_i_r
+           This option specifies where to put _._m_o_d files for compiled modules.
+           It is also added to the list of directories to searched by an "USE"
+           statement.
+
+           The default is the current directory.
+
+       --ffiinnttrriinnssiicc--mmoodduulleess--ppaatthh _d_i_r
+           This option specifies the location of pre-compiled intrinsic
+           modules, if they are not in the default location expected by the
+           compiler.
+
+       IInnfflluueenncciinngg tthhee lliinnkkiinngg sstteepp
+
+       These options come into play when the compiler links object files into
+       an executable output file. They are meaningless if the compiler is not
+       doing a link step.
+
+       --ssttaattiicc--lliibbggffoorrttrraann
+           On systems that provide _l_i_b_g_f_o_r_t_r_a_n as a shared and a static
+           library, this option forces the use of the static version. If no
+           shared version of _l_i_b_g_f_o_r_t_r_a_n was built when the compiler was
+           configured, this option has no effect.
+
+       IInnfflluueenncciinngg rruunnttiimmee bbeehhaavviioorr
+
+       These options affect the runtime behavior of programs compiled with GNU
+       Fortran.
+
+       --ffccoonnvveerrtt==_c_o_n_v_e_r_s_i_o_n
+           Specify the representation of data for unformatted files.  Valid
+           values for conversion are: nnaattiivvee, the default; sswwaapp, swap between
+           big- and little-endian; bbiigg--eennddiiaann, use big-endian representation
+           for unformatted files; lliittttllee--eennddiiaann, use little-endian
+           representation for unformatted files.
+
+           _T_h_i_s _o_p_t_i_o_n _h_a_s _a_n _e_f_f_e_c_t _o_n_l_y _w_h_e_n _u_s_e_d _i_n _t_h_e _m_a_i_n _p_r_o_g_r_a_m_.  _T_h_e
+           _"_C_O_N_V_E_R_T_" _s_p_e_c_i_f_i_e_r _a_n_d _t_h_e _G_F_O_R_T_R_A_N___C_O_N_V_E_R_T___U_N_I_T _e_n_v_i_r_o_n_m_e_n_t
+           _v_a_r_i_a_b_l_e _o_v_e_r_r_i_d_e _t_h_e _d_e_f_a_u_l_t _s_p_e_c_i_f_i_e_d _b_y _--_ff_cc_oo_nn_vv_ee_rr_tt_.
+
+       --ffnnoo--rraannggee--cchheecckk
+           Disable range checking of input values during integer "READ"
+           operations.  For example, GNU Fortran will give an error if an
+           input value is outside of the relevant range of
+           ["-HUGE()":"HUGE()"]. In other words, with "INTEGER (kind=4) :: i"
+           , attempting to read -2147483648 will give an error unless
+           --ffnnoo--rraannggee--cchheecckk is given.
+
+       --ffrreeccoorrdd--mmaarrkkeerr==_l_e_n_g_t_h
+           Specify the length of record markers for unformatted files.  Valid
+           values for _l_e_n_g_t_h are 4 and 8.  Default is 4.  _T_h_i_s _i_s _d_i_f_f_e_r_e_n_t
+           _f_r_o_m _p_r_e_v_i_o_u_s _v_e_r_s_i_o_n_s _o_f ggffoorrttrraann, which specified a default
+           record marker length of 8 on most systems.  If you want to read or
+           write files compatible with earlier versions of ggffoorrttrraann, use
+           --ffrreeccoorrdd--mmaarrkkeerr==88.
+
+       --ffmmaaxx--ssuubbrreeccoorrdd--lleennggtthh==_l_e_n_g_t_h
+           Specify the maximum length for a subrecord.  The maximum permitted
+           value for length is 2147483639, which is also the default.  Only
+           really useful for use by the gfortran testsuite.
+
+       --ffssiiggnn--zzeerroo
+           When enabled, floating point numbers of value zero with the sign
+           bit set are written as negative number in formatted output and
+           treated as negative in the "SIGN" intrinsic.  --ffnnoo--ssiiggnn--zzeerroo does
+           not print the negative sign of zero values (or values rounded to
+           zero for I/O) and regards zero as positive number in the "SIGN"
+           intrinsic for compatibility with Fortran 77. The default is
+           --ffssiiggnn--zzeerroo.
+
+       OOppttiioonnss ffoorr ccooddee ggeenneerraattiioonn ccoonnvveennttiioonnss
+
+       These machine-independent options control the interface conventions
+       used in code generation.
+
+       Most of them have both positive and negative forms; the negative form
+       of --ffffoooo would be --ffnnoo--ffoooo.  In the table below, only one of the forms
+       is listed---the one which is not the default.  You can figure out the
+       other form by either removing nnoo-- or adding it.
+
+       --ffnnoo--aauuttoommaattiicc
+           Treat each program unit (except those marked as RECURSIVE) as if
+           the "SAVE" statement were specified for every local variable and
+           array referenced in it. Does not affect common blocks. (Some
+           Fortran compilers provide this option under the name --ssttaattiicc or
+           --ssaavvee.)  The default, which is --ffaauuttoommaattiicc, uses the stack for
+           local variables smaller than the value given by
+           --ffmmaaxx--ssttaacckk--vvaarr--ssiizzee.  Use the option --ffrreeccuurrssiivvee to use no static
+           memory.
+
+       --ffff22cc
+           Generate code designed to be compatible with code generated by gg7777
+           and ff22cc.
+
+           The calling conventions used by gg7777 (originally implemented in ff22cc)
+           require functions that return type default "REAL" to actually
+           return the C type "double", and functions that return type
+           "COMPLEX" to return the values via an extra argument in the calling
+           sequence that points to where to store the return value.  Under the
+           default GNU calling conventions, such functions simply return their
+           results as they would in GNU C---default "REAL" functions return
+           the C type "float", and "COMPLEX" functions return the GNU C type
+           "complex".  Additionally, this option implies the
+           --ffsseeccoonndd--uunnddeerrssccoorree option, unless --ffnnoo--sseeccoonndd--uunnddeerrssccoorree is
+           explicitly requested.
+
+           This does not affect the generation of code that interfaces with
+           the lliibbggffoorrttrraann library.
+
+           _C_a_u_t_i_o_n_: It is not a good idea to mix Fortran code compiled with
+           --ffff22cc with code compiled with the default --ffnnoo--ff22cc calling
+           conventions as, calling "COMPLEX" or default "REAL" functions
+           between program parts which were compiled with different calling
+           conventions will break at execution time.
+
+           _C_a_u_t_i_o_n_: This will break code which passes intrinsic functions of
+           type default "REAL" or "COMPLEX" as actual arguments, as the
+           library implementations use the --ffnnoo--ff22cc calling conventions.
+
+       --ffnnoo--uunnddeerrssccoorriinngg
+           Do not transform names of entities specified in the Fortran source
+           file by appending underscores to them.
+
+           With --ffuunnddeerrssccoorriinngg in effect, GNU Fortran appends one underscore
+           to external names with no underscores.  This is done to ensure
+           compatibility with code produced by many UNIX Fortran compilers.
+
+           _C_a_u_t_i_o_n: The default behavior of GNU Fortran is incompatible with
+           ff22cc and gg7777, please use the --ffff22cc option if you want object files
+           compiled with GNU Fortran to be compatible with object code created
+           with these tools.
+
+           Use of --ffnnoo--uunnddeerrssccoorriinngg is not recommended unless you are
+           experimenting with issues such as integration of GNU Fortran into
+           existing system environments (vis-a-vis existing libraries, tools,
+           and so on).
+
+           For example, with --ffuunnddeerrssccoorriinngg, and assuming other defaults like
+           --ffccaassee--lloowweerr and that "j()" and "max_count()" are external
+           functions while "my_var" and "lvar" are local variables, a
+           statement like
+
+                   I = J() + MAX_COUNT (MY_VAR, LVAR)
+
+           is implemented as something akin to:
+
+                   i = j_() + max_count__(&my_var__, &lvar);
+
+           With --ffnnoo--uunnddeerrssccoorriinngg, the same statement is implemented as:
+
+                   i = j() + max_count(&my_var, &lvar);
+
+           Use of --ffnnoo--uunnddeerrssccoorriinngg allows direct specification of user-
+           defined names while debugging and when interfacing GNU Fortran code
+           with other languages.
+
+           Note that just because the names match does _n_o_t mean that the
+           interface implemented by GNU Fortran for an external name matches
+           the interface implemented by some other language for that same
+           name.  That is, getting code produced by GNU Fortran to link to
+           code produced by some other compiler using this or any other method
+           can be only a small part of the overall solution---getting the code
+           generated by both compilers to agree on issues other than naming
+           can require significant effort, and, unlike naming disagreements,
+           linkers normally cannot detect disagreements in these other areas.
+
+           Also, note that with --ffnnoo--uunnddeerrssccoorriinngg, the lack of appended
+           underscores introduces the very real possibility that a user-
+           defined external name will conflict with a name in a system
+           library, which could make finding unresolved-reference bugs quite
+           difficult in some cases---they might occur at program run time, and
+           show up only as buggy behavior at run time.
+
+           In future versions of GNU Fortran we hope to improve naming and
+           linking issues so that debugging always involves using the names as
+           they appear in the source, even if the names as seen by the linker
+           are mangled to prevent accidental linking between procedures with
+           incompatible interfaces.
+
+       --ffnnoo--wwhhoollee--ffiillee
+           This flag causes the compiler to resolve and translate each
+           procedure in a file separately.
+
+           By default, the whole file is parsed and placed in a single front-
+           end tree.  During resolution, in addition to all the usual checks
+           and fixups, references to external procedures that are in the same
+           file effect resolution of that procedure, if not already done, and
+           a check of the interfaces.  The dependences are resolved by
+           changing the order in which the file is translated into the backend
+           tree.  Thus, a procedure that is referenced is translated before
+           the reference and the duplication of backend tree declarations
+           eliminated.
+
+           The --ffnnoo--wwhhoollee--ffiillee option is deprecated and may lead to wrong
+           code.
+
+       --ffsseeccoonndd--uunnddeerrssccoorree
+           By default, GNU Fortran appends an underscore to external names.
+           If this option is used GNU Fortran appends two underscores to names
+           with underscores and one underscore to external names with no
+           underscores.  GNU Fortran also appends two underscores to internal
+           names with underscores to avoid naming collisions with external
+           names.
+
+           This option has no effect if --ffnnoo--uunnddeerrssccoorriinngg is in effect.  It is
+           implied by the --ffff22cc option.
+
+           Otherwise, with this option, an external name such as "MAX_COUNT"
+           is implemented as a reference to the link-time external symbol
+           "max_count__", instead of "max_count_".  This is required for
+           compatibility with gg7777 and ff22cc, and is implied by use of the --ffff22cc
+           option.
+
+       --ffccooaarrrraayy==_<_k_e_y_w_o_r_d_>
+           nnoonnee
+               Disable coarray support; using coarray declarations and image-
+               control statements will produce a compile-time error. (Default)
+
+           ssiinnggllee
+               Single-image mode, i.e. "num_images()" is always one.
+
+           lliibb Library-based coarray parallelization; a suitable GNU Fortran
+               coarray library needs to be linked.
+
+       --ffcchheecckk==_<_k_e_y_w_o_r_d_>
+           Enable the generation of run-time checks; the argument shall be a
+           comma-delimited list of the following keywords.
+
+           aallll Enable all run-time test of --ffcchheecckk.
+
+           aarrrraayy--tteemmppss
+               Warns at run time when for passing an actual argument a
+               temporary array had to be generated. The information generated
+               by this warning is sometimes useful in optimization, in order
+               to avoid such temporaries.
+
+               Note: The warning is only printed once per location.
+
+           bboouunnddss
+               Enable generation of run-time checks for array subscripts and
+               against the declared minimum and maximum values.  It also
+               checks array indices for assumed and deferred shape arrays
+               against the actual allocated bounds and ensures that all string
+               lengths are equal for character array constructors without an
+               explicit typespec.
+
+               Some checks require that --ffcchheecckk==bboouunnddss is set for the
+               compilation of the main program.
+
+               Note: In the future this may also include other forms of
+               checking, e.g., checking substring references.
+
+           ddoo  Enable generation of run-time checks for invalid modification
+               of loop iteration variables.
+
+           mmeemm Enable generation of run-time checks for memory allocation.
+               Note: This option does not affect explicit allocations using
+               the "ALLOCATE" statement, which will be always checked.
+
+           ppooiinntteerr
+               Enable generation of run-time checks for pointers and
+               allocatables.
+
+           rreeccuurrssiioonn
+               Enable generation of run-time checks for recursively called
+               subroutines and functions which are not marked as recursive.
+               See also --ffrreeccuurrssiivvee.  Note: This check does not work for
+               OpenMP programs and is disabled if used together with
+               --ffrreeccuurrssiivvee and --ffooppeennmmpp.
+
+       --ffbboouunnddss--cchheecckk
+           Deprecated alias for --ffcchheecckk==bboouunnddss.
+
+       --ffcchheecckk--aarrrraayy--tteemmppoorraarriieess
+           Deprecated alias for --ffcchheecckk==aarrrraayy--tteemmppss.
+
+       --ffmmaaxx--aarrrraayy--ccoonnssttrruuccttoorr==_n
+           This option can be used to increase the upper limit permitted in
+           array constructors.  The code below requires this option to expand
+           the array at compile time.
+
+                   program test
+                   implicit none
+                   integer j
+                   integer, parameter :: n = 100000
+                   integer, parameter :: i(n) = (/ (2*j, j = 1, n) /)
+                   print '(10(I0,1X))', i
+                   end program test
+
+           _C_a_u_t_i_o_n_:  _T_h_i_s _o_p_t_i_o_n _c_a_n _l_e_a_d _t_o _l_o_n_g _c_o_m_p_i_l_e _t_i_m_e_s _a_n_d
+           _e_x_c_e_s_s_i_v_e_l_y _l_a_r_g_e _o_b_j_e_c_t _f_i_l_e_s_.
+
+           The default value for _n is 65535.
+
+       --ffmmaaxx--ssttaacckk--vvaarr--ssiizzee==_n
+           This option specifies the size in bytes of the largest array that
+           will be put on the stack; if the size is exceeded static memory is
+           used (except in procedures marked as RECURSIVE). Use the option
+           --ffrreeccuurrssiivvee to allow for recursive procedures which do not have a
+           RECURSIVE attribute or for parallel programs. Use --ffnnoo--aauuttoommaattiicc to
+           never use the stack.
+
+           This option currently only affects local arrays declared with
+           constant bounds, and may not apply to all character variables.
+           Future versions of GNU Fortran may improve this behavior.
+
+           The default value for _n is 32768.
+
+       --ffssttaacckk--aarrrraayyss
+           Adding this option will make the Fortran compiler put all local
+           arrays, even those of unknown size onto stack memory.  If your
+           program uses very large local arrays it is possible that you will
+           have to extend your runtime limits for stack memory on some
+           operating systems. This flag is enabled by default at optimization
+           level --OOffaasstt.
+
+       --ffppaacckk--ddeerriivveedd
+           This option tells GNU Fortran to pack derived type members as
+           closely as possible.  Code compiled with this option is likely to
+           be incompatible with code compiled without this option, and may
+           execute slower.
+
+       --ffrreeppaacckk--aarrrraayyss
+           In some circumstances GNU Fortran may pass assumed shape array
+           sections via a descriptor describing a noncontiguous area of
+           memory.  This option adds code to the function prologue to repack
+           the data into a contiguous block at runtime.
+
+           This should result in faster accesses to the array.  However it can
+           introduce significant overhead to the function call, especially
+           when the passed data is noncontiguous.
+
+       --ffsshhoorrtt--eennuummss
+           This option is provided for interoperability with C code that was
+           compiled with the --ffsshhoorrtt--eennuummss option.  It will make GNU Fortran
+           choose the smallest "INTEGER" kind a given enumerator set will fit
+           in, and give all its enumerators this kind.
+
+       --ffeexxtteerrnnaall--bbllaass
+           This option will make ggffoorrttrraann generate calls to BLAS functions for
+           some matrix operations like "MATMUL", instead of using our own
+           algorithms, if the size of the matrices involved is larger than a
+           given limit (see --ffbbllaass--mmaattmmuull--lliimmiitt).  This may be profitable if
+           an optimized vendor BLAS library is available.  The BLAS library
+           will have to be specified at link time.
+
+       --ffbbllaass--mmaattmmuull--lliimmiitt==_n
+           Only significant when --ffeexxtteerrnnaall--bbllaass is in effect.  Matrix
+           multiplication of matrices with size larger than (or equal to) _n
+           will be performed by calls to BLAS functions, while others will be
+           handled by ggffoorrttrraann internal algorithms. If the matrices involved
+           are not square, the size comparison is performed using the
+           geometric mean of the dimensions of the argument and result
+           matrices.
+
+           The default value for _n is 30.
+
+       --ffrreeccuurrssiivvee
+           Allow indirect recursion by forcing all local arrays to be
+           allocated on the stack. This flag cannot be used together with
+           --ffmmaaxx--ssttaacckk--vvaarr--ssiizzee== or --ffnnoo--aauuttoommaattiicc.
+
+       --ffiinniitt--llooccaall--zzeerroo
+       --ffiinniitt--iinntteeggeerr==_n
+       --ffiinniitt--rreeaall==_<_z_e_r_o_|_i_n_f_|_-_i_n_f_|_n_a_n_|_s_n_a_n_>
+       --ffiinniitt--llooggiiccaall==_<_t_r_u_e_|_f_a_l_s_e_>
+       --ffiinniitt--cchhaarraacctteerr==_n
+           The --ffiinniitt--llooccaall--zzeerroo option instructs the compiler to initialize
+           local "INTEGER", "REAL", and "COMPLEX" variables to zero, "LOGICAL"
+           variables to false, and "CHARACTER" variables to a string of null
+           bytes.  Finer-grained initialization options are provided by the
+           --ffiinniitt--iinntteeggeerr==_n, --ffiinniitt--rreeaall==_<_z_e_r_o_|_i_n_f_|_-_i_n_f_|_n_a_n_|_s_n_a_n_> (which also
+           initializes the real and imaginary parts of local "COMPLEX"
+           variables), --ffiinniitt--llooggiiccaall==_<_t_r_u_e_|_f_a_l_s_e_>, and --ffiinniitt--cchhaarraacctteerr==_n
+           (where _n is an ASCII character value) options.  These options do
+           not initialize
+
+           +o   allocatable arrays
+
+           +o   components of derived type variables
+
+           +o   variables that appear in an "EQUIVALENCE" statement.
+
+           (These limitations may be removed in future releases).
+
+           Note that the --ffiinniitt--rreeaall==nnaann option initializes "REAL" and
+           "COMPLEX" variables with a quiet NaN. For a signalling NaN use
+           --ffiinniitt--rreeaall==ssnnaann; note, however, that compile-time optimizations
+           may convert them into quiet NaN and that trapping needs to be
+           enabled (e.g. via --ffffppee--ttrraapp).
+
+           Finally, note that enabling any of the --ffiinniitt--** options will
+           silence warnings that would have been emitted by --WWuunniinniittiiaalliizzeedd
+           for the affected local variables.
+
+       --ffaalliiggnn--ccoommmmoonnss
+           By default, ggffoorrttrraann enforces proper alignment of all variables in
+           a "COMMON" block by padding them as needed. On certain platforms
+           this is mandatory, on others it increases performance. If a
+           "COMMON" block is not declared with consistent data types
+           everywhere, this padding can cause trouble, and --ffnnoo--aalliiggnn--ccoommmmoonnss
+           can be used to disable automatic alignment. The same form of this
+           option should be used for all files that share a "COMMON" block.
+           To avoid potential alignment issues in "COMMON" blocks, it is
+           recommended to order objects from largest to smallest.
+
+       --ffnnoo--pprrootteecctt--ppaarreennss
+           By default the parentheses in expression are honored for all
+           optimization levels such that the compiler does not do any re-
+           association. Using --ffnnoo--pprrootteecctt--ppaarreennss allows the compiler to
+           reorder "REAL" and "COMPLEX" expressions to produce faster code.
+           Note that for the re-association optimization --ffnnoo--ssiiggnneedd--zzeerrooss and
+           --ffnnoo--ttrraappppiinngg--mmaatthh need to be in effect. The parentheses protection
+           is enabled by default, unless --OOffaasstt is given.
+
+       --ffrreeaalllloocc--llhhss
+           An allocatable left-hand side of an intrinsic assignment is
+           automatically (re)allocated if it is either unallocated or has a
+           different shape. The option is enabled by default except when
+           --ssttdd==ff9955 is given.
+
+       --ffaaggggrreessssiivvee--ffuunnccttiioonn--eelliimmiinnaattiioonn
+           Functions with identical argument lists are eliminated within
+           statements, regardless of whether these functions are marked "PURE"
+           or not. For example, in
+
+                     a = f(b,c) + f(b,c)
+
+           there will only be a single call to "f".  This option only works if
+           --ffffrroonntteenndd--ooppttiimmiizzee is in effect.
+
+       --ffffrroonntteenndd--ooppttiimmiizzee
+           This option performs front-end optimization, based on manipulating
+           parts the Fortran parse tree.  Enabled by default by any --OO option.
+           Optimizations enabled by this option include elimination of
+           identical function calls within expressions, removing unnecessary
+           calls to "TRIM" in comparisons and assignments and replacing
+           TRIM(a) with "a(1:LEN_TRIM(a))".  It can be deselected by
+           specifying --ffnnoo--ffrroonntteenndd--ooppttiimmiizzee.
+
+EENNVVIIRROONNMMEENNTT
+       The ggffoorrttrraann compiler currently does not make use of any environment
+       variables to control its operation above and beyond those that affect
+       the operation of ggcccc.
+
+BBUUGGSS
+       For instructions on reporting bugs, see
+       <hhttttppss::////ttrraacc..mmaaccppoorrttss..oorrgg//nneewwttiicckkeett>.
+
+SSEEEE AALLSSOO
+       _g_p_l(7), _g_f_d_l(7), _f_s_f_-_f_u_n_d_i_n_g(7), _c_p_p(1), _g_c_o_v(1), _g_c_c(1), _a_s(1), _l_d(1),
+       _g_d_b(1), _a_d_b(1), _d_b_x(1), _s_d_b(1) and the Info entries for _g_c_c, _c_p_p,
+       _g_f_o_r_t_r_a_n, _a_s, _l_d, _b_i_n_u_t_i_l_s and _g_d_b.
+
+AAUUTTHHOORR
+       See the Info entry for ggffoorrttrraann for contributors to GCC and GNU
+       Fortran.
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (c) 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011 Free
+       Software Foundation, Inc.
+
+       Permission is granted to copy, distribute and/or modify this document
+       under the terms of the GNU Free Documentation License, Version 1.3 or
+       any later version published by the Free Software Foundation; with the
+       Invariant Sections being "Funding Free Software", the Front-Cover Texts
+       being (a) (see below), and with the Back-Cover Texts being (b) (see
+       below).  A copy of the license is included in the _g_f_d_l(7) man page.
+
+       (a) The FSF's Front-Cover Text is:
+
+            A GNU Manual
+
+       (b) The FSF's Back-Cover Text is:
+
+            You have freedom to copy and modify this GNU Manual, like GNU
+            software.  Copies published by the Free Software Foundation raise
+            funds for GNU development.
+
+
+
+gcc-4.7.1                         2012-06-14                       GFORTRAN(1)

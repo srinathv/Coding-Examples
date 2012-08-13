@@ -1,0 +1,57 @@
+predefined symbols
+name: file                           
+value: <stdin>
+referenced in file: mac.fpp at line: 7
+name: line                           
+value: 
+referenced in file: mac.fpp at line: 7
+name: date                           
+value: 2011/12/16
+referenced in file: mac.fpp at line: 11
+name: time                           
+value: 10:46:57.286
+referenced in file: mac.fpp at line: 9
+name: coco                           
+value: $Id: coco.f90,v 1.30 2007/06/25 19:08:22 dan Exp dan $
+referenced in file: mac.fpp at line: 12
+name: setfile                        
+value: debug.set
+referenced in file: mac.fpp at line: 13
+name: logfile                        
+value: mac.log
+referenced in file: mac.fpp at line: 14
+name: output                         
+value: mac.f90
+referenced in file: mac.fpp at line: 15
+name: cmdline                        
+value: ../coco -fdebug.set -Ddebug -l mac.log -- mac
+referenced in file: mac.fpp at line: 16
+symbols
+next symbol
+name: debug                          
+declared in file: mac.fpp at line: 1
+never referenced
+type: logical variable
+value: .true.
+defined in file: command line at line: 0
+next symbol
+name: counter                        
+declared in file: mac.fpp at line: 2
+never referenced
+type: integer variable
+value:         42
+defined in file: mac.fpp at line: 2
+next symbol
+name: goo                            
+declared in file: mac.fpp at line: 3
+referenced in file: mac.fpp at line: 19
+type: macro
+value:  oobleck
+next symbol
+name: hypot                          
+declared in file: mac.fpp at line: 4
+referenced in file: mac.fpp at line: 23
+type: macro with arguments in parenthesis
+dummy arguments:  x y
+value:  sqrt( ?x?*?x? + ?y?*?y?)
+end symbols

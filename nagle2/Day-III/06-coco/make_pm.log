@@ -1,0 +1,98 @@
+make_processor_model
+$Id: make_pm.f90 2.2 2005/05/30 15:47:01Z Dan Release $
+timestamp: 20111115  091932.178
+reading make_pm.in
+&FILES
+ PDNAME="procdep.f90                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ",
+ PMNAME="pm.f90                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ",
+ INCNAME="coco.inc                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ",
+ /
+&HW
+ IEEEFP=T,
+ TWOSCOMP=T,
+ BYTESIZE=          0,
+ WORDSIZE=          0,
+ /
+&SW
+ STDIN=          5,
+ STDOUT=          6,
+ STDERR=          0,
+ STD="f95",
+ COM_VERS="gfortran 4.6                                                                    ",
+ COM_SERN="GPL                                                                             ",
+ OS_VERS="Mac OS X 10.7                                                                   ",
+ /
+&KINDS
+ ASCII=          1,
+ EBCDIC=         -1,
+ ISO_10646=         -1,
+ STRINGS=F,
+ LOGEQINT=T,
+ LOGBYTE=         -1,
+ LOGSHORT=         -1,
+ LOGINT=         -1,
+ LOGLONG=         -1,
+ /
+&FLOAT
+ AUTOREAL=T,
+ SP=          6,
+ SR=         37,
+ DP=         15,
+ DR=        307,
+ QP=         33,
+ QR=       4931,
+ /
+&FIXED
+ AUTOINT=T,
+ BD=          2,
+ SD=          4,
+ ID=          9,
+ LD=         18,
+ /
+read make_pm.in ok
+processor supports Fortran 95 standard
+include file for coco
+processor does not support iso_varying_strings
+smallest integer size is same as character storage unit size
+integer appears to be two's compliment integer format
+byte addressable
+size of storage units is a power of two
+real appears to be an IEEE 754 real single format
+ number of integer kinds found:            5
+ found integer kind:            1  supporting digits:            2  estimated bit size:            8
+ found integer kind:            2  supporting digits:            4  estimated bit size:           16
+ found integer kind:            4  supporting digits:            9  estimated bit size:           32
+ found integer kind:            8  supporting digits:           18  estimated bit size:           64
+ found integer kind:           16  supporting digits:           38  estimated bit size:          128
+assigned integer kinds: byte short int long
+default integer kind: int
+WARNING: default integer kind not unique!
+ number of real kinds found:            4
+ found real kind:            4  supporting precision:            6  supporting range:           37  estimated bit size:           32
+ found real kind:            8  supporting precision:           15  supporting range:          307  estimated bit size:           64
+WARNING: estimated real size not nearly a power of 2
+ found real kind:           10  supporting precision:           18  supporting range:         4931  estimated bit size:           78
+ found real kind:           16  supporting precision:           33  supporting range:         4931  estimated bit size:          128
+ NOTE: range does not increase with increasing precision
+ kind values:           10          16
+ ranges:         4931        4931
+WARNING: estimated real size not nearly a power of 2
+assigned real kinds: single double quad
+default real kind: single
+double precision kind: double
+default integer kind same value as default real kind
+defined character kinds: ascii
+default character kind: ascii
+defined logical kinds: byte short int long
+default logical kind: int
+default integer kind same value as default logical kind
+WARNING: missing direct access record is not the same beyond last record
+read unwritten record iostat                    0
+read beyond last record iostat                 5002
+writing coco.inc
+wrote coco.inc ok
+writing procdep.f90
+wrote procdep.f90 ok
+writing pm.f90
+wrote pm.f90 ok
+timestamp: 20111115  091932.227

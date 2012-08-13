@@ -1,0 +1,24 @@
+
+Dan-Nagles-MacBook:Preprocessor dan$ gfortran -v -save-temps -std=f2008 -Wall -fcheck=all coco.f90 -o coco
+Driving: gfortran -mmacosx-version-min=10.7.2 -v -save-temps -std=f2008 -Wall -fcheck=all coco.f90 -o coco -l gfortran -shared-libgcc
+Using built-in specs.
+COLLECT_GCC=gfortran
+COLLECT_LTO_WRAPPER=/usr/local/gfortran/libexec/gcc/x86_64-apple-darwin11/4.6.2/lto-wrapper
+Target: x86_64-apple-darwin11
+Configured with: ../gcc-4.6.2-RC-20111019/configure --prefix=/usr/local/gfortran --with-gmp=/Users/fx/devel/gcc/deps-static/x86_64 --enable-languages=c,c++,fortran,objc,obj-c++ --build=x86_64-apple-darwin11
+Thread model: posix
+gcc version 4.6.2 20111019 (prerelease) (GCC)
+COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.7.2' '-v' '-save-temps' '-std=f2008' '-Wall' '-fcheck=all' '-o' 'coco' '-shared-libgcc' '-mtune=core2'
+ /usr/local/gfortran/libexec/gcc/x86_64-apple-darwin11/4.6.2/f951 coco.f90 -fPIC -quiet -dumpbase coco.f90 -mmacosx-version-min=10.7.2 -mtune=core2 -auxbase coco -Wall -std=f2008 -version -fcheck=all -fintrinsic-modules-path /usr/local/gfortran/lib/gcc/x86_64-apple-darwin11/4.6.2/finclude -o coco.s
+GNU Fortran (GCC) version 4.6.2 20111019 (prerelease) (x86_64-apple-darwin11)
+	compiled by GNU C version 4.6.2 20111019 (prerelease), GMP version 5.0.2, MPFR version 3.0.1-p4, MPC version 0.9
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+GNU Fortran (GCC) version 4.6.2 20111019 (prerelease) (x86_64-apple-darwin11)
+	compiled by GNU C version 4.6.2 20111019 (prerelease), GMP version 5.0.2, MPFR version 3.0.1-p4, MPC version 0.9
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+coco.f90: In function ‘process_block_directive’:
+coco.f90:12574:0: internal compiler error: in gfc_trans_block_construct, at fortran/trans-stmt.c:984
+Please submit a full bug report,
+with preprocessed source if appropriate.
+See <http://gcc.gnu.org/bugs.html> for instructions.
+Dan-Nagles-MacBook:Preprocessor dan$
