@@ -4,20 +4,26 @@ integer ni,nj,i,j
 real(8) sum
 
 ni=1
-nj=100
+!nj=100
+nj=8
 
 sum=0.d0
 
 !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(j)
 !$OMP DO
 do i=1,ni
+#IFDEF NESTED
+write(*,*) "using nesting"
 !$OMP PARALLEL DEFAULT(SHARED)
 !$OMP DO
+#ENDIF
   do j=1,nj
     call work(sum)
   end do
+#IFDEF NESTED
 !$OMP END DO
 !$OMP END PARALLEL
+#ENDIF
 end do
 !$OMP END DO
 !$OMP END PARALLEL
