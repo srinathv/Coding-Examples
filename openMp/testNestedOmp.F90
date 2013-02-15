@@ -1,6 +1,6 @@
 program test
 implicit none
-integer ni,nj,i,j
+integer ni,nj,i,j,id
 real(8) sum
 
 ni=1
@@ -12,18 +12,18 @@ sum=0.d0
 !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(j)
 !$OMP DO
 do i=1,ni
-#IFDEF NESTED
+#ifdef NESTED
 write(*,*) "using nesting"
 !$OMP PARALLEL DEFAULT(SHARED)
 !$OMP DO
-#ENDIF
+#endif
   do j=1,nj
     call work(sum)
   end do
-#IFDEF NESTED
+#ifdef NESTED
 !$OMP END DO
 !$OMP END PARALLEL
-#ENDIF
+#endif
 end do
 !$OMP END DO
 !$OMP END PARALLEL
