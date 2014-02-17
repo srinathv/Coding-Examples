@@ -3,7 +3,7 @@
   program workingarrays 
   implicit none
 
-  integer,parameter :: maxsize = 100000
+  integer,parameter :: maxsize = 30000
   real :: a(maxsize,maxsize)
   integer :: i,j
   real :: time1start,time1end
