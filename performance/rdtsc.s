@@ -10,3 +10,7 @@ rdtsc_:
          addq %rcx,%rax 
          ret 
          .size   rdtsc_, .-rdtsc_ 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b8bf7aa809d731542480932529bd28e9f1a30499
