@@ -13,8 +13,13 @@
 
       PROGRAM REDUCTION
 
-      INTEGER I, N
+      INTEGER I, N , NT, omp_get_num_threads
       REAL A(100), B(100), SUM
+
+!$OMP PARALLEL 
+   NT=omp_get_num_threads()
+!$OMP END PARALLEL
+   print *, NT
 
 !     Some initializations
       N = 100
