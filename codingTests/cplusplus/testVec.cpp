@@ -7,26 +7,30 @@
 using std::vector;
 
 int main(){
-  int N = 10000;
-  std::vector<int> v;
+  int N = 200000;
   
-  {   boost::timer::auto_cpu_timer t; 
-      for (int i = 0; i < N; ++i)
-      {
-          v.insert(v.begin(), i);
-      }
+  std::cout << "This is vector insert time" << std::endl;
+
+  {   
+    boost::timer::auto_cpu_timer t; 
+    std::vector<float> v;
+    for (int i = 0; i < N; ++i)
+    {
+        v.insert(v.begin(), float(i));
+    }
   }
 
-/*
+
+  std::cout << "This is boost::container::vector insert time" << std::endl;
   {
-      boost::timer::auto_cpu_timer t;
-      boost::container::vector<int> v;
-      for (int i = 0; i < N; ++i)
-      {
-          v.insert(v.begin(), i);
-      }
+    boost::timer::auto_cpu_timer t;
+    boost::container::vector<float> v;
+    for (int i = 0; i < N; ++i)
+    {
+        v.insert(v.begin(), float(i));
+    }
   }
-*/
+
 
 /*
 	int howmany, sum;
