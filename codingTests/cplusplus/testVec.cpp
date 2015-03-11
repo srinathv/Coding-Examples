@@ -7,8 +7,8 @@
 using std::vector;
 
 int main(){
-  int N = 200000;
-  
+  int N = 500000;
+/*  
   std::cout << "This is vector insert time" << std::endl;
 
   {   
@@ -19,8 +19,20 @@ int main(){
         v.insert(v.begin(), float(i));
     }
   }
+*/
 
+  std::cout << "This is vector push_back time" << std::endl;
 
+  {   
+    boost::timer::auto_cpu_timer t; 
+    std::vector<float> v;
+    for (int i = 0; i < N; ++i)
+    {
+        v.push_back(float(i));
+    }
+  }
+
+/*
   std::cout << "This is boost::container::vector insert time" << std::endl;
   {
     boost::timer::auto_cpu_timer t;
@@ -30,6 +42,17 @@ int main(){
         v.insert(v.begin(), float(i));
     }
   }
+*/
+  std::cout << "This is boost::container::vector push_back time" << std::endl;
+  {
+    boost::timer::auto_cpu_timer t;
+    boost::container::vector<float> v;
+    for (int i = 0; i < N; ++i)
+    {
+        v.push_back(float(i));
+    }
+  }
+
 
 
 /*
