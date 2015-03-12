@@ -13,10 +13,10 @@ int main(){
 
   {   
     boost::timer::auto_cpu_timer t; 
-    std::vector<float> v;
+    std::vector<double> v;
     for (int i = 0; i < N; ++i)
     {
-        v.insert(v.begin(), float(i));
+        v.insert(v.begin(), double(i));
     }
   }
 */
@@ -25,10 +25,10 @@ int main(){
 
   {   
     boost::timer::auto_cpu_timer t; 
-    std::vector<float> v;
+    std::vector<double> v;
     for (int i = 0; i < N; ++i)
     {
-        v.push_back(float(i));
+        v.push_back(double(i));
     }
   }
 
@@ -36,20 +36,20 @@ int main(){
   std::cout << "This is boost::container::vector insert time" << std::endl;
   {
     boost::timer::auto_cpu_timer t;
-    boost::container::vector<float> v;
+    boost::container::vector<double> v;
     for (int i = 0; i < N; ++i)
     {
-        v.insert(v.begin(), float(i));
+        v.insert(v.begin(), double(i));
     }
   }
 */
   std::cout << "This is boost::container::vector push_back time" << std::endl;
   {
     boost::timer::auto_cpu_timer t;
-    boost::container::vector<float> v;
+    boost::container::vector<double> v;
     for (int i = 0; i < N; ++i)
     {
-        v.push_back(float(i));
+        v.push_back(double(i));
     }
   }
 
