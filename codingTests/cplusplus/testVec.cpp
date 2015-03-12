@@ -7,7 +7,7 @@
 using std::vector;
 
 int main(){
-  int N = 500000;
+  int N = 1000000;
 /*  
   std::cout << "This is vector insert time" << std::endl;
 

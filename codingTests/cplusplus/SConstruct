@@ -1,0 +1,15 @@
+env = Environment()
+
+env.Program(target='testVec', source=['testVec.cpp'])
+# directly when constructing your Environment
+env = Environment(CPPFLAGS='-O2 -fPIC')
+#env.Append(LIBPATH = ['/usr/local/lib/'])
+env.Append(LIBS = ['boost_system'])#,'boost_timer,'boost_container'])
+
+# ... or appending it later
+#env.Append(CCFLAGS='-O3')
+
+#t = env.Program(target='bar', source=['foo.c'])
+#Default(t)
+
+
