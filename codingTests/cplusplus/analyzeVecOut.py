@@ -78,14 +78,15 @@ def main():
   ivecFile=iter(vecFile)
   for line in ivecFile:
     if ('vector push_back' in line):
-      line=next(ivecFile)
-      time=line.split()[0].strip('s')
+      nline=next(ivecFile)
+      time=nline.split()[0].strip('s')
       if ('boost' in line): 
-        bstVec=np.append(bstVec,time)
+        bstVec=np.append(bstVec,float(time))
       else:
-        stdVec=np.append(stdVec,time)
+        stdVec=np.append(stdVec,float(time))
 
-        
+  stdAvg,stdStd,stdNum=calcAvg(stdVec)
+  bstAvg,bstStd,bstNum=calcAvg(bstVec)
 
 
 if __name__ == "__main__":
