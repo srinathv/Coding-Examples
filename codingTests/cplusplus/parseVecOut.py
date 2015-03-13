@@ -60,19 +60,25 @@ def main():
       sys.exit(1)
 
 #initialize 2 arrays 
-  stdVec=np.empty([1])
-  bstVec=np.empty([1])
+  stdVec=np.array([])
+  bstVec=np.array([])
 #open file
   vecFile=open(args.filename,'r')  
-#  vecFile=open('testVec.10M.out','r')  
-#read lines
+#read lines and add to arrays
   ivecFile=iter(vecFile)
   for line in ivecFile:
     print line
-    if ('boost::container::vector' in line):
+    if ('vector push_back' in line):
       line=next(ivecFile)
       time=line.split()[0].strip('s')
-      print time
+      if ('boost' in line): 
+        bstVec=np.append(bstVec,time)
+      else:
+        stdVec=np.append(stdVec,time)
+
+  print stdVec
+
+        
 #if line has "vector push_back" add next line first number (strip s) to a vector
 #if line has "boost::container::vector push_back" add next line first number (strip s) to other vector
 
