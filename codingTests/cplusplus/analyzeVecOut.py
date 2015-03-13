@@ -101,17 +101,31 @@ def main():
   print zScore, "is the zScore > 3.22 => significance difference"
 
   if (args.plot) or (args.figurename):
+
       fig1=py.figure(num=None, figsize=(8, 8), dpi=80, facecolor='w', edgecolor='k')
       ax = fig1.add_subplot(1,1,1,)
       n,bins,patches=ax.hist(stdVec,bins=args.numbins)
       py.xlabel(args.grouptime + "[sec]")
       py.ylabel("Number of testVec trials")
-      plotTitle = args.figuretitle + "\n" + "Avg =" + str(stdAvg)
+      plotTitle = "std::vec " + args.figuretitle + "\n" + "Avg =" + str(stdAvg)
       if args.plotpercent:
         plotTitle= plotTitle + ", Std % = " + str(stdStd/stdAvg * 100 )
       else:
         plotTitle= plotTitle + ", Std = " + str(stdStd)
       py.title(plotTitle )
+
+      fig2=py.figure(num=None, figsize=(8, 8), dpi=80, facecolor='w', edgecolor='k')
+      ax = fig2.add_subplot(1,1,1,)
+      n,bins,patches=ax.hist(bstVec,bins=args.numbins)
+      py.xlabel(args.grouptime + "[sec]")
+      py.ylabel("Number of testVec trials")
+      plotTitle = "boost::container::vector "+ args.figuretitle + "\n" + "Avg =" + str(bstAvg)
+      if args.plotpercent:
+        plotTitle= plotTitle + ", Std % = " + str(bstStd/bstAvg * 100 )
+      else:
+        plotTitle= plotTitle + ", Std = " + str(bstStd)
+      py.title(plotTitle )
+
 
       if args.figurename:
         py.savefig(args.figurename)
