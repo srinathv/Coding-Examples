@@ -63,6 +63,7 @@ def main():
 
   parser.add_argument('-p','--plot',action="store_true",
                       help='Will plot.  If -f is given then figurename is used for saved figure.')
+
   parser.add_argument('-per','--plotpercent',action="store_true",
                       help='Distribution plots Std as percentage.')
 
@@ -71,6 +72,7 @@ def main():
   if (args.plot) or (args.figurename):
     try:
       import matplotlib.pyplot as py
+      import matplotlib
     except:
       print "Error: no pyplot with matplotlib"
       sys.exit(1)
@@ -102,24 +104,25 @@ def main():
 
   if (args.plot) or (args.figurename):
 
-      fig1=py.figure(num=None, figsize=(8, 8), dpi=80, facecolor='w', edgecolor='k')
-      ax = fig1.add_subplot(1,1,1,)
-      n,bins,patches=ax.hist(stdVec,bins=args.numbins)
+      matplotlib.rcParams.update({'font.size': 6})
+      
+      fig1=py.figure(num=None, figsize=(8, 4), dpi=80, facecolor='w', edgecolor='k')
+      ax1 = fig1.add_subplot(1,2,1,)
+      n,bins,patches=ax1.hist(stdVec,bins=args.numbins)
       py.xlabel(args.grouptime + "[sec]")
       py.ylabel("Number of testVec trials")
-      plotTitle = "std::vec " + args.figuretitle + "\n" + "Avg =" + str(stdAvg)
+      plotTitle = "std::vec " + args.figuretitle + "\n" + "Avg =" + str(stdAvg) + " [sec] "
       if args.plotpercent:
         plotTitle= plotTitle + ", Std % = " + str(stdStd/stdAvg * 100 )
       else:
         plotTitle= plotTitle + ", Std = " + str(stdStd)
       py.title(plotTitle )
 
-      fig2=py.figure(num=None, figsize=(8, 8), dpi=80, facecolor='w', edgecolor='k')
-      ax = fig2.add_subplot(1,1,1,)
-      n,bins,patches=ax.hist(bstVec,bins=args.numbins)
+      ax2 = fig1.add_subplot(1,2,2,)
+      n,bins,patches=ax2.hist(bstVec,bins=args.numbins)
       py.xlabel(args.grouptime + "[sec]")
       py.ylabel("Number of testVec trials")
-      plotTitle = "boost::container::vector "+ args.figuretitle + "\n" + "Avg =" + str(bstAvg)
+      plotTitle = "boost::container::vector "+ args.figuretitle + "\n" + "Avg =" + str(bstAvg) + " [sec] "
       if args.plotpercent:
         plotTitle= plotTitle + ", Std % = " + str(bstStd/bstAvg * 100 )
       else:
