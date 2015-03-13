@@ -55,7 +55,7 @@ def main():
   parser.add_argument('-t','--figuretitle', default="Distrbution of testVec trials." ,
                       help='Title on histogram figure.')
 
-  parser.add_argument('-g','--grouptime', default="Standard Vector",
+  parser.add_argument('-g','--grouptime', default="Wall clock",
                       help='Group timing desired.')
 
   parser.add_argument('-z','--zToRundir', dest='zToRundir', default=None,
