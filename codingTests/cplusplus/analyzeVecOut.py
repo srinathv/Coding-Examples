@@ -52,7 +52,7 @@ def main():
   parser.add_argument('-fg','--figurename', default=None,
                       help='Name of histogram figure.')
 
-  parser.add_argument('-t','--figuretitle', default="NE=3, 1 mpi rank at full device thread use" ,
+  parser.add_argument('-t','--figuretitle', default="Distrbution of testVec trials." ,
                       help='Title on histogram figure.')
 
   parser.add_argument('-g','--grouptime', default="Standard Vector",
@@ -106,12 +106,12 @@ def main():
       n,bins,patches=ax.hist(stdVec,bins=args.numbins)
       py.xlabel(args.grouptime + "[sec]")
       py.ylabel("Number of testVec trials")
-      #plotTitle = thisDir + "\n "+ args.figuretitle + "\n" + "Avg =" + str(runDirAvg)
-      #if args.plotpercent:
-      #  plotTitle= plotTitle + ", Std % = " + str(runDirStd/runDirAvg * 100 )
-      #else:
-      #  plotTitle= plotTitle + ", Std = " + str(runDirStd)
-      #py.title(plotTitle )
+      plotTitle = args.figuretitle + "\n" + "Avg =" + str(stdAvg)
+      if args.plotpercent:
+        plotTitle= plotTitle + ", Std % = " + str(stdStd/stdAvg * 100 )
+      else:
+        plotTitle= plotTitle + ", Std = " + str(stdStd)
+      py.title(plotTitle )
 
       if args.figurename:
         py.savefig(args.figurename)
