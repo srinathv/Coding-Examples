@@ -20,6 +20,16 @@
 import sys,os,getopt,argparse,math
 import numpy as np
 
+def calcAvg(array):
+  avg =  np.average(array)
+  std = np.std(array)  
+  num=len(array)
+
+  print "avg = ", avg
+  print "std = ", std 
+  print " % = ", std/avg * 100
+  print "number of members = ", num
+  return avg,std,num
 
 def main():
   parser = argparse.ArgumentParser(description='Given a directory with multiple post-indexed HommeTime files, this will '\
@@ -67,7 +77,6 @@ def main():
 #read lines and add to arrays
   ivecFile=iter(vecFile)
   for line in ivecFile:
-    print line
     if ('vector push_back' in line):
       line=next(ivecFile)
       time=line.split()[0].strip('s')
@@ -76,11 +85,7 @@ def main():
       else:
         stdVec=np.append(stdVec,time)
 
-  print stdVec
-
         
-#if line has "vector push_back" add next line first number (strip s) to a vector
-#if line has "boost::container::vector push_back" add next line first number (strip s) to other vector
 
 
 if __name__ == "__main__":
