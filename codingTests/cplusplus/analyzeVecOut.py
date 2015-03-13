@@ -55,7 +55,7 @@ def main():
   parser.add_argument('-t','--figuretitle', default="NE=3, 1 mpi rank at full device thread use" ,
                       help='Title on histogram figure.')
 
-  parser.add_argument('-g','--grouptime', default="prim_run",
+  parser.add_argument('-g','--grouptime', default="Standard Vector",
                       help='Group timing desired.')
 
   parser.add_argument('-z','--zToRundir', dest='zToRundir', default=None,
@@ -99,6 +99,24 @@ def main():
 
   zScore=calcZScore(stdAvg,stdStd,stdNum,bstAvg,bstStd,bstNum)
   print zScore, "is the zScore > 3.22 => significance difference"
+
+  if (args.plot) or (args.figurename):
+      fig1=py.figure(num=None, figsize=(8, 8), dpi=80, facecolor='w', edgecolor='k')
+      ax = fig1.add_subplot(1,1,1,)
+      n,bins,patches=ax.hist(stdVec,bins=args.numbins)
+      py.xlabel(args.grouptime + "[sec]")
+      py.ylabel("Number of testVec trials")
+      #plotTitle = thisDir + "\n "+ args.figuretitle + "\n" + "Avg =" + str(runDirAvg)
+      #if args.plotpercent:
+      #  plotTitle= plotTitle + ", Std % = " + str(runDirStd/runDirAvg * 100 )
+      #else:
+      #  plotTitle= plotTitle + ", Std = " + str(runDirStd)
+      #py.title(plotTitle )
+
+      if args.figurename:
+        py.savefig(args.figurename)
+      else:
+        py.show()
 
 if __name__ == "__main__":
    main()
