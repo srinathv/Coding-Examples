@@ -31,6 +31,12 @@ def calcAvg(array):
   print "number of members = ", num
   return avg,std,num
 
+def calcZScore(avg1,std1,num1,avg2,std2,num2):
+  numerator=abs(avg1-avg2)
+  denom=math.sqrt(((std1**2)/num1)+(std2**2)/num2)
+  zScore=numerator/denom
+  return zScore
+
 def main():
   parser = argparse.ArgumentParser(description='Given a directory with multiple post-indexed HommeTime files, this will '\
                                                 'calculate averages and standard deviations.  Also, a histogram will be generated')
@@ -85,9 +91,14 @@ def main():
       else:
         stdVec=np.append(stdVec,float(time))
 
+  print "*** standard vector stats"
   stdAvg,stdStd,stdNum=calcAvg(stdVec)
+  
+  print "*** boost container vector stats"
   bstAvg,bstStd,bstNum=calcAvg(bstVec)
 
+  zScore=calcZScore(stdAvg,stdStd,stdNum,bstAvg,bstStd,bstNum)
+  print zScore, "is the zScore > 3.22 => significance difference"
 
 if __name__ == "__main__":
    main()
