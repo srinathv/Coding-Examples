@@ -3,6 +3,9 @@
 #include <boost/container/vector.hpp>
 #include <boost/timer/timer.hpp>
 #include <vector>
+#ifdef USE_TAU
+#include <TAU.h>
+#endif
 
 using std::vector;
 
@@ -24,12 +27,19 @@ int main(){
   std::cout << "This is vector push_back time" << std::endl;
 
   {   
+
     boost::timer::auto_cpu_timer t; 
     std::vector<double> v;
+#ifdef USE_TAU
+  TAU_START("std::vector.push_back loop")
+#endif
     for (int i = 0; i < N; ++i)
     {
         v.push_back(double(i));
     }
+#ifdef USE_TAU
+  TAU_STOP("std::vector.push_back loop")
+#endif
   }
 
 /*
@@ -47,10 +57,16 @@ int main(){
   {
     boost::timer::auto_cpu_timer t;
     boost::container::vector<double> v;
+#ifdef USE_TAU
+  TAU_START("boost::container::vector.push_back loop")
+#endif
     for (int i = 0; i < N; ++i)
     {
         v.push_back(double(i));
     }
+#ifdef USE_TAU
+  TAU_STOP("boost::container::vector.push_back loop")
+#endif
   }
 
 
