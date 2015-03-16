@@ -20,10 +20,10 @@ int main(){
 
   {   
     boost::timer::auto_cpu_timer t; 
-    std::vector<double> v;
+    std::vector<float> v;
     for (int i = 0; i < N; ++i)
     {
-        v.insert(v.begin(), double(i));
+        v.insert(v.begin(), float(i));
     }
   }
 */
@@ -33,13 +33,13 @@ int main(){
   {   
 
     boost::timer::auto_cpu_timer t; 
-    std::vector<double> v1;
+    std::vector<float> v1;
 #ifdef USE_TAU
   TAU_START("std::vector.push_back loop");
 #endif
     for (int i = 0; i < N; ++i)
     {
-        v1.push_back(double(i));
+        v1.push_back(float(i));
     }
 #ifdef USE_TAU
   TAU_STOP("std::vector.push_back loop");
@@ -52,13 +52,13 @@ int main(){
   {   
 
     boost::timer::auto_cpu_timer t; 
-    std::list<double> v2;
+    std::list<float> v2;
 #ifdef USE_TAU
   TAU_START("std::list.push_back loop");
 #endif
     for (int i = 0; i < N; ++i)
     {
-        v2.push_back(double(i));
+        v2.push_back(float(i));
     }
 #ifdef USE_TAU
   TAU_STOP("std::list.push_back loop");
@@ -69,23 +69,23 @@ int main(){
   std::cout << "This is boost::container::vector insert time" << std::endl;
   {
     boost::timer::auto_cpu_timer t;
-    boost::container::vector<double> v;
+    boost::container::vector<float> v;
     for (int i = 0; i < N; ++i)
     {
-        v.insert(v.begin(), double(i));
+        v.insert(v.begin(), float(i));
     }
   }
 */
   std::cout << "This is boost::container::vector push_back time" << std::endl;
   {
     boost::timer::auto_cpu_timer t;
-    boost::container::vector<double> v3;
+    boost::container::vector<float> v3;
 #ifdef USE_TAU
   TAU_START("boost::container::vector.push_back loop");
 #endif
     for (int i = 0; i < N; ++i)
     {
-        v3.push_back(double(i));
+        v3.push_back(float(i));
     }
 #ifdef USE_TAU
   TAU_STOP("boost::container::vector.push_back loop");
