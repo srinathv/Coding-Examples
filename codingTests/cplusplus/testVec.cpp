@@ -14,7 +14,13 @@ int main(){
   TAU_START("main");
   TAU_PROFILE_SET_NODE(0);
 #endif
-  int N = 1000000000;
+#ifdef SET_N
+  int N=SET_N;
+#else
+  int N=1000000000;
+#endif
+
+#ifdef VEC
   std::cout << "This is vector push_back time" << std::endl;
 
   {   
@@ -31,7 +37,10 @@ int main(){
   TAU_STOP("std::vector.push_back loop");
 #endif
   }
+#endif 
 
+
+#ifdef BOOST_VEC
   std::cout << "This is boost::container::vector push_back time" << std::endl;
   {
     boost::timer::auto_cpu_timer t;
@@ -47,6 +56,26 @@ int main(){
   TAU_STOP("boost::container::vector.push_back loop");
 #endif
   }
+#endif
+
+
+#ifdef DEQ
+  std::cout << "This is std::deque push_back time" << std::endl;
+  {
+    boost::timer::auto_cpu_timer t;
+    std::deque <float> v4;
+#ifdef USE_TAU
+  TAU_START(" std::deque.push_back loop");
+#endif
+    for (int i = 0; i < N; ++i)
+    {
+        v4.push_back(float(i));
+    }
+#ifdef USE_TAU
+  TAU_STOP(" std::deque.push_back loop");
+#endif
+  }
+#endif 
 
 #ifdef USE_TAU
   TAU_STOP("main");
