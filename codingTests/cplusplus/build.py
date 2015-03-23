@@ -71,7 +71,8 @@ def main():
      IFDEF = IFDEF + '-DSET_N='+str(args.numelems)
   logging.debug('IFDEF is ' + IFDEF)
 
-  
+
+#build commands
 
 
 
