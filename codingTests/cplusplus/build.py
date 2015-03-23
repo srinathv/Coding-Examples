@@ -83,6 +83,9 @@ def main():
 
   logging.debug('COMMAND is ' + COMMAND)
 
+  errorMsg=' trouble building'
+  shellCommand(COMMAND,errorMsg)
+
 
 if __name__ == "__main__":
    main()
