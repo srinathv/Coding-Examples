@@ -13,7 +13,7 @@ def shellCommand(command,errorMessage):
     pass
   return
 
-BASE=' testVec. '
+BASE=' testVec.'
 EXE_BASE='testVec_'
 FLAGS=' -O2 -fPIC '
 LIBS=' /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/lib/libboost_system.a \
@@ -82,9 +82,9 @@ def main():
     COMMAND=COMPILER + BASE+'.cpp' + ' -c ' + FLAGS + INCLUDES + IFDEF + ' -o ' + EXE_NAME
 
   logging.debug('COMMAND is ' + COMMAND)
-
-  errorMsg=' trouble building'
-  shellCommand(COMMAND,errorMsg)
+  if not (logging.debug):
+    errorMsg=' trouble building'
+    shellCommand(COMMAND,errorMsg)
 
 
 if __name__ == "__main__":
