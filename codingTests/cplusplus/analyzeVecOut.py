@@ -81,6 +81,9 @@ def main():
   stdVec=np.array([])
   bstVec=np.array([])
   stdDeq=np.array([])
+  hasBoostVec=False
+  hasStdVec=False
+  hasStdDeq=False
 #open file
   vecFile=open(args.filename,'r')  
 #read lines and add to arrays
@@ -89,51 +92,76 @@ def main():
     if ('vector push_back' in line):
       nline=next(ivecFile)
       time=nline.split()[0].strip('s')
-      if ('boost::container::vec' in line): 
+      if ('boost::container::vec' in line):
+        hasBoostVec=True 
         bstVec=np.append(bstVec,float(time))
       if ('std::vec' in line):
+        hasStdVec=True
         stdVec=np.append(stdVec,float(time))
       if ('std::deq' in line):
+        hasStdDeq=True
         stdVec=np.append(stdDeq,float(time))
 
-  print "*** standard vector stats"
-  stdAvg,stdStd,stdNum=calcAvg(stdVec)
+  if (hasStdVec):
+    print "*** standard vector stats"
+    stdAvg,stdStd,stdNum=calcAvg(stdVec)
   
-  print "*** boost container vector stats"
-  bstAvg,bstStd,bstNum=calcAvg(bstVec)
+  if (hasBoostVec):
+    print "*** boost container vector stats"
+    bstAvg,bstStd,bstNum=calcAvg(bstVec)
   
-  print "*** standar deq stats"
-  deqAvg,deqStd,deqNum=calcAvg(bstVec)
+  if (hasStdDeq):
+    print "*** standar deq stats"
+    deqAvg,deqStd,deqNum=calcAvg(bstVec)
 
-  zScore=calcZScore(stdAvg,stdStd,stdNum,bstAvg,bstStd,bstNum)
-  print zScore, "is the zScore > 3.22 => significance difference"
+  if (hasStdVec) and (hasBoostVec):
+    zScore=calcZScore(stdAvg,stdStd,stdNum,bstAvg,bstStd,bstNum)
+    print zScore, "is the zScore > 3.22 => significance difference std::vec vs. boost::container::vector"
+  if (hasStdVec) and (hasStdDeq):
+    zScore2=calcZScore(stdAvg,stdStd,stdNum,deqAvg,deqStd,deqNum)
+    print zScore2, "is the zScore > 3.22 => significance difference for std::vec vs. std::deq"
 
   if (args.plot) or (args.figurename):
-
       matplotlib.rcParams.update({'font.size': 6})
       
-      fig1=py.figure(num=None, figsize=(8, 4), dpi=80, facecolor='w', edgecolor='k')
-      ax1 = fig1.add_subplot(1,2,1,)
-      n,bins,patches=ax1.hist(stdVec,bins=args.numbins)
-      py.xlabel(args.grouptime + "[sec]")
-      py.ylabel("Number of testVec trials")
-      plotTitle = "std::vec " + args.figuretitle + "\n" + "Avg =" + str(stdAvg) + " [sec] "
-      if args.plotpercent:
-        plotTitle= plotTitle + ", Std % = " + str(stdStd/stdAvg * 100 )
-      else:
-        plotTitle= plotTitle + ", Std = " + str(stdStd)
-      py.title(plotTitle )
 
-      ax2 = fig1.add_subplot(1,2,2,)
-      n,bins,patches=ax2.hist(bstVec,bins=args.numbins)
-      py.xlabel(args.grouptime + "[sec]")
-      py.ylabel("Number of testVec trials")
-      plotTitle = "boost::container::vector "+ args.figuretitle + "\n" + "Avg =" + str(bstAvg) + " [sec] "
-      if args.plotpercent:
-        plotTitle= plotTitle + ", Std % = " + str(bstStd/bstAvg * 100 )
-      else:
-        plotTitle= plotTitle + ", Std = " + str(bstStd)
-      py.title(plotTitle )
+      fig1=py.figure(num=None, figsize=(8, 4), dpi=80, facecolor='w', edgecolor='k')
+
+      if (hasStdVec): 
+        ax1 = fig1.add_subplot(1,2,1,)
+        n,bins,patches=ax1.hist(stdVec,bins=args.numbins)
+        py.xlabel(args.grouptime + "[sec]")
+        py.ylabel("Number of testVec trials")
+        plotTitle = "std::vec " + args.figuretitle + "\n" + "Avg =" + str(stdAvg) + " [sec] "
+        if args.plotpercent:
+          plotTitle= plotTitle + ", Std % = " + str(stdStd/stdAvg * 100 )
+        else:
+          plotTitle= plotTitle + ", Std = " + str(stdStd)
+        py.title(plotTitle )
+
+      if (hasBoostVec): 
+        ax2 = fig1.add_subplot(1,2,2,)
+        n,bins,patches=ax2.hist(bstVec,bins=args.numbins)
+        py.xlabel(args.grouptime + "[sec]")
+        py.ylabel("Number of testVec trials")
+        plotTitle = "boost::container::vector "+ args.figuretitle + "\n" + "Avg =" + str(bstAvg) + " [sec] "
+        if args.plotpercent:
+          plotTitle= plotTitle + ", Std % = " + str(bstStd/bstAvg * 100 )
+        else:
+          plotTitle= plotTitle + ", Std = " + str(bstStd)
+        py.title(plotTitle )
+
+      if (hasStdDeq):
+        ax3 = fig3.add_subplot(1,1,1,)
+        n,bins,patches=ax3.hist(stdDeq,bins=args.numbins)
+        py.xlabel(args.grouptime + "[sec]")
+        py.ylabel("Number of testVec trials")
+        plotTitle = "std::deque "+ args.figuretitle + "\n" + "Avg =" + str(stdDeq) + " [sec] "
+        if args.plotpercent:
+          plotTitle= plotTitle + ", Std % = " + str(stdDeq/stdDeq * 100 )
+        else:
+          plotTitle= plotTitle + ", Std = " + str(stdDeq)
+        py.title(plotTitle )
 
 
       if args.figurename:
