@@ -80,6 +80,7 @@ def main():
 #initialize 2 arrays 
   stdVec=np.array([])
   bstVec=np.array([])
+  stdDeq=np.array([])
 #open file
   vecFile=open(args.filename,'r')  
 #read lines and add to arrays
@@ -88,16 +89,21 @@ def main():
     if ('vector push_back' in line):
       nline=next(ivecFile)
       time=nline.split()[0].strip('s')
-      if ('boost' in line): 
+      if ('boost::container::vec' in line): 
         bstVec=np.append(bstVec,float(time))
-      else:
+      if ('std::vec' in line):
         stdVec=np.append(stdVec,float(time))
+      if ('std::deq' in line):
+        stdVec=np.append(stdDeq,float(time))
 
   print "*** standard vector stats"
   stdAvg,stdStd,stdNum=calcAvg(stdVec)
   
   print "*** boost container vector stats"
   bstAvg,bstStd,bstNum=calcAvg(bstVec)
+  
+  print "*** standar deq stats"
+  deqAvg,deqStd,deqNum=calcAvg(bstVec)
 
   zScore=calcZScore(stdAvg,stdStd,stdNum,bstAvg,bstStd,bstNum)
   print zScore, "is the zScore > 3.22 => significance difference"

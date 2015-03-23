@@ -21,7 +21,7 @@ int main(){
 #endif
 
 #ifdef VEC
-  std::cout << "This is vector push_back time" << std::endl;
+  std::cout << "This is std::vector push_back time" << std::endl;
 
   {   
     boost::timer::auto_cpu_timer t; 
