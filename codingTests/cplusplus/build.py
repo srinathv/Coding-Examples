@@ -13,8 +13,8 @@ def shellCommand(command,errorMessage):
     pass
   return
 
-SOURCE=' testVec.cpp '
-EXECUTABLE=' testVec '
+BASE=' testVec. '
+EXE_BASE='testVec_'
 FLAGS=' -O2 -fPIC '
 LIBS=' /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/lib/libboost_system.a \
     /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/lib/libboost_timer.a \
@@ -34,7 +34,7 @@ TAU_EXPORTS='export \
 def main():
   parser = argparse.ArgumentParser(description='Build testVec for different implemenations.')
 
-  parser.add_argument('-n','--numelems', default=0,type=int,
+  parser.add_argument('-n','--numelems', default=1000000,type=int,
                       help='Number of elemens of arrays.')
 
   parser.add_argument('-t','--tau',action="store_true",
@@ -73,12 +73,16 @@ def main():
 
 
 #build commands
+  if (args.tau):
+    EXE_NAME=EXE_BASE+'tau_N'+str(args.numelems)
+    COMMAND=TAU_COMPILER + BASE+'.cpp' + ' -c ' + FLAGS + INCLUDES + IFDEF
+    COMMAND = COMMAND + ' ; ' + TAU_COMPILER + BASE+'.o -o ' + EXE_NAME + FLAGS + LIBS
+  else:
+    EXE_NAME=EXE_BASE+'N_'+str(args.numelems)
+    COMMAND=COMPILER + BASE+'.cpp' + ' -c ' + FLAGS + INCLUDES + IFDEF + ' -o ' + EXE_NAME
 
-
-
-
+  logging.debug('COMMAND is ' + COMMAND)
 
 
 if __name__ == "__main__":
    main()
-

@@ -17,7 +17,7 @@ int main(){
 #ifdef SET_N
   int N=SET_N;
 #else
-  int N=1000000000;
+  int N=1000000;
 #endif
 
 #ifdef VEC
