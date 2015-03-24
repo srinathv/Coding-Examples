@@ -64,7 +64,7 @@ def main():
   if (args.stdvec):
      IFDEF = IFDEF + '-DVEC '
   if (args.boostvec):
-     IFDEF = IFDEF + '-DBOOST_VEC '
+     IFDEF= IFDEF + '-DBOOST_VEC '
   if (args.stddeq):
      IFDEF = IFDEF + '-DDEQ '
   if (args.numelems):
@@ -75,7 +75,8 @@ def main():
 #build commands
   if (args.tau):
     EXE_NAME=EXE_BASE+'tau_N'+str(args.numelems)
-    COMMAND=TAU_COMPILER + BASE+'.cpp' + ' -c ' + FLAGS + INCLUDES + IFDEF
+    COMMAND=TAU_EXPORTS + '; '
+    COMMAND=COMMAND + TAU_COMPILER + BASE+'.cpp' + ' -c ' + FLAGS + INCLUDES + IFDEF
     COMMAND = COMMAND + ' ; ' + TAU_COMPILER + BASE+'.o -o ' + EXE_NAME + FLAGS + LIBS
   else:
     EXE_NAME=EXE_BASE+'N_'+str(args.numelems)
