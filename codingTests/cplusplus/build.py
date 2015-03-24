@@ -82,7 +82,7 @@ def main():
     COMMAND=COMPILER + BASE+'.cpp' + ' -c ' + FLAGS + INCLUDES + IFDEF + ' -o ' + EXE_NAME
 
   logging.debug('COMMAND is ' + COMMAND)
-  if not (logging.debug):
+  if not (args.debug):
     errorMsg=' trouble building'
     shellCommand(COMMAND,errorMsg)
 
