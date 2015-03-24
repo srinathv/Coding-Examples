@@ -16,7 +16,7 @@ def shellCommand(command,errorMessage):
 BASE=' testVec'
 EXE_BASE='testVec_'
 FLAGS=' -O2 -fPIC '
-LIBS=' /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/lib/libboost_system.a \
+LIBS=' -L./. -lcupti -lcuda /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/lib/libboost_system.a \
     /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/lib/libboost_timer.a \
     /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/lib/libboost_chrono.a \
     /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/lib/libboost_thread.a -lrt '
