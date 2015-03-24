@@ -125,7 +125,7 @@ def main():
       matplotlib.rcParams.update({'font.size': 6})
       
 
-      fig1=py.figure(num=None, figsize=(8, 4), dpi=80, facecolor='w', edgecolor='k')
+      fig1=py.figure(num=None, figsize=(8, 8), dpi=80, facecolor='w', edgecolor='k')
 
       if (hasStdVec): 
         ax1 = fig1.add_subplot(2,2,1,)
