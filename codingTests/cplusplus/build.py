@@ -13,7 +13,7 @@ def shellCommand(command,errorMessage):
     pass
   return
 
-BASE=' testVec.'
+BASE=' testVec'
 EXE_BASE='testVec_'
 FLAGS=' -O2 -fPIC '
 LIBS=' /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/lib/libboost_system.a \
@@ -62,11 +62,11 @@ def main():
   if (args.tau):
      IFDEF = IFDEF + '-DUSE_TAU '
   if (args.stdvec):
-     IFDEF = IFDEF + '-DUSE_VEC '
+     IFDEF = IFDEF + '-DVEC '
   if (args.boostvec):
-     IFDEF = IFDEF + '-DUSE_BOOSTVEC '
+     IFDEF = IFDEF + '-DBOOST_VEC '
   if (args.stddeq):
-     IFDEF = IFDEF + '-DUSE_DEQ '
+     IFDEF = IFDEF + '-DDEQ '
   if (args.numelems):
      IFDEF = IFDEF + '-DSET_N='+str(args.numelems)
   logging.debug('IFDEF is ' + IFDEF)
@@ -79,7 +79,7 @@ def main():
     COMMAND = COMMAND + ' ; ' + TAU_COMPILER + BASE+'.o -o ' + EXE_NAME + FLAGS + LIBS
   else:
     EXE_NAME=EXE_BASE+'N_'+str(args.numelems)
-    COMMAND=COMPILER + BASE+'.cpp' + ' -c ' + FLAGS + INCLUDES + IFDEF + ' -o ' + EXE_NAME
+    COMMAND=COMPILER + BASE+'.cpp' + FLAGS + INCLUDES + IFDEF + LIBS +  ' -o ' + EXE_NAME
 
   logging.debug('COMMAND is ' + COMMAND)
   if not (args.debug):
