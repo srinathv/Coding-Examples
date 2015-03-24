@@ -89,7 +89,7 @@ def main():
 #read lines and add to arrays
   ivecFile=iter(vecFile)
   for line in ivecFile:
-    if ('vector push_back' in line):
+    if ('push_back' in line):
       nline=next(ivecFile)
       time=nline.split()[0].strip('s')
       if ('boost::container::vec' in line):
@@ -98,9 +98,9 @@ def main():
       if ('std::vec' in line):
         hasStdVec=True
         stdVec=np.append(stdVec,float(time))
-      if ('std::deq' in line):
+      if ('std::deque' in line):
         hasStdDeq=True
-        stdVec=np.append(stdDeq,float(time))
+        stdDeq=np.append(stdDeq,float(time))
 
   if (hasStdVec):
     print "*** standard vector stats"
@@ -112,7 +112,7 @@ def main():
   
   if (hasStdDeq):
     print "*** standar deq stats"
-    deqAvg,deqStd,deqNum=calcAvg(bstVec)
+    deqAvg,deqStd,deqNum=calcAvg(stdDeq)
 
   if (hasStdVec) and (hasBoostVec):
     zScore=calcZScore(stdAvg,stdStd,stdNum,bstAvg,bstStd,bstNum)
@@ -128,7 +128,7 @@ def main():
       fig1=py.figure(num=None, figsize=(8, 4), dpi=80, facecolor='w', edgecolor='k')
 
       if (hasStdVec): 
-        ax1 = fig1.add_subplot(1,2,1,)
+        ax1 = fig1.add_subplot(2,2,1,)
         n,bins,patches=ax1.hist(stdVec,bins=args.numbins)
         py.xlabel(args.grouptime + "[sec]")
         py.ylabel("Number of testVec trials")
@@ -140,7 +140,7 @@ def main():
         py.title(plotTitle )
 
       if (hasBoostVec): 
-        ax2 = fig1.add_subplot(1,2,2,)
+        ax2 = fig1.add_subplot(2,2,2,)
         n,bins,patches=ax2.hist(bstVec,bins=args.numbins)
         py.xlabel(args.grouptime + "[sec]")
         py.ylabel("Number of testVec trials")
@@ -152,15 +152,15 @@ def main():
         py.title(plotTitle )
 
       if (hasStdDeq):
-        ax3 = fig3.add_subplot(1,1,1,)
+        ax3 = fig1.add_subplot(2,2,3,)
         n,bins,patches=ax3.hist(stdDeq,bins=args.numbins)
         py.xlabel(args.grouptime + "[sec]")
         py.ylabel("Number of testVec trials")
-        plotTitle = "std::deque "+ args.figuretitle + "\n" + "Avg =" + str(stdDeq) + " [sec] "
+        plotTitle = "std::deque "+ args.figuretitle + "\n" + "Avg =" + str(deqAvg) + " [sec] "
         if args.plotpercent:
-          plotTitle= plotTitle + ", Std % = " + str(stdDeq/stdDeq * 100 )
+          plotTitle= plotTitle + ", Std % = " + str(deqStd/deqAvg * 100 )
         else:
-          plotTitle= plotTitle + ", Std = " + str(stdDeq)
+          plotTitle= plotTitle + ", Std = " + str(deqStd)
         py.title(plotTitle )
 
 
