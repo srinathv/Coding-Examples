@@ -1,0 +1,600 @@
+This is std::vector push_back time
+ 6.701837s wall, 3.480000s user + 3.200000s system = 6.680000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.539546s wall, 4.610000s user + 4.920000s system = 9.530000s CPU (99.9%)
+This is std::deque push_back time
+ 4.683119s wall, 3.010000s user + 1.670000s system = 4.680000s CPU (99.9%)
+This is std::vector push_back time
+ 6.689550s wall, 3.500000s user + 3.180000s system = 6.680000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.653419s wall, 4.730000s user + 4.910000s system = 9.640000s CPU (99.9%)
+This is std::deque push_back time
+ 4.921742s wall, 3.200000s user + 1.720000s system = 4.920000s CPU (100.0%)
+This is std::vector push_back time
+ 6.798720s wall, 3.520000s user + 3.260000s system = 6.780000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.763120s wall, 4.740000s user + 5.020000s system = 9.760000s CPU (100.0%)
+This is std::deque push_back time
+ 4.932321s wall, 3.160000s user + 1.770000s system = 4.930000s CPU (100.0%)
+This is std::vector push_back time
+ 6.843273s wall, 3.480000s user + 3.350000s system = 6.830000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.808629s wall, 4.810000s user + 4.990000s system = 9.800000s CPU (99.9%)
+This is std::deque push_back time
+ 4.967949s wall, 3.220000s user + 1.750000s system = 4.970000s CPU (100.0%)
+This is std::vector push_back time
+ 6.750467s wall, 3.420000s user + 3.320000s system = 6.740000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.760401s wall, 4.730000s user + 5.010000s system = 9.740000s CPU (99.8%)
+This is std::deque push_back time
+ 4.925921s wall, 3.220000s user + 1.710000s system = 4.930000s CPU (100.1%)
+This is std::vector push_back time
+ 6.750475s wall, 3.530000s user + 3.210000s system = 6.740000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.704169s wall, 4.720000s user + 4.970000s system = 9.690000s CPU (99.9%)
+This is std::deque push_back time
+ 4.943727s wall, 3.260000s user + 1.680000s system = 4.940000s CPU (99.9%)
+This is std::vector push_back time
+ 6.877353s wall, 3.490000s user + 3.370000s system = 6.860000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.887515s wall, 4.850000s user + 5.030000s system = 9.880000s CPU (99.9%)
+This is std::deque push_back time
+ 5.009721s wall, 3.260000s user + 1.750000s system = 5.010000s CPU (100.0%)
+This is std::vector push_back time
+ 6.863847s wall, 3.500000s user + 3.350000s system = 6.850000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.886902s wall, 4.800000s user + 5.080000s system = 9.880000s CPU (99.9%)
+This is std::deque push_back time
+ 4.961543s wall, 3.250000s user + 1.700000s system = 4.950000s CPU (99.8%)
+This is std::vector push_back time
+ 6.827806s wall, 3.480000s user + 3.340000s system = 6.820000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.853576s wall, 4.790000s user + 5.050000s system = 9.840000s CPU (99.9%)
+This is std::deque push_back time
+ 4.958384s wall, 3.170000s user + 1.780000s system = 4.950000s CPU (99.8%)
+This is std::vector push_back time
+ 6.859096s wall, 3.400000s user + 3.440000s system = 6.840000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.854967s wall, 4.820000s user + 5.030000s system = 9.850000s CPU (99.9%)
+This is std::deque push_back time
+ 4.968059s wall, 3.240000s user + 1.730000s system = 4.970000s CPU (100.0%)
+This is std::vector push_back time
+ 6.792909s wall, 3.480000s user + 3.300000s system = 6.780000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.803965s wall, 4.790000s user + 5.000000s system = 9.790000s CPU (99.9%)
+This is std::deque push_back time
+ 4.980459s wall, 3.230000s user + 1.760000s system = 4.990000s CPU (100.2%)
+This is std::vector push_back time
+ 6.740805s wall, 3.420000s user + 3.310000s system = 6.730000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.647917s wall, 4.760000s user + 4.880000s system = 9.640000s CPU (99.9%)
+This is std::deque push_back time
+ 4.929184s wall, 3.210000s user + 1.710000s system = 4.920000s CPU (99.8%)
+This is std::vector push_back time
+ 6.695998s wall, 3.430000s user + 3.250000s system = 6.680000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.590831s wall, 4.850000s user + 4.740000s system = 9.590000s CPU (100.0%)
+This is std::deque push_back time
+ 4.892538s wall, 3.230000s user + 1.660000s system = 4.890000s CPU (99.9%)
+This is std::vector push_back time
+ 6.664478s wall, 3.480000s user + 3.170000s system = 6.650000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.610205s wall, 4.780000s user + 4.820000s system = 9.600000s CPU (99.9%)
+This is std::deque push_back time
+ 4.882703s wall, 3.200000s user + 1.680000s system = 4.880000s CPU (99.9%)
+This is std::vector push_back time
+ 6.709655s wall, 3.410000s user + 3.290000s system = 6.700000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.619769s wall, 4.770000s user + 4.840000s system = 9.610000s CPU (99.9%)
+This is std::deque push_back time
+ 4.881439s wall, 3.250000s user + 1.630000s system = 4.880000s CPU (100.0%)
+This is std::vector push_back time
+ 6.946434s wall, 3.500000s user + 3.440000s system = 6.940000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.956603s wall, 4.740000s user + 5.200000s system = 9.940000s CPU (99.8%)
+This is std::deque push_back time
+ 5.040876s wall, 3.210000s user + 1.830000s system = 5.040000s CPU (100.0%)
+This is std::vector push_back time
+ 6.848406s wall, 3.440000s user + 3.390000s system = 6.830000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.837680s wall, 4.750000s user + 5.080000s system = 9.830000s CPU (99.9%)
+This is std::deque push_back time
+ 4.971828s wall, 3.230000s user + 1.740000s system = 4.970000s CPU (100.0%)
+This is std::vector push_back time
+ 6.755907s wall, 3.490000s user + 3.250000s system = 6.740000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.731769s wall, 4.780000s user + 4.940000s system = 9.720000s CPU (99.9%)
+This is std::deque push_back time
+ 4.949469s wall, 3.210000s user + 1.740000s system = 4.950000s CPU (100.0%)
+This is std::vector push_back time
+ 6.878938s wall, 3.440000s user + 3.430000s system = 6.870000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.862716s wall, 4.770000s user + 5.080000s system = 9.850000s CPU (99.9%)
+This is std::deque push_back time
+ 5.003134s wall, 3.210000s user + 1.790000s system = 5.000000s CPU (99.9%)
+This is std::vector push_back time
+ 6.809512s wall, 3.440000s user + 3.350000s system = 6.790000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.771229s wall, 4.780000s user + 4.980000s system = 9.760000s CPU (99.9%)
+This is std::deque push_back time
+ 4.947969s wall, 3.260000s user + 1.690000s system = 4.950000s CPU (100.0%)
+This is std::vector push_back time
+ 6.845129s wall, 3.480000s user + 3.350000s system = 6.830000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.822374s wall, 4.790000s user + 5.020000s system = 9.810000s CPU (99.9%)
+This is std::deque push_back time
+ 5.000101s wall, 3.220000s user + 1.780000s system = 5.000000s CPU (100.0%)
+This is std::vector push_back time
+ 6.792436s wall, 3.470000s user + 3.310000s system = 6.780000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.792003s wall, 4.790000s user + 4.990000s system = 9.780000s CPU (99.9%)
+This is std::deque push_back time
+ 4.962338s wall, 3.250000s user + 1.710000s system = 4.960000s CPU (100.0%)
+This is std::vector push_back time
+ 6.890739s wall, 3.490000s user + 3.390000s system = 6.880000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.860950s wall, 4.700000s user + 5.140000s system = 9.840000s CPU (99.8%)
+This is std::deque push_back time
+ 4.990001s wall, 3.240000s user + 1.750000s system = 4.990000s CPU (100.0%)
+This is std::vector push_back time
+ 6.938055s wall, 3.470000s user + 3.460000s system = 6.930000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.961340s wall, 4.800000s user + 5.140000s system = 9.940000s CPU (99.8%)
+This is std::deque push_back time
+ 4.983916s wall, 3.200000s user + 1.790000s system = 4.990000s CPU (100.1%)
+This is std::vector push_back time
+ 6.851149s wall, 3.440000s user + 3.400000s system = 6.840000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.865728s wall, 4.820000s user + 5.030000s system = 9.850000s CPU (99.8%)
+This is std::deque push_back time
+ 4.974923s wall, 3.230000s user + 1.740000s system = 4.970000s CPU (99.9%)
+This is std::vector push_back time
+ 6.950859s wall, 3.390000s user + 3.540000s system = 6.930000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.972089s wall, 4.730000s user + 5.240000s system = 9.970000s CPU (100.0%)
+This is std::deque push_back time
+ 5.006183s wall, 3.230000s user + 1.780000s system = 5.010000s CPU (100.1%)
+This is std::vector push_back time
+ 6.945158s wall, 3.440000s user + 3.490000s system = 6.930000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.981102s wall, 4.750000s user + 5.220000s system = 9.970000s CPU (99.9%)
+This is std::deque push_back time
+ 4.993092s wall, 3.320000s user + 1.670000s system = 4.990000s CPU (99.9%)
+This is std::vector push_back time
+ 6.767875s wall, 3.420000s user + 3.330000s system = 6.750000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.737980s wall, 4.730000s user + 5.000000s system = 9.730000s CPU (99.9%)
+This is std::deque push_back time
+ 4.947296s wall, 3.230000s user + 1.720000s system = 4.950000s CPU (100.1%)
+This is std::vector push_back time
+ 6.861020s wall, 3.430000s user + 3.410000s system = 6.840000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.855285s wall, 4.830000s user + 5.020000s system = 9.850000s CPU (99.9%)
+This is std::deque push_back time
+ 4.939654s wall, 3.270000s user + 1.670000s system = 4.940000s CPU (100.0%)
+This is std::vector push_back time
+ 6.870274s wall, 3.430000s user + 3.430000s system = 6.860000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.818478s wall, 4.730000s user + 5.070000s system = 9.800000s CPU (99.8%)
+This is std::deque push_back time
+ 5.016838s wall, 3.210000s user + 1.810000s system = 5.020000s CPU (100.1%)
+This is std::vector push_back time
+ 6.738923s wall, 3.390000s user + 3.330000s system = 6.720000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.669466s wall, 4.680000s user + 4.980000s system = 9.660000s CPU (99.9%)
+This is std::deque push_back time
+ 4.937912s wall, 3.160000s user + 1.780000s system = 4.940000s CPU (100.0%)
+This is std::vector push_back time
+ 6.751167s wall, 3.470000s user + 3.270000s system = 6.740000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.678632s wall, 4.790000s user + 4.880000s system = 9.670000s CPU (99.9%)
+This is std::deque push_back time
+ 4.912264s wall, 3.200000s user + 1.710000s system = 4.910000s CPU (100.0%)
+This is std::vector push_back time
+ 6.708532s wall, 3.400000s user + 3.290000s system = 6.690000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.659924s wall, 4.650000s user + 5.000000s system = 9.650000s CPU (99.9%)
+This is std::deque push_back time
+ 4.927532s wall, 3.230000s user + 1.700000s system = 4.930000s CPU (100.1%)
+This is std::vector push_back time
+ 6.750933s wall, 3.480000s user + 3.250000s system = 6.730000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.690189s wall, 4.710000s user + 4.980000s system = 9.690000s CPU (100.0%)
+This is std::deque push_back time
+ 4.959691s wall, 3.220000s user + 1.740000s system = 4.960000s CPU (100.0%)
+This is std::vector push_back time
+ 6.743905s wall, 3.460000s user + 3.270000s system = 6.730000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.680864s wall, 4.810000s user + 4.860000s system = 9.670000s CPU (99.9%)
+This is std::deque push_back time
+ 4.891641s wall, 3.280000s user + 1.610000s system = 4.890000s CPU (100.0%)
+This is std::vector push_back time
+ 6.879537s wall, 3.460000s user + 3.400000s system = 6.860000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.771558s wall, 4.680000s user + 5.090000s system = 9.770000s CPU (100.0%)
+This is std::deque push_back time
+ 4.744285s wall, 2.980000s user + 1.760000s system = 4.740000s CPU (99.9%)
+This is std::vector push_back time
+ 6.791616s wall, 3.460000s user + 3.320000s system = 6.780000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.722866s wall, 4.760000s user + 4.950000s system = 9.710000s CPU (99.9%)
+This is std::deque push_back time
+ 4.919486s wall, 3.260000s user + 1.650000s system = 4.910000s CPU (99.8%)
+This is std::vector push_back time
+ 6.752153s wall, 3.430000s user + 3.310000s system = 6.740000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.697978s wall, 4.710000s user + 4.980000s system = 9.690000s CPU (99.9%)
+This is std::deque push_back time
+ 4.941001s wall, 3.200000s user + 1.730000s system = 4.930000s CPU (99.8%)
+This is std::vector push_back time
+ 6.750133s wall, 3.570000s user + 3.170000s system = 6.740000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.618242s wall, 4.670000s user + 4.940000s system = 9.610000s CPU (99.9%)
+This is std::deque push_back time
+ 4.694904s wall, 2.950000s user + 1.740000s system = 4.690000s CPU (99.9%)
+This is std::vector push_back time
+ 6.689037s wall, 3.390000s user + 3.280000s system = 6.670000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.652664s wall, 4.810000s user + 4.840000s system = 9.650000s CPU (100.0%)
+This is std::deque push_back time
+ 4.900083s wall, 3.220000s user + 1.680000s system = 4.900000s CPU (100.0%)
+This is std::vector push_back time
+ 6.879691s wall, 3.550000s user + 3.320000s system = 6.870000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.859826s wall, 4.810000s user + 5.040000s system = 9.850000s CPU (99.9%)
+This is std::deque push_back time
+ 4.999030s wall, 3.230000s user + 1.760000s system = 4.990000s CPU (99.8%)
+This is std::vector push_back time
+ 6.843297s wall, 3.500000s user + 3.330000s system = 6.830000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.824454s wall, 4.810000s user + 5.000000s system = 9.810000s CPU (99.9%)
+This is std::deque push_back time
+ 4.967612s wall, 3.310000s user + 1.660000s system = 4.970000s CPU (100.0%)
+This is std::vector push_back time
+ 6.862582s wall, 3.500000s user + 3.350000s system = 6.850000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.851073s wall, 4.740000s user + 5.100000s system = 9.840000s CPU (99.9%)
+This is std::deque push_back time
+ 4.995332s wall, 3.310000s user + 1.680000s system = 4.990000s CPU (99.9%)
+This is std::vector push_back time
+ 6.877169s wall, 3.430000s user + 3.440000s system = 6.870000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.837316s wall, 4.730000s user + 5.090000s system = 9.820000s CPU (99.8%)
+This is std::deque push_back time
+ 5.002747s wall, 3.210000s user + 1.790000s system = 5.000000s CPU (99.9%)
+This is std::vector push_back time
+ 6.761280s wall, 3.440000s user + 3.310000s system = 6.750000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.725788s wall, 4.660000s user + 5.060000s system = 9.720000s CPU (99.9%)
+This is std::deque push_back time
+ 4.987789s wall, 3.270000s user + 1.710000s system = 4.980000s CPU (99.8%)
+This is std::vector push_back time
+ 6.874509s wall, 3.430000s user + 3.440000s system = 6.870000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.872175s wall, 4.700000s user + 5.160000s system = 9.860000s CPU (99.9%)
+This is std::deque push_back time
+ 4.995817s wall, 3.250000s user + 1.740000s system = 4.990000s CPU (99.9%)
+This is std::vector push_back time
+ 6.846066s wall, 3.400000s user + 3.430000s system = 6.830000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.835850s wall, 4.740000s user + 5.090000s system = 9.830000s CPU (99.9%)
+This is std::deque push_back time
+ 4.981387s wall, 3.290000s user + 1.690000s system = 4.980000s CPU (100.0%)
+This is std::vector push_back time
+ 6.872529s wall, 3.500000s user + 3.360000s system = 6.860000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.830160s wall, 4.740000s user + 5.080000s system = 9.820000s CPU (99.9%)
+This is std::deque push_back time
+ 4.990734s wall, 3.290000s user + 1.700000s system = 4.990000s CPU (100.0%)
+This is std::vector push_back time
+ 6.855032s wall, 3.440000s user + 3.400000s system = 6.840000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.860907s wall, 4.760000s user + 5.100000s system = 9.860000s CPU (100.0%)
+This is std::deque push_back time
+ 4.978299s wall, 3.230000s user + 1.740000s system = 4.970000s CPU (99.8%)
+This is std::vector push_back time
+ 6.774143s wall, 3.450000s user + 3.310000s system = 6.760000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.741049s wall, 4.810000s user + 4.920000s system = 9.730000s CPU (99.9%)
+This is std::deque push_back time
+ 4.955821s wall, 3.250000s user + 1.710000s system = 4.960000s CPU (100.1%)
+This is std::vector push_back time
+ 6.787323s wall, 3.440000s user + 3.340000s system = 6.780000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.791827s wall, 4.740000s user + 5.040000s system = 9.780000s CPU (99.9%)
+This is std::deque push_back time
+ 4.953452s wall, 3.210000s user + 1.730000s system = 4.940000s CPU (99.7%)
+This is std::vector push_back time
+ 6.947079s wall, 3.480000s user + 3.450000s system = 6.930000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.902078s wall, 4.710000s user + 5.190000s system = 9.900000s CPU (100.0%)
+This is std::deque push_back time
+ 5.000292s wall, 3.240000s user + 1.750000s system = 4.990000s CPU (99.8%)
+This is std::vector push_back time
+ 6.943237s wall, 3.460000s user + 3.470000s system = 6.930000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.948947s wall, 4.680000s user + 5.260000s system = 9.940000s CPU (99.9%)
+This is std::deque push_back time
+ 4.985766s wall, 3.220000s user + 1.760000s system = 4.980000s CPU (99.9%)
+This is std::vector push_back time
+ 6.870210s wall, 3.480000s user + 3.380000s system = 6.860000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.891669s wall, 4.790000s user + 5.090000s system = 9.880000s CPU (99.9%)
+This is std::deque push_back time
+ 4.989077s wall, 3.150000s user + 1.830000s system = 4.980000s CPU (99.8%)
+This is std::vector push_back time
+ 6.876418s wall, 3.480000s user + 3.390000s system = 6.870000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.861815s wall, 4.720000s user + 5.130000s system = 9.850000s CPU (99.9%)
+This is std::deque push_back time
+ 4.978094s wall, 3.270000s user + 1.700000s system = 4.970000s CPU (99.8%)
+This is std::vector push_back time
+ 6.889899s wall, 3.410000s user + 3.470000s system = 6.880000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.877633s wall, 4.730000s user + 5.130000s system = 9.860000s CPU (99.8%)
+This is std::deque push_back time
+ 4.988962s wall, 3.270000s user + 1.720000s system = 4.990000s CPU (100.0%)
+This is std::vector push_back time
+ 6.766638s wall, 3.470000s user + 3.280000s system = 6.750000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.693902s wall, 4.690000s user + 4.990000s system = 9.680000s CPU (99.9%)
+This is std::deque push_back time
+ 4.930121s wall, 3.210000s user + 1.730000s system = 4.940000s CPU (100.2%)
+This is std::vector push_back time
+ 6.770682s wall, 3.420000s user + 3.340000s system = 6.760000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.762378s wall, 4.730000s user + 5.020000s system = 9.750000s CPU (99.9%)
+This is std::deque push_back time
+ 4.945332s wall, 3.180000s user + 1.760000s system = 4.940000s CPU (99.9%)
+This is std::vector push_back time
+ 6.841233s wall, 3.470000s user + 3.350000s system = 6.820000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.803447s wall, 4.730000s user + 5.070000s system = 9.800000s CPU (100.0%)
+This is std::deque push_back time
+ 4.933728s wall, 3.270000s user + 1.660000s system = 4.930000s CPU (99.9%)
+This is std::vector push_back time
+ 6.778023s wall, 3.480000s user + 3.280000s system = 6.760000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.723043s wall, 4.820000s user + 4.900000s system = 9.720000s CPU (100.0%)
+This is std::deque push_back time
+ 4.955558s wall, 3.190000s user + 1.760000s system = 4.950000s CPU (99.9%)
+This is std::vector push_back time
+ 6.759060s wall, 3.440000s user + 3.300000s system = 6.740000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.757785s wall, 4.690000s user + 5.070000s system = 9.760000s CPU (100.0%)
+This is std::deque push_back time
+ 4.961860s wall, 3.240000s user + 1.720000s system = 4.960000s CPU (100.0%)
+This is std::vector push_back time
+ 6.821096s wall, 3.410000s user + 3.400000s system = 6.810000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.812998s wall, 4.760000s user + 5.040000s system = 9.800000s CPU (99.9%)
+This is std::deque push_back time
+ 4.963292s wall, 3.200000s user + 1.750000s system = 4.950000s CPU (99.7%)
+This is std::vector push_back time
+ 6.788407s wall, 3.480000s user + 3.300000s system = 6.780000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.719549s wall, 4.660000s user + 5.040000s system = 9.700000s CPU (99.8%)
+This is std::deque push_back time
+ 4.928483s wall, 3.270000s user + 1.660000s system = 4.930000s CPU (100.0%)
+This is std::vector push_back time
+ 6.733614s wall, 3.420000s user + 3.300000s system = 6.720000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.694300s wall, 4.730000s user + 4.950000s system = 9.680000s CPU (99.9%)
+This is std::deque push_back time
+ 4.942417s wall, 3.220000s user + 1.720000s system = 4.940000s CPU (100.0%)
+This is std::vector push_back time
+ 6.794583s wall, 3.460000s user + 3.320000s system = 6.780000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.804549s wall, 4.790000s user + 5.010000s system = 9.800000s CPU (100.0%)
+This is std::deque push_back time
+ 4.943198s wall, 3.200000s user + 1.740000s system = 4.940000s CPU (99.9%)
+This is std::vector push_back time
+ 6.769252s wall, 3.470000s user + 3.280000s system = 6.750000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.630945s wall, 4.630000s user + 5.000000s system = 9.630000s CPU (100.0%)
+This is std::deque push_back time
+ 4.710007s wall, 3.020000s user + 1.680000s system = 4.700000s CPU (99.8%)
+This is std::vector push_back time
+ 6.803923s wall, 3.570000s user + 3.220000s system = 6.790000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.781137s wall, 4.760000s user + 5.010000s system = 9.770000s CPU (99.9%)
+This is std::deque push_back time
+ 4.964352s wall, 3.230000s user + 1.740000s system = 4.970000s CPU (100.1%)
+This is std::vector push_back time
+ 6.777029s wall, 3.370000s user + 3.400000s system = 6.770000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.641089s wall, 4.640000s user + 4.990000s system = 9.630000s CPU (99.9%)
+This is std::deque push_back time
+ 4.696895s wall, 3.080000s user + 1.610000s system = 4.690000s CPU (99.9%)
+This is std::vector push_back time
+ 6.796474s wall, 3.440000s user + 3.340000s system = 6.780000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.742755s wall, 4.800000s user + 4.940000s system = 9.740000s CPU (100.0%)
+This is std::deque push_back time
+ 4.949536s wall, 3.210000s user + 1.730000s system = 4.940000s CPU (99.8%)
+This is std::vector push_back time
+ 6.826185s wall, 3.420000s user + 3.390000s system = 6.810000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.790300s wall, 4.730000s user + 5.050000s system = 9.780000s CPU (99.9%)
+This is std::deque push_back time
+ 4.941991s wall, 3.230000s user + 1.710000s system = 4.940000s CPU (100.0%)
+This is std::vector push_back time
+ 6.821547s wall, 3.470000s user + 3.340000s system = 6.810000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.777432s wall, 4.770000s user + 5.000000s system = 9.770000s CPU (99.9%)
+This is std::deque push_back time
+ 4.935119s wall, 3.230000s user + 1.700000s system = 4.930000s CPU (99.9%)
+This is std::vector push_back time
+ 6.776625s wall, 3.440000s user + 3.320000s system = 6.760000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.724913s wall, 4.780000s user + 4.940000s system = 9.720000s CPU (99.9%)
+This is std::deque push_back time
+ 4.926538s wall, 3.270000s user + 1.650000s system = 4.920000s CPU (99.9%)
+This is std::vector push_back time
+ 6.799183s wall, 3.450000s user + 3.340000s system = 6.790000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.757399s wall, 4.730000s user + 5.010000s system = 9.740000s CPU (99.8%)
+This is std::deque push_back time
+ 4.961876s wall, 3.280000s user + 1.680000s system = 4.960000s CPU (100.0%)
+This is std::vector push_back time
+ 6.731074s wall, 3.430000s user + 3.290000s system = 6.720000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.701096s wall, 4.740000s user + 4.950000s system = 9.690000s CPU (99.9%)
+This is std::deque push_back time
+ 4.941803s wall, 3.180000s user + 1.750000s system = 4.930000s CPU (99.8%)
+This is std::vector push_back time
+ 6.690051s wall, 3.460000s user + 3.210000s system = 6.670000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.635049s wall, 4.800000s user + 4.830000s system = 9.630000s CPU (99.9%)
+This is std::deque push_back time
+ 4.901806s wall, 3.190000s user + 1.710000s system = 4.900000s CPU (100.0%)
+This is std::vector push_back time
+ 6.756358s wall, 3.470000s user + 3.270000s system = 6.740000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.668799s wall, 4.740000s user + 4.920000s system = 9.660000s CPU (99.9%)
+This is std::deque push_back time
+ 4.895886s wall, 3.260000s user + 1.630000s system = 4.890000s CPU (99.9%)
+This is std::vector push_back time
+ 6.703186s wall, 3.390000s user + 3.300000s system = 6.690000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.657894s wall, 4.640000s user + 5.010000s system = 9.650000s CPU (99.9%)
+This is std::deque push_back time
+ 4.891811s wall, 3.240000s user + 1.650000s system = 4.890000s CPU (100.0%)
+This is std::vector push_back time
+ 6.709837s wall, 3.420000s user + 3.280000s system = 6.700000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.631512s wall, 4.700000s user + 4.910000s system = 9.610000s CPU (99.8%)
+This is std::deque push_back time
+ 4.899282s wall, 3.280000s user + 1.630000s system = 4.910000s CPU (100.2%)
+This is std::vector push_back time
+ 6.723310s wall, 3.510000s user + 3.200000s system = 6.710000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.631451s wall, 4.760000s user + 4.860000s system = 9.620000s CPU (99.9%)
+This is std::deque push_back time
+ 4.919616s wall, 3.220000s user + 1.690000s system = 4.910000s CPU (99.8%)
+This is std::vector push_back time
+ 6.780655s wall, 3.450000s user + 3.320000s system = 6.770000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.689251s wall, 4.780000s user + 4.890000s system = 9.670000s CPU (99.8%)
+This is std::deque push_back time
+ 4.930490s wall, 3.260000s user + 1.670000s system = 4.930000s CPU (100.0%)
+This is std::vector push_back time
+ 6.696764s wall, 3.430000s user + 3.260000s system = 6.690000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.647594s wall, 4.650000s user + 4.980000s system = 9.630000s CPU (99.8%)
+This is std::deque push_back time
+ 4.914213s wall, 3.200000s user + 1.710000s system = 4.910000s CPU (99.9%)
+This is std::vector push_back time
+ 6.711164s wall, 3.440000s user + 3.260000s system = 6.700000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.589535s wall, 4.700000s user + 4.870000s system = 9.570000s CPU (99.8%)
+This is std::deque push_back time
+ 4.663608s wall, 3.010000s user + 1.660000s system = 4.670000s CPU (100.1%)
+This is std::vector push_back time
+ 6.729425s wall, 3.480000s user + 3.240000s system = 6.720000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.636083s wall, 4.690000s user + 4.930000s system = 9.620000s CPU (99.8%)
+This is std::deque push_back time
+ 4.893389s wall, 3.170000s user + 1.720000s system = 4.890000s CPU (99.9%)
+This is std::vector push_back time
+ 6.617017s wall, 3.400000s user + 3.200000s system = 6.600000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.540575s wall, 4.780000s user + 4.760000s system = 9.540000s CPU (100.0%)
+This is std::deque push_back time
+ 4.875880s wall, 3.250000s user + 1.610000s system = 4.860000s CPU (99.7%)
+This is std::vector push_back time
+ 6.627088s wall, 3.450000s user + 3.160000s system = 6.610000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.542686s wall, 4.660000s user + 4.880000s system = 9.540000s CPU (100.0%)
+This is std::deque push_back time
+ 4.885814s wall, 3.210000s user + 1.670000s system = 4.880000s CPU (99.9%)
+This is std::vector push_back time
+ 6.652267s wall, 3.400000s user + 3.240000s system = 6.640000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.565780s wall, 4.840000s user + 4.720000s system = 9.560000s CPU (99.9%)
+This is std::deque push_back time
+ 4.869792s wall, 3.240000s user + 1.630000s system = 4.870000s CPU (100.0%)
+This is std::vector push_back time
+ 6.635504s wall, 3.390000s user + 3.230000s system = 6.620000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.553137s wall, 4.710000s user + 4.830000s system = 9.540000s CPU (99.9%)
+This is std::deque push_back time
+ 4.873866s wall, 3.260000s user + 1.610000s system = 4.870000s CPU (99.9%)
+This is std::vector push_back time
+ 6.637951s wall, 3.470000s user + 3.150000s system = 6.620000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.519655s wall, 4.720000s user + 4.800000s system = 9.520000s CPU (100.0%)
+This is std::deque push_back time
+ 4.879872s wall, 3.210000s user + 1.660000s system = 4.870000s CPU (99.8%)
+This is std::vector push_back time
+ 6.630298s wall, 3.410000s user + 3.210000s system = 6.620000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.522468s wall, 4.740000s user + 4.770000s system = 9.510000s CPU (99.9%)
+This is std::deque push_back time
+ 4.878214s wall, 3.220000s user + 1.660000s system = 4.880000s CPU (100.0%)
+This is std::vector push_back time
+ 6.649429s wall, 3.510000s user + 3.130000s system = 6.640000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.571720s wall, 4.750000s user + 4.810000s system = 9.560000s CPU (99.9%)
+This is std::deque push_back time
+ 4.864764s wall, 3.240000s user + 1.620000s system = 4.860000s CPU (99.9%)
+This is std::vector push_back time
+ 6.910583s wall, 3.500000s user + 3.400000s system = 6.900000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.912016s wall, 4.820000s user + 5.080000s system = 9.900000s CPU (99.9%)
+This is std::deque push_back time
+ 5.031248s wall, 3.240000s user + 1.780000s system = 5.020000s CPU (99.8%)
+This is std::vector push_back time
+ 6.889080s wall, 3.450000s user + 3.430000s system = 6.880000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.930223s wall, 4.730000s user + 5.180000s system = 9.910000s CPU (99.8%)
+This is std::deque push_back time
+ 5.035795s wall, 3.240000s user + 1.800000s system = 5.040000s CPU (100.1%)
+This is std::vector push_back time
+ 6.935673s wall, 3.410000s user + 3.510000s system = 6.920000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.964381s wall, 4.740000s user + 5.220000s system = 9.960000s CPU (100.0%)
+This is std::deque push_back time
+ 5.012862s wall, 3.210000s user + 1.800000s system = 5.010000s CPU (99.9%)
+This is std::vector push_back time
+ 6.845804s wall, 3.480000s user + 3.350000s system = 6.830000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.793772s wall, 4.640000s user + 5.140000s system = 9.780000s CPU (99.9%)
+This is std::deque push_back time
+ 4.950810s wall, 3.210000s user + 1.750000s system = 4.960000s CPU (100.2%)
+This is std::vector push_back time
+ 6.878320s wall, 3.520000s user + 3.340000s system = 6.860000s CPU (99.7%)
+This is boost::container::vector push_back time
+ 9.857406s wall, 4.750000s user + 5.100000s system = 9.850000s CPU (99.9%)
+This is std::deque push_back time
+ 4.972532s wall, 3.250000s user + 1.720000s system = 4.970000s CPU (99.9%)
+This is std::vector push_back time
+ 6.779119s wall, 3.510000s user + 3.260000s system = 6.770000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.706385s wall, 4.650000s user + 5.050000s system = 9.700000s CPU (99.9%)
+This is std::deque push_back time
+ 4.932668s wall, 3.190000s user + 1.730000s system = 4.920000s CPU (99.7%)
+This is std::vector push_back time
+ 6.809177s wall, 3.510000s user + 3.290000s system = 6.800000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.736011s wall, 4.820000s user + 4.910000s system = 9.730000s CPU (99.9%)
+This is std::deque push_back time
+ 4.941055s wall, 3.220000s user + 1.710000s system = 4.930000s CPU (99.8%)
+This is std::vector push_back time
+ 6.876601s wall, 3.450000s user + 3.420000s system = 6.870000s CPU (99.9%)
+This is boost::container::vector push_back time
+ 9.806122s wall, 4.730000s user + 5.060000s system = 9.790000s CPU (99.8%)
+This is std::deque push_back time
+ 4.950455s wall, 3.290000s user + 1.660000s system = 4.950000s CPU (100.0%)
+This is std::vector push_back time
+ 6.762906s wall, 3.480000s user + 3.270000s system = 6.750000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.739463s wall, 4.720000s user + 5.010000s system = 9.730000s CPU (99.9%)
+This is std::deque push_back time
+ 4.946707s wall, 3.290000s user + 1.650000s system = 4.940000s CPU (99.9%)
+This is std::vector push_back time
+ 6.846492s wall, 3.440000s user + 3.390000s system = 6.830000s CPU (99.8%)
+This is boost::container::vector push_back time
+ 9.823253s wall, 4.680000s user + 5.130000s system = 9.810000s CPU (99.9%)
+This is std::deque push_back time
+ 4.944503s wall, 3.280000s user + 1.670000s system = 4.950000s CPU (100.1%)
