@@ -27,7 +27,7 @@ TAU_COMPILER='tau_cxx.sh '
 TAU_EXPORTS='export \
              TAU_MAKEFILE=/work/02463/srinathv/tau2/x86_64/lib/Makefile.tau-intelImpiCuda.aac-icpc-papi-mpi-cupti-pdt; \
              export TAU_OPTIONS="-optLinkOnly -optVerbose"'
-OMP_FLAG=' -openmp '
+OMP_FLAG=' -DOMP -openmp '
 
 
 
