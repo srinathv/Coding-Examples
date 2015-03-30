@@ -15,7 +15,7 @@ def shellCommand(command,errorMessage):
 
 BASE=' testVec'
 EXE_BASE='testVec_'
-FLAGS=' -O2 -fPIC '
+BASE_FLAGS=' -O2 -fPIC '
 LIBS=' -L./. -lcupti -lcuda /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/lib/libboost_system.a \
     /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/lib/libboost_timer.a \
     /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/lib/libboost_chrono.a \
@@ -27,6 +27,7 @@ TAU_COMPILER='tau_cxx.sh '
 TAU_EXPORTS='export \
              TAU_MAKEFILE=/work/02463/srinathv/tau2/x86_64/lib/Makefile.tau-intelImpiCuda.aac-icpc-papi-mpi-cupti-pdt; \
              export TAU_OPTIONS="-optLinkOnly -optVerbose"'
+OMP_FLAG=' -openmp '
 
 
 
@@ -37,27 +38,30 @@ def main():
   parser.add_argument('-n','--numelems', default=1000000,type=int,
                       help='Number of elemens of arrays.')
 
-  parser.add_argument('-t','--tau',action="store_true",
+  parser.add_argument('-t','--tau',action="store_true",default="store_false",
                       help='Profile with TAU')
   
-  parser.add_argument('-sv','--stdvec',action="store_true",
+  parser.add_argument('-sv','--stdvec',action="store_true",default="store_false",
                       help='Do std::vector test.')
 
-  parser.add_argument('-bv','--boostvec',action="store_true",
+  parser.add_argument('-bv','--boostvec',action="store_true",default="store_false",
                       help='Do boost::container::vector test.')
 
-  parser.add_argument('-sq','--stddeq',action="store_true",
+  parser.add_argument('-sq','--stddeq',action="store_true",default="store_false",
                       help='Do std::deque test.')
   
-  parser.add_argument('-d','--debug',action="store_true",
+  parser.add_argument('-d','--debug',action="store_true",default="store_false",
                       help='Debug log')
 
+  parser.add_argument('-o','--openmp',action="store_true",default="store_false",
+                      help='Compile with OpenMP')
   args = parser.parse_args()
 
   if (args.debug):
    logging.basicConfig(level=logging.DEBUG)
 
   IFDEF=' '
+  FLAGS= BASE_FLAGS
 
   if (args.tau):
      IFDEF = IFDEF + '-DUSE_TAU '
@@ -72,6 +76,9 @@ def main():
   logging.debug('IFDEF is ' + IFDEF)
 
 
+  if (args.openmp):
+     FLAGS = FLAGS + OMP_FLAG 
+  
 #build commands
   if (args.tau):
     EXE_NAME=EXE_BASE+'tau_N'+str(args.numelems)
