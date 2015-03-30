@@ -38,22 +38,22 @@ def main():
   parser.add_argument('-n','--numelems', default=1000000,type=int,
                       help='Number of elemens of arrays.')
 
-  parser.add_argument('-t','--tau',action="store_true",default="store_false",
+  parser.add_argument('-t','--tau',action="store_true",
                       help='Profile with TAU')
   
-  parser.add_argument('-sv','--stdvec',action="store_true",default="store_false",
+  parser.add_argument('-sv','--stdvec',action="store_true",
                       help='Do std::vector test.')
 
-  parser.add_argument('-bv','--boostvec',action="store_true",default="store_false",
+  parser.add_argument('-bv','--boostvec',action="store_true",
                       help='Do boost::container::vector test.')
 
-  parser.add_argument('-sq','--stddeq',action="store_true",default="store_false",
+  parser.add_argument('-sq','--stddeq',action="store_true",
                       help='Do std::deque test.')
   
-  parser.add_argument('-d','--debug',action="store_true",default="store_false",
+  parser.add_argument('-d','--debug',action="store_true",
                       help='Debug log')
 
-  parser.add_argument('-o','--openmp',action="store_true",default="store_false",
+  parser.add_argument('-o','--openmp',action="store_true",
                       help='Compile with OpenMP')
   args = parser.parse_args()
 
