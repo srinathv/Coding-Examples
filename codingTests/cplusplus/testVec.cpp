@@ -20,7 +20,6 @@ int main(){
   int N=1000000;
 #endif
 
-#pragma omp parallel
 #ifdef VEC
   std::cout << "This is std::vector push_back time" << std::endl;
 
@@ -30,7 +29,6 @@ int main(){
 #ifdef USE_TAU
   TAU_START("std::vector.push_back loop");
 #endif
-#pragma omp for
     for (int i = 0; i < N; ++i)
     {
         v1.push_back(float(i));
@@ -50,7 +48,6 @@ int main(){
 #ifdef USE_TAU
   TAU_START("boost::container::vector.push_back loop");
 #endif
-#pragma omp for
     for (int i = 0; i < N; ++i)
     {
         v3.push_back(float(i));
@@ -70,7 +67,6 @@ int main(){
 #ifdef USE_TAU
   TAU_START(" std::deque.push_back loop");
 #endif
-#pragma omp for
     for (int i = 0; i < N; ++i)
     {
         v4.push_back(float(i));
