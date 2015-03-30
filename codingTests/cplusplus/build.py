@@ -78,6 +78,7 @@ def main():
 
   if (args.openmp):
      FLAGS = FLAGS + OMP_FLAG 
+
   
 #build commands
   if (args.tau):
