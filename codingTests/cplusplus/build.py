@@ -28,6 +28,7 @@ TAU_EXPORTS='export \
              TAU_MAKEFILE=/work/02463/srinathv/tau2/x86_64/lib/Makefile.tau-intelImpiCuda.aac-icpc-papi-mpi-cupti-pdt; \
              export TAU_OPTIONS="-optLinkOnly -optVerbose"'
 OMP_FLAG=' -DOMP -openmp '
+TBB_FLAG=' -DUSE_TBB -tbb '
 
 
 
@@ -55,6 +56,8 @@ def main():
 
   parser.add_argument('-o','--openmp',action="store_true",
                       help='Compile with OpenMP')
+  parser.add_argument('-tbb','--tbb',action="store_true",
+                      help='Compile with Intel Thread building blocks.')
   args = parser.parse_args()
 
   if (args.debug):
@@ -73,6 +76,8 @@ def main():
      IFDEF = IFDEF + '-DDEQ '
   if (args.numelems):
      IFDEF = IFDEF + '-DSET_N='+str(args.numelems)
+  if (args.tbb):
+     IFDEF = IFDEF + TBB_FLAG
   logging.debug('IFDEF is ' + IFDEF)
 
 

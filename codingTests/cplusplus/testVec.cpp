@@ -6,6 +6,10 @@
 #ifdef USE_TAU
 #include <TAU.h>
 #endif
+#ifdef USE_TBB
+#include "tbb/concurrent_vector.h"
+#endif
+
 
 using std::vector;
 
