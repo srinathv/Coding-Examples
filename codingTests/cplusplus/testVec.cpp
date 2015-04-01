@@ -29,12 +29,14 @@ int main(){
 #ifdef USE_TAU
   TAU_START("std::vector.push_back loop");
 #endif
-#pragma omp parallel for
-    for (int i = 0; i < N; ++i)
+#pragma omp parallel 
+  {
+  #pragma omp for
+  for (int i = 0; i < N; ++i)
     {
         v1.push_back(float(i));
     }
-
+  }
 #ifdef USE_TAU
   TAU_STOP("std::vector.push_back loop");
 #endif
