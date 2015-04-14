@@ -1,0 +1,18 @@
+using the website:
+
+http://www.openp2p.com/pub/a/python/2004/12/02/tdd_pyunit.html
+
+as guide for now
+
+
+from:
+https://docs.python.org/2.7/library/unittest.html#deprecated-aliases
+
+Method Name	Deprecated alias(es)
+assertEqual()	failUnlessEqual, assertEquals
+assertNotEqual()	failIfEqual
+assertTrue()	failUnless, assert_
+assertFalse()	failIf
+assertRaises()	failUnlessRaises
+assertAlmostEqual()	failUnlessAlmostEqual
+assertNotAlmostEqual()	failIfAlmostEqual
