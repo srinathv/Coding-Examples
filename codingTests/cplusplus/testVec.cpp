@@ -27,15 +27,13 @@ int main(){
 #ifdef VEC
   std::cout << "This is std::vector push_back time" << std::endl;
 
-  {   
-    boost::timer::auto_cpu_timer t; 
+  {
+//    boost::timer::auto_cpu_timer t;
     std::vector<float> v1;
 #ifdef USE_TAU
   TAU_START("std::vector.push_back loop");
 #endif
-#pragma omp parallel 
   {
-  #pragma omp for
   for (int i = 0; i < N; ++i)
     {
         v1.push_back(float(i));
@@ -44,8 +42,21 @@ int main(){
 #ifdef USE_TAU
   TAU_STOP("std::vector.push_back loop");
 #endif
+#ifdef USE_TAU
+  TAU_START("std::vector.pop_back loop");
+#endif
+  {
+  for (int i = 0; i < N; ++i)
+    {
+        v1.push_back();
+    }
   }
-#endif 
+#ifdef USE_TAU
+  TAU_STOP("std::vector.pop_back loop");
+#endif
+
+  }
+#endif
 
 
 #ifdef BOOST_VEC
@@ -83,7 +94,7 @@ int main(){
   TAU_STOP(" std::deque.push_back loop");
 #endif
   }
-#endif 
+#endif
 
 #ifdef USE_TAU
   TAU_STOP("main");
