@@ -25,11 +25,11 @@ int main(){
 #endif
 
 #ifdef VEC
+  std::vector<float> v1;
   std::cout << "This is std::vector push_back time" << std::endl;
 
   {
-//    boost::timer::auto_cpu_timer t;
-    std::vector<float> v1;
+    boost::timer::auto_cpu_timer t;
 #ifdef USE_TAU
   TAU_START("std::vector.push_back loop");
 #endif
@@ -39,16 +39,20 @@ int main(){
         v1.push_back(float(i));
     }
   }
+  }
 #ifdef USE_TAU
   TAU_STOP("std::vector.push_back loop");
 #endif
 #ifdef USE_TAU
   TAU_START("std::vector.pop_back loop");
 #endif
+  std::cout << "This is std::vector pop_back time" << std::endl;
+  {
+  boost::timer::auto_cpu_timer t;
   {
   for (int i = 0; i < N; ++i)
     {
-        v1.push_back();
+        v1.pop_back();
     }
   }
 #ifdef USE_TAU
