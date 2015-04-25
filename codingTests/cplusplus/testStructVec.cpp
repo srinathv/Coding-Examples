@@ -6,6 +6,24 @@
 #ifdef USE_TAU
 #include <TAU.h>
 #endif
+#ifdef USE_TBB
+#include "tbb/concurrent_vector.h"
+#endif
+
+
+/* want to test vectors of structs
+ * “skinny” ray:
+        origin, point, three floats (often implemented as a Float4)
+        direction, vector, three floats (often implemented as a Float4)
+        distance, scalar, float
+
+“fat” ray:
+        origin, point, three floats (often implemented as a Float4)
+        direction, vector, three floats (often implemented as a Float4)
+        distance, scalar, float
+        color, scalars, three floats (often a Float4)
+        pixel, scalar, int
+*/
 
 using std::vector;
 
@@ -21,23 +39,44 @@ int main(){
 #endif
 
 #ifdef VEC
+
+
+  std::vector<float> v1;
   std::cout << "This is std::vector push_back time" << std::endl;
 
-  {   
-    boost::timer::auto_cpu_timer t; 
-    std::vector<float> v1;
+  {
+    boost::timer::auto_cpu_timer t;
 #ifdef USE_TAU
   TAU_START("std::vector.push_back loop");
 #endif
-    for (int i = 0; i < N; ++i)
+  {
+  for (int i = 0; i < N; ++i)
     {
         v1.push_back(float(i));
     }
+  }
+  }
 #ifdef USE_TAU
   TAU_STOP("std::vector.push_back loop");
 #endif
+#ifdef USE_TAU
+  TAU_START("std::vector.pop_back loop");
+#endif
+  std::cout << "This is std::vector pop_back time" << std::endl;
+  {
+  boost::timer::auto_cpu_timer t;
+  {
+  for (int i = 0; i < N; ++i)
+    {
+        v1.pop_back();
+    }
   }
-#endif 
+#ifdef USE_TAU
+  TAU_STOP("std::vector.pop_back loop");
+#endif
+
+  }
+#endif
 
 
 #ifdef BOOST_VEC
@@ -75,7 +114,7 @@ int main(){
   TAU_STOP(" std::deque.push_back loop");
 #endif
   }
-#endif 
+#endif
 
 #ifdef USE_TAU
   TAU_STOP("main");
