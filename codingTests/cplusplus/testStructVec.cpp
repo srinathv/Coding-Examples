@@ -27,6 +27,28 @@
 
 using std::vector;
 
+ struct origin {
+  float x0 ;
+  float y0 ;
+  float z0 ;
+  };
+
+ std::vector<float> direction(3) ;
+
+ float distance;
+
+ struct color {
+  float red ;
+  float yellow ;
+  float green ;
+  };
+
+ int pixel;
+
+
+
+
+
 int main(){
 #ifdef USE_TAU
   TAU_START("main");
