@@ -25,35 +25,18 @@
         pixel, scalar, int
 */
 
-using std::vector;
-
-/*
- struct origin {
-  float x0 ;
-  float y0 ;
-  float z0 ;
-  };
-
- std::vector<float> direction(3) ;
-
- float distance;
-
- struct color {
-  float red ;
-  float yellow ;
-  float green ;
-  };
-
- int pixel;
-*/
-
-// std::vector<float> direction(3) ;
-//
+//using std::vector;
 
  struct direction {
   float xhat;
   float yhat;
   float zhat;
+  };
+
+ struct skinny {
+  std::vector<direction> vecDirection ;
+  float origin[3];
+  float distance;
   };
 
  struct fat {
@@ -63,7 +46,6 @@ using std::vector;
   float color[3];
   int pixel ;
   };
-
 
 
 
