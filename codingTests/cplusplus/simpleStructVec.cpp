@@ -30,10 +30,15 @@ void foo() {
 
 
 void vecFoo() {
-  for (int i = 0 ; i < 2; i++)
-  {
-    myVecTest.push_back(test());
-  }
+//  for (int i = 0 ; i < 2; i++)
+//  {
+    myVecTest.push_back(test()); //initialize first element which is a struct
+    myVecTest[0].length=2;
+    myVecTest[0].vec.push_back(thisway);
+    myVecTest.push_back(test()); // add second element
+    myVecTest[1].length=3;
+    myVecTest[1].vec.push_back(thisway);
+//  }
 }
 int main(int argc, char** argv)
 {
