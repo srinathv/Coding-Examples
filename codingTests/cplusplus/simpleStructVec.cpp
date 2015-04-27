@@ -30,11 +30,11 @@ void foo() {
 
 
 void vecFoo() {
-  for (int i = 0 ; i < 201; i++)
+  for (int i = 0 ; i < 2; i++)
   {
-  myVecTest[1].vec.push_back(thisway) ; }
+    myVecTest.push_back(test());
+  }
 }
-
 int main(int argc, char** argv)
 {
    foo();
@@ -45,6 +45,12 @@ int main(int argc, char** argv)
      std::cout << "Vector capacity " << mytest.vec.capacity() << std::endl;
      std::cout << "Vector Element 255 zhat " << mytest.vec[255].zhat << std::endl;
      std::cout << "Vector Element 256 zhat " << mytest.vec[256].zhat << std::endl;
+   }
+
+   vecFoo();
+   if (!myVecTest.empty())
+   {
+    std::cout << "myVecTest " << std::endl;
    }
    return 0;
 }
