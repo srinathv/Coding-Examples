@@ -48,6 +48,7 @@
   };
 
 
+  direction normal = {1.1,3.45,2.2};
 
 int main(){
 #ifdef USE_TAU
@@ -63,7 +64,7 @@ int main(){
 #ifdef VEC
 
 
-  std::vector<float> v1;
+  std::vector<skinny> v1;
   std::cout << "This is std::vector push_back time" << std::endl;
 
   {

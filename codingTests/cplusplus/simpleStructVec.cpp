@@ -10,18 +10,29 @@ struct direction {
 
 struct test {
     std::vector<direction> vec;
+    int length;
 };
 
 //std::vector<float> floatVec(3);  //compiles
 
 test mytest;
+std::vector<test> myVecTest;
 
 direction thisway = {1,2,3};
+
+
 void foo() {
   for (int i= 0; i< 201; i++)
   {
    mytest.vec.push_back(thisway);
   }
+}
+
+
+void vecFoo() {
+  for (int i = 0 ; i < 201; i++)
+  {
+  myVecTest[1].vec.push_back(thisway) ; }
 }
 
 int main(int argc, char** argv)
