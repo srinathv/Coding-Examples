@@ -30,15 +30,18 @@ void foo() {
 
 
 void vecFoo() {
-//  for (int i = 0 ; i < 2; i++)
-//  {
+  for (int i = 0 ; i < 2; i++)
+  {
+//    myVecTest.push_back(test()); //initialize first element which is a struct
+//    myVecTest[0].length=2;
+//    myVecTest[0].vec.push_back(thisway);
+//    myVecTest.push_back(test()); // add second element
+//    myVecTest[1].length=3;
+//    myVecTest[1].vec.push_back(thisway);
     myVecTest.push_back(test()); //initialize first element which is a struct
-    myVecTest[0].length=2;
-    myVecTest[0].vec.push_back(thisway);
-    myVecTest.push_back(test()); // add second element
-    myVecTest[1].length=3;
-    myVecTest[1].vec.push_back(thisway);
-//  }
+    myVecTest[i].length=2;
+    myVecTest[i].vec.push_back(thisway);
+  }
 }
 int main(int argc, char** argv)
 {
@@ -55,7 +58,7 @@ int main(int argc, char** argv)
    vecFoo();
    if (!myVecTest.empty())
    {
-    std::cout << "myVecTest " << std::endl;
+    std::cout << "myVecTest " << myVecTest[1].vec[0].xhat << std::endl;
    }
    return 0;
 }
