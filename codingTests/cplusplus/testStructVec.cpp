@@ -48,9 +48,16 @@ using std::vector;
 */
 
 // std::vector<float> direction(3) ;
+//
+
+ struct direction {
+  float xhat;
+  float yhat;
+  float zhat;
+  };
 
  struct fat {
-  std::vector<float> direction(3) ;
+  std::vector<direction> vecDirection ;
   float origin[3];
   float distance;
   float color[3];

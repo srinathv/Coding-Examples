@@ -3,7 +3,7 @@
 
 struct test {
     std::vector<int> vec;
-//    std::vector<float> floatVec(3); //does not compile
+    std::vector<float> floatVec(3); //does not compile
 };
 
 //std::vector<float> floatVec(3);  //compiles
