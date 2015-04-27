@@ -47,10 +47,10 @@ using std::vector;
  int pixel;
 */
 
- std::vector<float> direction(3) ;
+// std::vector<float> direction(3) ;
 
  struct fat {
-//  std::vector<float> direction(3) ;
+  std::vector<float> direction(3) ;
   float origin[3];
   float distance;
   float color[3];
