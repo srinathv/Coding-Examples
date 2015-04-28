@@ -30,7 +30,16 @@ void foo(test &directionVec, direction &whichway) {
 void vecFoo(std::vector<direction> &vecOfVecs, test &insideVec, direction &whichway) {
   for (int i = 0 ; i < 2; i++)
   {
-      vecOfVecs.push_back(insideVec);
+//    myVecTest.push_back(test()); //initialize first element which is a struct
+//    myVecTest[0].length=2;
+//    myVecTest[0].vec.push_back(thisway);
+//    myVecTest.push_back(test()); // add second element
+//    myVecTest[1].length=3;
+//    myVecTest[1].vec.push_back(thisway);
+//    myVecTest.push_back(test()); //initialize first element which is a struct
+//    myVecTest[i].length=2;
+//    myVecTest[i].vec.push_back(thisway);
+//     vecOfVecs.push_back(insideVec);
 //        foo(&vecOfVecs[i]);
   }
 }
