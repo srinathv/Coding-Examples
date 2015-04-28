@@ -39,8 +39,8 @@ void vecFoo(std::vector<test> &vecOfVecs, test &insideVec, direction &whichway) 
 //    myVecTest.push_back(test()); //initialize first element which is a struct
 //    myVecTest[i].length=2;
 //    myVecTest[i].vec.push_back(thisway);
-     vecOfVecs.push_back(insideVec);
-//        foo(&vecOfVecs[i]);
+      vecOfVecs.push_back(insideVec);
+      foo(vecOfVecs[i],whichway);
   }
 }
 
@@ -63,10 +63,10 @@ int main(int argc, char** argv)
      std::cout << "Vector Element 256 zhat " << mytest.vec[256].zhat << std::endl;
    }
 
-//   vecFoo(myVecTest,mytest, thisway);
-//   if (!myVecTest.empty())
-//   {
-//    std::cout << "myVecTest " << myVecTest[1].vec[0].xhat << std::endl;
-//   }
-//   return 0;
+   vecFoo(myVecTest,mytest, thisway);
+   if (!myVecTest.empty())
+   {
+    std::cout << "myVecTest " << myVecTest[1].vec[0].xhat << std::endl;
+   }
+   return 0;
 }
