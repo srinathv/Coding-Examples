@@ -73,7 +73,9 @@ int main(){
 
   makeVecOfSkinny(myVec, singleRay, normal, myOrigin, distance);
 
-
+  if (!myVec.empty()) {
+    std::cout << "what is inside " << myVec[2].origin[2] << std::endl;
+  }
 
 	return 0;
 }
