@@ -39,7 +39,7 @@ void vecFoo(std::vector<direction> &vecOfVecs, test &insideVec, direction &which
 //    myVecTest.push_back(test()); //initialize first element which is a struct
 //    myVecTest[i].length=2;
 //    myVecTest[i].vec.push_back(thisway);
-//     vecOfVecs.push_back(insideVec);
+     vecOfVecs.push_back(insideVec);
 //        foo(&vecOfVecs[i]);
   }
 }
