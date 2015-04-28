@@ -47,8 +47,10 @@
   int pixel ;
   };
 
-
   direction normal = {1.1,3.45,2.2};
+
+
+  manyFatArrays(fat array,[
 
 int main(){
 #ifdef USE_TAU
