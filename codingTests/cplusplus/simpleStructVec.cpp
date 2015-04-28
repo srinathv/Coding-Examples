@@ -13,7 +13,6 @@ struct test {
     int length;
     };
 
-//std::vector<float> floatVec(3);  //compiles
 
 void foo(test &directionVec, direction &whichway) {
   for (int i= 0; i< 201; i++)
@@ -32,7 +31,7 @@ void vecFoo(std::vector<direction> &vecOfVecs, test &insideVec, direction &which
   for (int i = 0 ; i < 2; i++)
   {
       vecOfVecs.push_back(insideVec);
-      foo(&vecOfVecs[i]);
+//        foo(&vecOfVecs[i]);
   }
 }
 
@@ -55,10 +54,10 @@ int main(int argc, char** argv)
      std::cout << "Vector Element 256 zhat " << mytest.vec[256].zhat << std::endl;
    }
 
-   vecFoo(myVecTest,mytest, thisway);
-   if (!myVecTest.empty())
-   {
-    std::cout << "myVecTest " << myVecTest[1].vec[0].xhat << std::endl;
-   }
-   return 0;
+//   vecFoo(myVecTest,mytest, thisway);
+//   if (!myVecTest.empty())
+//   {
+//    std::cout << "myVecTest " << myVecTest[1].vec[0].xhat << std::endl;
+//   }
+//   return 0;
 }
