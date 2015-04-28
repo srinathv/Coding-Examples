@@ -27,7 +27,7 @@ void foo(test &directionVec, direction &whichway) {
 
 
 
-void vecFoo(std::vector<direction> &vecOfVecs, test &insideVec, direction &whichway) {
+void vecFoo(std::vector<test> &vecOfVecs, test &insideVec, direction &whichway) {
   for (int i = 0 ; i < 2; i++)
   {
 //    myVecTest.push_back(test()); //initialize first element which is a struct
