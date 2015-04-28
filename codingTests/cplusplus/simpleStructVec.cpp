@@ -28,13 +28,13 @@ void foo(test &directionVec, direction &whichway) {
 
 
 
-//void vecFoo(std::vector<direction> *vecOfVecs, test *insideVec, direction *whichway) {
-//  for (int i = 0 ; i < 2; i++)
-//  {
-//      vecOfVecs.push_back(&insideVec);
-//      foo(&vecOfVecs[i]);
-//  }
-//}
+void vecFoo(std::vector<direction> &vecOfVecs, test &insideVec, direction &whichway) {
+  for (int i = 0 ; i < 2; i++)
+  {
+      vecOfVecs.push_back(insideVec);
+      foo(&vecOfVecs[i]);
+  }
+}
 
 
 int main(int argc, char** argv)
@@ -55,10 +55,10 @@ int main(int argc, char** argv)
      std::cout << "Vector Element 256 zhat " << mytest.vec[256].zhat << std::endl;
    }
 
-//   vecFoo(myVecTest,mytest,direction);
-//   if (!myVecTest.empty())
-//   {
-//    std::cout << "myVecTest " << myVecTest[1].vec[0].xhat << std::endl;
-//   }
+   vecFoo(myVecTest,mytest, thisway);
+   if (!myVecTest.empty())
+   {
+    std::cout << "myVecTest " << myVecTest[1].vec[0].xhat << std::endl;
+   }
    return 0;
 }
