@@ -75,6 +75,7 @@ int main(){
 
   if (!myVec.empty()) {
     std::cout << "what is inside " << myVec[2].origin[2] << std::endl;
+    std::cout << "myVec size is " << myVec.size() << std::endl;
   }
 
 	return 0;
