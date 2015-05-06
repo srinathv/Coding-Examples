@@ -37,6 +37,13 @@
   float distance;
   };
 
+ struct skinnyDeque {
+  std::deque<direction> vecDirection ;
+  float origin[3];
+  float distance;
+  };
+
+
  struct fat {
   std::vector<direction> vecDirection ;
   float origin[3];
@@ -61,6 +68,14 @@
     }
 }
 
+
+   void destVecOfSkinny(std::vector<skinny> &vecOfSkinny) {
+    for (int i = 0 ; i < N+1; i++)
+    {
+    vecOfSkinny[i].vecDirection.push_back();
+    }
+}
+
 int main(){
 
 
@@ -72,6 +87,7 @@ int main(){
   skinny singleRay;
 
   makeVecOfSkinny(myVec, singleRay, normal, myOrigin, distance);
+  destVecOfSkinny(myVec);
 
   if (!myVec.empty()) {
     std::cout << "what is inside " << myVec[2].origin[2] << std::endl;
