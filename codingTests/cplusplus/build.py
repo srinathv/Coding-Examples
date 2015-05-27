@@ -21,7 +21,7 @@ LIBS=' -L./. -lcupti -lcuda /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/in
     /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/lib/libboost_chrono.a \
     /scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/lib/libboost_thread.a -lrt '
 INCLUDES=' -I/scratch/02463/srinathv/TEST/Gravity/boost_1_55_0/install/include '
-COMPILER='icpc '
+COMPILER='g++'
 TAU_COMPILER='tau_cxx.sh '
 
 TAU_EXPORTS='export PATH=/work/02463/srinathv/tau2/x86_64/bin:$PATH; \
@@ -41,7 +41,7 @@ def main():
 
   parser.add_argument('-t','--tau',action="store_true",
                       help='Profile with TAU')
-  
+
   parser.add_argument('-sv','--stdvec',action="store_true",
                       help='Do std::vector test.')
 
@@ -50,7 +50,7 @@ def main():
 
   parser.add_argument('-sq','--stddeq',action="store_true",
                       help='Do std::deque test.')
-  
+
   parser.add_argument('-d','--debug',action="store_true",
                       help='Debug log')
 
@@ -82,9 +82,9 @@ def main():
 
 
   if (args.openmp):
-     FLAGS = FLAGS + OMP_FLAG 
+     FLAGS = FLAGS + OMP_FLAG
 
-  
+
 #build commands
   if (args.tau):
     EXE_NAME=EXE_BASE+'tau_N'+str(args.numelems)
