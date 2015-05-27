@@ -16,10 +16,30 @@ program jacobi_mpiomp
   integer np, myid
   integer js, je, js1, je1
   integer nbr_down, nbr_up, status(mpi_status_size), ierr
+       INTEGER NTHREADS, TID, OMP_GET_NUM_THREADS, &
+     &   OMP_GET_THREAD_NUM
+
 
   call mpi_init(ierr)
   call mpi_comm_size(mpi_comm_world,np,ierr)
   call mpi_comm_rank(mpi_comm_world,myid,ierr)
+
+!     Fork a team of threads with each thread having a private TID variable
+!$OMP PARALLEL PRIVATE(TID)
+
+!     Obtain and print thread id
+      TID = OMP_GET_THREAD_NUM()
+      PRINT *, 'Hello World from thread = ', TID
+
+!     Only master thread does this
+      IF (TID .EQ. 0) THEN
+        NTHREADS = OMP_GET_NUM_THREADS()
+        PRINT *, 'Number of threads = ', NTHREADS
+      END IF
+
+!     All threads join master thread and disband
+!$OMP END PARALLEL
+
 
   nbr_down = mpi_proc_null
   nbr_up   = mpi_proc_null
