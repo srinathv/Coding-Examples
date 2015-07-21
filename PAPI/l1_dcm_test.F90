@@ -2,7 +2,7 @@
 
 program simple
 
-#include 'fpapi.h'
+include 'f90papi.h'
 
 
 !Declare the events you want to count and other error-related variables,

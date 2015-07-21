@@ -1,6 +1,6 @@
 program test
 
-#include 'fpapi.h'
+include 'f90papi.h'
 
   use ifport
 

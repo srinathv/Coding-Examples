@@ -2,12 +2,12 @@
 
 program simple
 
-#include 'fpapi.h'
+include 'f90papi.h'
 
 
 !Declare the events you want to count and other error-related variables,
 !for example:
-       integer, parameter :: numevents = 4
+       integer, parameter :: numevents = 3
        integer events (numevents),  ierr
        character*(PAPI_MAX_STR_LEN) errorstring
 !Declare variables to hold the event counts:
