@@ -7,14 +7,14 @@ program simple
 
 !Declare the events you want to count and other error-related variables,
 !for example:
-       integer events (2), numevents, ierr
+       integer, parameter :: numevents = 1
+       integer events (numevents),  ierr
        character*(PAPI_MAX_STR_LEN) errorstring
 !Declare variables to hold the event counts:
-       integer*8 values (2)
+       integer*8 values (numevents)
 !Set each event to the desired type, listed in f77papi.h (or below):
-       numevents = 2
-       events(1) = PAPI_FP_INS
-       events(2) = PAPI_TOT_CYC
+       events(1) = PAPI_L1_DCM
+!       events(3) = PAPI_BR_MSP 
 !Start and clear the counters:
        call PAPIF_start_counters(events, numevents, ierr)
 !Do some computation, then read and reset them but leave them running:
@@ -31,6 +31,5 @@ program simple
        endif
 
 
-      print *, " papi_FP_INS is ", values(1)
-      print *, " PAPI_TOT_CYC is ", values(2)
+      print *, " PAPI_L1_DCM is ", values(1)
 end program
