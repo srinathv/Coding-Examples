@@ -1,40 +1,40 @@
-C******************************************************************************
-C FILE: omp_mm.f
-C DESCRIPTION:  
-C   OpenMp Example - Matrix Multiply - Fortran Version 
-C   Demonstrates a matrix multiply using OpenMP. Threads share row iterations
-C   according to a predefined chunk size.
-C AUTHOR: Blaise Barney
-C LAST REVISED: 1/5/04 Blaise Barney
-C******************************************************************************
+!******************************************************************************
+!FILE: omp_mm.f
+!DESCRIPTION:
+!  OpenMp Example - Matrix Multiply - Fortran Version
+!  Demonstrates a matrix multiply using OpenMP. Threads share row iterations
+!  according to a predefined chunk size.
+!AUTHOR: Blaise Barney
+!LAST REVISED: 1/5/04 Blaise Barney
+!******************************************************************************
 
       PROGRAM MATMULT
 
-      INTEGER  NRA, NCA, NCB, TID, NTHREADS, I, J, K, CHUNK,
-     +         OMP_GET_NUM_THREADS, OMP_GET_THREAD_NUM
-C     number of rows in matrix A 
+      INTEGER  NRA, NCA, NCB, TID, NTHREADS, I, J, K, CHUNK
+       INTEGER         OMP_GET_NUM_THREADS, OMP_GET_THREAD_NUM
+!    number of rows in matrix A
       PARAMETER (NRA=62)
-C     number of columns in matrix A
+!    number of columns in matrix A
       PARAMETER (NCA=15)
-C     number of columns in matrix B
+!    number of columns in matrix B
       PARAMETER (NCB=7)
 
       REAL*8 A(NRA,NCA), B(NCA,NCB), C(NRA,NCB)
 
-C     Set loop iteration chunk size 
+!    Set loop iteration chunk size
       CHUNK = 10
 
-C     Spawn a parallel region explicitly scoping all variables
+!    Spawn a parallel region explicitly scoping all variables
 !$OMP PARALLEL SHARED(A,B,C,NTHREADS,CHUNK) PRIVATE(TID,I,J,K)
       TID = OMP_GET_THREAD_NUM()
       IF (TID .EQ. 0) THEN
         NTHREADS = OMP_GET_NUM_THREADS()
-        PRINT *, 'Starting matrix multiple example with', NTHREADS,
-     +           'threads'
+        PRINT *, 'Starting matrix multiple example with', NTHREADS, &
+                'threads'
         PRINT *, 'Initializing matrices'
       END IF
 
-C     Initialize matrices
+!    Initialize matrices
 !$OMP DO SCHEDULE(STATIC, CHUNK)
       DO 30 I=1, NRA
         DO 30 J=1, NCA
@@ -51,8 +51,8 @@ C     Initialize matrices
           C(I,J) = 0
   50  CONTINUE
 
-C     Do matrix multiply sharing iterations on outer loop
-C     Display who does which iterations for demonstration purposes
+!    Do matrix multiply sharing iterations on outer loop
+!    Display who does which iterations for demonstration purposes
       PRINT *, 'Thread', TID, 'starting matrix multiply...'
 !$OMP DO SCHEDULE(STATIC, CHUNK)
       DO 60 I=1, NRA
@@ -62,10 +62,10 @@ C     Display who does which iterations for demonstration purposes
             C(I,J) = C(I,J) + A(I,K) * B(K,J)
   60  CONTINUE
 
-C     End of parallel region 
+!    End of parallel region
 !$OMP END PARALLEL
 
-C     Print results
+!    Print results
       PRINT *, '******************************************************'
       PRINT *, 'Result Matrix:'
       DO 90 I=1, NRA
