@@ -3,6 +3,7 @@
 #Simple class that
 #1)is imported into ipython
 #2)prints what is sent in
+#3)what else
 
 class simplePrint:
     "print the input to screen"
