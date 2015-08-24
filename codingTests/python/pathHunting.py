@@ -18,3 +18,6 @@ print("This file directory only")
 print(os.path.dirname(full_path))
 
 print path.split('/')[-1]
+
+print ("This lists all directories in the current directory")
+print (filter(os.path.isdir, os.listdir(os.getcwd())))
