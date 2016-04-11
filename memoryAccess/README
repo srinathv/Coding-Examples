@@ -1,0 +1,10 @@
+Summary
+
+Note that the output is exactly the same as in the C program!
+This means that when the loops are iterated in the same order as in C (k,j,i) we get the same memory layout as in a C program, even though the language syntax requires (i,j,k) ordering. So, it's really just the indexing syntax that is different if the loops are treated as in C. In fact, if we were storing anything but an increasing index into the array, we'd get the same values in C and Fortran regardless of the order of the loops, but cache performance would vary.
+Q: But why would I want to treat loops as in C? Why wouldn't I want to iterate in i,j,k order?
+A: Well, you could iterate in i,j,k order but you would no longer access memory in a contiguous manner. Our program demonstrates that indexing in k,j,i order, as in C, lets you access adjacent memory locations with each store so you'll have a better memory access pattern. If you were iterating in i,j,k order, the i index would no longer change most rapidly and your memory accesses would skip around inside the array, leading to poorer cache performance.
+In summary:
+The "shape" of the memory is exactly the same in C and Fortran even though language differences make it look different due to reversed array indexing.
+If you don't iterate through a Fortran array in k,j,i order, you'll access memory out of order and negatively impact your cache performance.
+Category
