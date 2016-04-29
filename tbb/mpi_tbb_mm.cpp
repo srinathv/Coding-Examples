@@ -156,7 +156,8 @@ numworkers = numtasks-1;
       //          c[i][k] = c[i][k] + a[i][j] * b[j][k];
       //    }
 
-			subMatrixMultiply(NCA,NCB,rows,a,b,c);
+			//subMatrixMultiply(NCA,NCB,rows,a,b,c);
+			tbb_SubMatrixMultiply(NCA,NCB,rows,a,b,c);
 
 
       mtype = FROM_WORKER;
