@@ -44,18 +44,16 @@ for (size_t k=0; k<ncb; k++)
 };
 
 void tbb_SubMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB]){
-	  parallel_for( blocked_range<size_t>)(0,ncb),
-		  [=] (const blocked_range<size_t>& r) {
-				for (size_t k=r.begin(); k!=r.end(); k++)
+	  parallel_for( 0,ncb, [&](int k){
 					 for (size_t i=0; i<rows; i++)
 					 {
 							c[i][k] = 0.0;
 							for (size_t j=0; j<nca; j++)
 								 c[i][k] = c[i][k] + a[i][j] * b[j][k];
 					 }
-			}
+			});
 
-};
+}
 
 /******************/
 
