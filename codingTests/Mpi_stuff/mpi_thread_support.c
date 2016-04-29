@@ -13,6 +13,6 @@ int int main(int argc, char const *argv[]) {
   MPI_Init_thread (0,0, MPI_THREAD_MULTIPLE, &provided);
   MPI_Query_thread (&claimed);
     printf("Query thread level = %d   Init_thread level = %d\n", );
-  MPI_Finalize();
+  MPI_Finalize();   
   return 0;
 }
