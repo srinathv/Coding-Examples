@@ -16,6 +16,8 @@
 #include <stdlib.h>
 
 #include "tbb/tbb.h"
+#include "tbb/task_scheduler_init.h"
+
 
 using namespace tbb;
 
@@ -82,7 +84,7 @@ if (numtasks < 2 ) {
   exit(1);
   }
 numworkers = numtasks-1;
-
+int n = task_scheduler_init::default_num_threads();
 
 /**************************** master task ************************************/
    if (taskid == MASTER)
