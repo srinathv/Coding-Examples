@@ -18,6 +18,10 @@
 #include "tbb/tbb.h"
 #include "tbb/task_scheduler_init.h"
 
+#ifdef __USE_TAU
+#include <TAU.h>
+#endif
+
 
 using namespace tbb;
 
@@ -47,6 +51,10 @@ for (size_t k=0; k<ncb; k++)
 
 void tbb_SubMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB]){
 	  parallel_for( 0,ncb, [&](int k){
+#ifdef __USE_TAU
+TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
+#endif
+
 					 for (size_t i=0; i<rows; i++)
 					 {
 							c[i][k] = 0.0;
@@ -83,6 +91,10 @@ if (numtasks < 2 ) {
   MPI_Abort(MPI_COMM_WORLD, rc);
   exit(1);
   }
+#ifdef __USE_TAU
+TAU_PROFILE("main","",TAU_DEFAULT);
+#endif
+
 numworkers = numtasks-1;
 int n = task_scheduler_init::default_num_threads();
 
@@ -144,6 +156,10 @@ int n = task_scheduler_init::default_num_threads();
 /**************************** worker task ************************************/
    if (taskid > MASTER)
    {
+#ifdef __USE_TAU
+TAU_PROFILE("worker tasks","",TAU_DEFAULT);
+#endif
+
       mtype = FROM_MASTER;
       MPI_Recv(&offset, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
       MPI_Recv(&rows, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
