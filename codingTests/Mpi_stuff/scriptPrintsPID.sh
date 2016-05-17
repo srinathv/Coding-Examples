@@ -4,4 +4,4 @@
 
 echo "This program shows the PIDs of each process"
 
-echo $$, " is the PID of a rank"
+echo $$, " is the PID of a rank" > step1.$$.txt
