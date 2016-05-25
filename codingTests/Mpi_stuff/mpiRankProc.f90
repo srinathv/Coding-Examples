@@ -1,10 +1,10 @@
-C ****************************************************************************
-C FILE: mpi_hello.f
-C DESCRIPTION:
-C   MPI tutorial example code: Simple hello world program
-C AUTHOR: Blaise Barney
-C LAST REVISED: 03/05/10
-C ****************************************************************************
+! ****************************************************************************
+! FILE: mpi_hello.f
+! DESCRIPTION:
+!   MPI tutorial example code: Simple hello world program
+! AUTHOR: Blaise Barney
+! LAST REVISED: 03/05/10
+! ****************************************************************************
       program hello
       include 'mpif.h'
       parameter (MASTER = 0)
