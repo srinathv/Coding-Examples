@@ -17,6 +17,10 @@ int main() {
   std::cout << " on __i386__ \n";
 #endif
 
+#if defined (__GNUC__)
+  std::cout << " using gnu c compiler \n";
+#endif
+
 
 
   return 0;
