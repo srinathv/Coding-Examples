@@ -9,5 +9,15 @@ int main() {
   std::cout << "on APPLE \n";
 #endif
 
+#if defined (__x86_64__)
+  std::cout << " on __x86_64__ \n";
+#endif
+
+#if defined (__i386__)
+  std::cout << " on __i386__ \n";
+#endif
+
+
+
   return 0;
 }
