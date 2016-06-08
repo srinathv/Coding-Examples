@@ -1,0 +1,6 @@
+gcc -shared -o code.so
+python driver.py
+
+simple linking....doesn't do anything...yet.
+
+
