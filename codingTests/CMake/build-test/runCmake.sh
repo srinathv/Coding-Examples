@@ -4,4 +4,8 @@ rm -rf CMake*
 
 cmake ../.
 
-echo $?
+if [ $? ]; then
+  echo "exit status is NOT 0 "
+else
+  echo "exist status is 0"
+fi
