@@ -10,7 +10,7 @@ echo $foo
 echo "$foo"
 
 cat>foo.txt<<EOF
-
+#can I have a comment in file
 $foo
 "$foo"
 ${foo}
