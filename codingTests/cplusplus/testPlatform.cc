@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <sys/_endian.h>
 
 int main() {
 #if defined(__linux__)

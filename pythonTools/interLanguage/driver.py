@@ -2,6 +2,8 @@ __all__ = ['add', 'filter2d']
 
 import numpy as N
 import os
+import ctypes
+
 
 _path = os.path.dirname('__file__')
 lib = N.ctypeslib.load_library('code', _path)
