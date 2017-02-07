@@ -52,7 +52,6 @@ for (size_t k=0; k<ncb; k++)
 void tbb_SubMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB]){
 	  parallel_for( 0,ncb, [&](int k){
 #if defined(__USE_TAU)
-printf("inside tbb submatrix loop");
 TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
 #endif
 

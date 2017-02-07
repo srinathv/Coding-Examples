@@ -1,4 +1,3 @@
-!# env/#!/usr/bin/env bash
 
-
-mpirun -n 2 tau_exec -T icpc,mpi,tbb ./mpi_tbb_mm.tauLink
+#TAU_PROFILE_FORMAT=merged
+ibrun tau_exec -T knl_17,icpc,papi,mpi,tbb ./mpi_tbb_mm.tauLink.knl.exe
