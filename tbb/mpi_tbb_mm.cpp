@@ -51,7 +51,7 @@ for (size_t k=0; k<ncb; k++)
 
 void tbb_SubMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB]){
 	  parallel_for( 0,ncb, [&](int k){
-#ifdef __USE_TAU
+#if defined(__USE_TAU)
 TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
 #endif
 
@@ -91,7 +91,7 @@ if (numtasks < 2 ) {
   MPI_Abort(MPI_COMM_WORLD, rc);
   exit(1);
   }
-#if defined  (__USE_TAU)
+#if defined (__USE_TAU)
 TAU_PROFILE("main","",TAU_DEFAULT);
 #endif
 
