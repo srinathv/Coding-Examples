@@ -18,6 +18,8 @@
 #include "tbb/tbb.h"
 #include "tbb/task_scheduler_init.h"
 
+#include <thread>
+
 #include "ParseCommandLine.h"
 
 #ifdef __USE_TAU
@@ -26,6 +28,8 @@
 
 
 using namespace tbb;
+using namespace std;
+
 #include <tbb/task_scheduler_observer.h>
 class concurrency_tracker: public tbb::task_scheduler_observer {
     tbb::atomic<int> num_threads;
