@@ -25,7 +25,8 @@
 #endif
 
 
-using namespace tbb;#include <tbb/task_scheduler_observer.h>
+using namespace tbb;
+#include <tbb/task_scheduler_observer.h>
 class concurrency_tracker: public tbb::task_scheduler_observer {
     tbb::atomic<int> num_threads;
 public:
