@@ -98,6 +98,24 @@ TAU_PROFILE("main","",TAU_DEFAULT);
 numworkers = numtasks-1;
 int n = task_scheduler_init::default_num_threads();
 
+#if defined (__LIKE_GRAVIT)
+  cmd.parse(argc, argv);
+
+tbb::task_scheduler_init* init;
+if (!cmd.isSet("threads")) {
+  init = new tbb::task_scheduler_init(std::thread::hardware_concurrency());
+  std::cout << "Initialized GraviT with " << std::thread::hardware_concurrency() <<
+  " threads..."<< std::endl;
+} else {
+  init = new tbb::task_scheduler_init(cmd.get<int>("threads"));
+  std::cout << "Initialized GraviT with " << cmd.get<int>("threads") <<
+    " threads..."<< std::endl;
+}
+#else
+//tbb::task_scheduler_init init;  // Automatic number of threads
+tbb::task_scheduler_init init(tbb::task_scheduler_init::default_num_threads());  // Explicit number of threads
+#endif
+
 /**************************** master task ************************************/
    if (taskid == MASTER)
    {
