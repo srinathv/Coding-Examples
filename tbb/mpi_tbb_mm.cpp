@@ -18,13 +18,23 @@
 #include "tbb/tbb.h"
 #include "tbb/task_scheduler_init.h"
 
+#include "ParseCommandLine.h"
+
 #ifdef __USE_TAU
 #include <TAU.h>
 #endif
 
 
-using namespace tbb;
+using namespace tbb;#include <tbb/task_scheduler_observer.h>
+class concurrency_tracker: public tbb::task_scheduler_observer {
+    tbb::atomic<int> num_threads;
+public:
+    concurrency_tracker() : num_threads() { observe(true); }
+    /*override*/ void on_scheduler_entry( bool ) { ++num_threads; }
+    /*override*/ void on_scheduler_exit( bool ) { --num_threads; }
 
+    int get_concurrency() { return num_threads; }
+};
 
 
 
@@ -83,6 +93,9 @@ double	a[NRA][NCA],           /* matrix A to be multiplied */
 	c[NRA][NCB];           /* result matrix C */
 MPI_Status status;
 
+ParseCommandLine cmd("mpi_tbb_mm");
+cmd.addoption("threads", ParseCommandLine::INT, "Number of threads to use (default number cores + ht)", 1);
+
 MPI_Init(&argc,&argv);
 MPI_Comm_rank(MPI_COMM_WORLD,&taskid);
 MPI_Comm_size(MPI_COMM_WORLD,&numtasks);
@@ -104,11 +117,11 @@ int n = task_scheduler_init::default_num_threads();
 tbb::task_scheduler_init* init;
 if (!cmd.isSet("threads")) {
   init = new tbb::task_scheduler_init(std::thread::hardware_concurrency());
-  std::cout << "Initialized GraviT with " << std::thread::hardware_concurrency() <<
+  std::cout << "Initialized mpi_tbb_mm with " << std::thread::hardware_concurrency() <<
   " threads..."<< std::endl;
 } else {
   init = new tbb::task_scheduler_init(cmd.get<int>("threads"));
-  std::cout << "Initialized GraviT with " << cmd.get<int>("threads") <<
+  std::cout << "Initialized mpi_tbb_mm with " << cmd.get<int>("threads") <<
     " threads..."<< std::endl;
 }
 #else
