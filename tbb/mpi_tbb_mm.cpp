@@ -91,7 +91,7 @@ if (numtasks < 2 ) {
   MPI_Abort(MPI_COMM_WORLD, rc);
   exit(1);
   }
-#ifdef __USE_TAU
+#if defined  (__USE_TAU)
 TAU_PROFILE("main","",TAU_DEFAULT);
 #endif
 
