@@ -2,7 +2,9 @@
 #include <tbb/parallel_for.h>
 #include <tbb/blocked_range.h>
 
+
 using namespace tbb;
+using namespace std;
 
 const int size = 1000;
 
