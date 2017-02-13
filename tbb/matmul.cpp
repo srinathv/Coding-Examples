@@ -28,18 +28,18 @@ public:
 
 int main()
 {
-    // Initialize buffers.
-    //     for (int i = 0; i < size; ++i) {
-    //             for (int j = 0; j < size; ++j) {
-    //                         a[i][j] = (float)i + j;
-    //                                     b[i][j] = (float)i - j;
-    //                                                 c[i][j] = 0.0f;
-    //                                                         }
-    //                                                             }
-    //
-    //                                                                 // Compute matrix multiplication.
-    //                                                                     // C <- C + A x B
-    //                                                                         parallel_for(blocked_range<int>(0,size), Multiply());
-    //
-    //                                                                             return 0;
-    //                                                                             }G
+  //Initialize buffers.
+  for (int i = 0; i < size; ++i) {
+    for (int j = 0; j < size; ++j) {
+      a[i][j] = (float)i + j;
+      b[i][j] = (float)i - j;
+      c[i][j] = 0.0f;
+      }
+  }
+
+  // Compute matrix multiplication.
+  // C <- C + A x B
+  parallel_for(blocked_range<int>(0,size), Multiply());
+
+  return 0;
+}
