@@ -19,7 +19,7 @@
 #include "tbb/task_scheduler_init.h"
 
 #include <thread>
-
+#include "tbb/enumerable_thread_specific.h"
 #include "ParseCommandLine.h"
 
 #ifdef __USE_TAU
@@ -69,6 +69,7 @@ void tbb_SubMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b
 #if defined(__USE_TAU)
 TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
 #endif
+	cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << "\n";
 
 					 for (size_t i=0; i<rows; i++)
 					 {
@@ -134,6 +135,8 @@ if (!cmd.isSet("threads")) {
 tbb::task_scheduler_init init(tbb::task_scheduler_init::default_num_threads());  // Explicit number of threads
 #endif
 
+// Report thread id's 
+cout << "outside of parallel_for loop, the ThreadId is " << tbb::this_tbb_thread::get_id() << "\n";
 /**************************** master task ************************************/
    if (taskid == MASTER)
    {
