@@ -44,9 +44,9 @@ public:
 
 
 
-#define NRA 62                 /* number of rows in matrix A */
+#define NRA 15                 /* number of rows in matrix A */
 #define NCA 15                 /* number of columns in matrix A */
-#define NCB 62                  /* number of columns in matrix B */
+#define NCB 15                  /* number of columns in matrix B */
 #define MASTER 0               /* taskid of first task */
 #define FROM_MASTER 1          /* setting a message type */
 #define FROM_WORKER 2          /* setting a message type */
@@ -69,7 +69,7 @@ void tbb_SubMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b
 #if defined(__USE_TAU)
 TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
 #endif
-	cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << "\n";
+	std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
 
 					 for (size_t i=0; i<rows; i++)
 					 {
@@ -115,7 +115,7 @@ TAU_PROFILE("main","",TAU_DEFAULT);
 #endif
 
 numworkers = numtasks-1;
-int n = task_scheduler_init::default_num_threads();
+//int n = task_scheduler_init::default_num_threads();
 
 #if defined (__LIKE_GRAVIT)
   cmd.parse(argc, argv);
@@ -136,7 +136,7 @@ tbb::task_scheduler_init init(tbb::task_scheduler_init::default_num_threads()); 
 #endif
 
 // Report thread id's 
-cout << "outside of parallel_for loop, the ThreadId is " << tbb::this_tbb_thread::get_id() << "\n";
+std::cout << "outside of parallel_for loop, the ThreadId is " << tbb::this_tbb_thread::get_id() << std::endl;
 /**************************** master task ************************************/
    if (taskid == MASTER)
    {
