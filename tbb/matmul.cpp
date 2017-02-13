@@ -15,6 +15,7 @@ class Multiply
 {
 public:
     void operator()(blocked_range<int> r) const {
+      std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
         for (int i = r.begin(); i != r.end(); ++i) {
             for (int j = 0; j < size; ++j) {
                 for (int k = 0; k < size; ++k) {
