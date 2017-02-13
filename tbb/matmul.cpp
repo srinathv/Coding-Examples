@@ -1,6 +1,9 @@
 /* matrix-tbb.cpp */
 #include <tbb/parallel_for.h>
 #include <tbb/blocked_range.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "tbb/tbb.h
 
 
 using namespace tbb;
