@@ -9,7 +9,9 @@
 *   arrays are column-major order.
 * AUTHOR: Blaise Barney. Adapted from Ros Leibensperger, Cornell Theory
 *   Center. Converted to MPI: George L. Gusciora, MHPCC (1/95)
-* LAST REVISED: 04/13/05
+* LAST REVISED: 02/14/17
+*  ** S. Vadlamani: Make MPI +TBB with different "function" implementations
+*  ** with TAU interfaced
 ******************************************************************************/
 #include "mpi.h"
 #include <stdio.h>
@@ -30,6 +32,7 @@
 using namespace tbb;
 using namespace std;
 
+//Used to handle identifying and handling number of threads
 #include <tbb/task_scheduler_observer.h>
 class concurrency_tracker: public tbb::task_scheduler_observer {
     tbb::atomic<int> num_threads;
@@ -54,22 +57,25 @@ public:
 
 /*************sub matrix multipy **********************/
 
-class Multiply
-{
-public:
-  void operator()(blocked_range<int> r) const {
-    std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
-#if defined (__USE_TAU)
-    TAU_PROFILE("inside Multiply class","",TAU_DEFAULT);
-#endif
-for (int i = r.begin(); i != r.end(); ++i) {
-for (size_t k=0; k<ncb; k++) {
-	 for (size_t i=0; i<rows; i++) {
-			c[i][k] = 0.0;
-			for (size_t j=0; j<nca; j++)
-				 c[i][k] = c[i][k] + a[i][j] * b[j][k];
-	 }
-}
+// class Multiply
+// {
+// public:
+//   void operator()(blocked_range<int> r) const {
+//     std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
+// #if defined (__USE_TAU)
+//     TAU_PROFILE("inside Multiply class","",TAU_DEFAULT);
+// #endif
+// for (int i = r.begin(); i != r.end(); ++i) {
+// for (size_t k=0; k<ncb; k++) {
+// 	 for (size_t i=0; i<rows; i++) {
+// 			c[i][k] = 0.0;
+// 			for (size_t j=0; j<nca; j++)
+// 				 c[i][k] += a[i][j] * b[j][k];
+// 	 }
+// }
+// }
+// }
+// }
 
 void subMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB])
 {
@@ -167,7 +173,10 @@ std::cout << "outside of parallel_for loop, the ThreadId is " << tbb::this_tbb_t
          for (j=0; j<NCB; j++)
             b[i][j]= i*j;
 
-      /* Send matrix data to the worker tasks */
+      /* Send matrix data to the worker tasks
+      send a set of A rows to worker task
+      but need to send all of B to each worker task
+      TODO: rewrite as collective (MPI_SCATTER) */
       averow = NRA/numworkers;
       extra = NRA%numworkers;
       offset = 0;
@@ -184,7 +193,8 @@ std::cout << "outside of parallel_for loop, the ThreadId is " << tbb::this_tbb_t
          offset = offset + rows;
       }
 
-      /* Receive results from worker tasks */
+      /* Receive results from worker tasks
+       TODO: rewrite as a collective(MPI-GATHER) */
       mtype = FROM_WORKER;
       for (i=1; i<=numworkers; i++)
       {
