@@ -62,7 +62,7 @@ using namespace std;
 
 /*************sub matrix multipy **********************/
 
-
+#if defined (__USE_CLASS)
 class Multiply
 {
   double *const my_a;
@@ -79,7 +79,7 @@ public:
 #endif
     for (int i = r.begin(); i != r.end(); ++i) {
     	 for (size_t j=0; j<NCB; j++) {
-    			c[i][k] = 0.0;
+    			c[i][j] = 0.0;
     			for (size_t k=0; k<NCA; k++)
     				 c[i][j] += a[i][k] * b[k][j];
     	 }
@@ -91,7 +91,7 @@ public:
     my_c(c)
   {}
 };
-
+#endif
 
 
 
