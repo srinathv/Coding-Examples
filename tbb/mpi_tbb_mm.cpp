@@ -85,7 +85,7 @@ public:
     	 }
     }
   }
-  Multiply( double a[][], double b[][], double c[][] ) :
+  Multiply( double a[][NCA], double b[][NCB], double c[][NCB] ) :
     my_a(a)
     my_b(b)
     my_c(c)
