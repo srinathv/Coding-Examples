@@ -86,17 +86,17 @@ using namespace std;
 
 #if defined (__USE_TBB)
 void tbb_SubMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB]){
-	  parallel_for( 0,ncb, [&](int k){
+	  parallel_for( r.begin(),r.end(), [=](int i){
 #if defined(__USE_TAU)
 TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
 #endif
 	std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
 
-					 for (size_t i=0; i<rows; i++)
+					 for (size_t j=0; j<ncb; j++)
 					 {
 							c[i][k] = 0.0;
-							for (size_t j=0; j<nca; j++)
-								 c[i][k] += a[i][j] * b[j][k];
+							for (size_t k=0; k<nca; k++)
+								 c[i][j] += a[i][k] * b[k][j];
 					 }
 			});
 
