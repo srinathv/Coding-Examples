@@ -104,9 +104,9 @@ TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
 #else
 void subMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB])
 {
-	 for (size_t i=0; i<rows; i++) {
-     for (size_t j=0; j<ncb; k++) {
-			c[i][k] = 0.0;
+ for (size_t i=0; i<rows; i++) {
+         for (size_t j=0; j<ncb; j++) {
+			c[i][j] = 0.0;
 			for (size_t k=0; k<nca; k++)
 				 c[i][j] += a[i][k] * b[k][j];
 	 }
@@ -170,10 +170,10 @@ if (!cmd.isSet("threads")) {
 //tbb::task_scheduler_init init;  // Automatic number of threads
 tbb::task_scheduler_init init(tbb::task_scheduler_init::default_num_threads());  // Explicit number of threads
 #endif
+std::cout << "outside of parallel_for loop, the ThreadId is " << tbb::this_tbb_thread::get_id() << std::endl;
 #endif
 
 // Report thread id's
-std::cout << "outside of parallel_for loop, the ThreadId is " << tbb::this_tbb_thread::get_id() << std::endl;
 /**************************** master task ************************************/
    if (taskid == MASTER)
    {
