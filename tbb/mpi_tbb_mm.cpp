@@ -62,25 +62,24 @@ using namespace std;
 
 /*************sub matrix multipy **********************/
 
-// class Multiply
-// {
-// public:
-//   void operator()(blocked_range<int> r) const {
-//     std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
-// #if defined (__USE_TAU)
-//     TAU_PROFILE("inside Multiply class","",TAU_DEFAULT);
-// #endif
-// for (int i = r.begin(); i != r.end(); ++i) {
-// for (size_t k=0; k<ncb; k++) {
-// 	 for (size_t i=0; i<rows; i++) {
-// 			c[i][k] = 0.0;
-// 			for (size_t j=0; j<nca; j++)
-// 				 c[i][k] += a[i][j] * b[j][k];
-// 	 }
-// }
-// }
-// }
-// }
+class Multiply
+{
+public:
+  void operator()(blocked_range<int> r) const {
+    std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
+#if defined (__USE_TAU)
+    TAU_PROFILE("inside Multiply class","",TAU_DEFAULT);
+#endif
+    for (int i = r.begin(); i != r.end(); ++i) {
+    	 for (size_t j=0; j<ncb; j++) {
+    			c[i][k] = 0.0;
+    			for (size_t k=0; k<nca; k++)
+    				 c[i][j] += a[i][k] * b[k][j];
+    	 }
+    }
+    }
+  }
+}
 
 
 
@@ -255,7 +254,11 @@ TAU_PROFILE("worker tasks","",TAU_DEFAULT);
       //          c[i][k] = c[i][k] + a[i][j] * b[j][k];
       //    }
 #if defined(__USE_TBB)
+#if defined(__USE_CLASS)
+      parallel_for(blocked_range<int>(0,nca), Multiply());
+#else
 			tbb_SubMatrixMultiply(NCA,NCB,rows,a,b,c);
+#endif
 #else
 			subMatrixMultiply(NCA,NCB,rows,a,b,c);
 #endif
