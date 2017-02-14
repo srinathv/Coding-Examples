@@ -1,8 +1,7 @@
 /* matrix-tbb.cpp */
 #include <tbb/parallel_for.h>
 #include <tbb/blocked_range.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
 #include "tbb/tbb.h"
 
 #if defined (__USE_TAU)
