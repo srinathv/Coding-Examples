@@ -62,24 +62,36 @@ using namespace std;
 
 /*************sub matrix multipy **********************/
 
+
 class Multiply
 {
+  double *const my_a;
+  double *const my_b;
+  double *const my_c;
 public:
   void operator()(blocked_range<int> r) const {
+    double *a = my_a;
+    double *b = my_b;
+    double *c = my_c;
     std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
 #if defined (__USE_TAU)
     TAU_PROFILE("inside Multiply class","",TAU_DEFAULT);
 #endif
     for (int i = r.begin(); i != r.end(); ++i) {
-    	 for (size_t j=0; j<ncb; j++) {
+    	 for (size_t j=0; j<NCB; j++) {
     			c[i][k] = 0.0;
-    			for (size_t k=0; k<nca; k++)
+    			for (size_t k=0; k<NCA; k++)
     				 c[i][j] += a[i][k] * b[k][j];
     	 }
     }
-    }
   }
-}
+  Multiply( double a[][], double b[][], double c[][] ) :
+    my_a(a)
+    my_b(b)
+    my_c(c)
+  {}
+};
+
 
 
 
