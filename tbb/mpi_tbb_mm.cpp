@@ -53,6 +53,24 @@ public:
 
 
 /*************sub matrix multipy **********************/
+
+class Multiply
+{
+public:
+  void operator()(blocked_range<int> r) const {
+    std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
+#if defined (__USE_TAU)
+    TAU_PROFILE("inside Multiply class","",TAU_DEFAULT);
+#endif
+for (int i = r.begin(); i != r.end(); ++i) {
+for (size_t k=0; k<ncb; k++) {
+	 for (size_t i=0; i<rows; i++) {
+			c[i][k] = 0.0;
+			for (size_t j=0; j<nca; j++)
+				 c[i][k] = c[i][k] + a[i][j] * b[j][k];
+	 }
+}
+
 void subMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB])
 {
 for (size_t k=0; k<ncb; k++)
@@ -60,7 +78,7 @@ for (size_t k=0; k<ncb; k++)
 	 {
 			c[i][k] = 0.0;
 			for (size_t j=0; j<nca; j++)
-				 c[i][k] = c[i][k] + a[i][j] * b[j][k];
+				 c[i][k] += a[i][j] * b[j][k];
 	 }
 };
 
@@ -75,7 +93,7 @@ TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
 					 {
 							c[i][k] = 0.0;
 							for (size_t j=0; j<nca; j++)
-								 c[i][k] = c[i][k] + a[i][j] * b[j][k];
+								 c[i][k] += a[i][j] * b[j][k];
 					 }
 			});
 
@@ -135,7 +153,7 @@ if (!cmd.isSet("threads")) {
 tbb::task_scheduler_init init(tbb::task_scheduler_init::default_num_threads());  // Explicit number of threads
 #endif
 
-// Report thread id's 
+// Report thread id's
 std::cout << "outside of parallel_for loop, the ThreadId is " << tbb::this_tbb_thread::get_id() << std::endl;
 /**************************** master task ************************************/
    if (taskid == MASTER)
