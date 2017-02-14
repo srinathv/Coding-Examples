@@ -17,20 +17,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#if defined (__USE_TBB)
 #include "tbb/tbb.h"
 #include "tbb/task_scheduler_init.h"
 
 #include <thread>
 #include "tbb/enumerable_thread_specific.h"
 #include "ParseCommandLine.h"
-
-#ifdef __USE_TAU
-#include <TAU.h>
-#endif
-
-
 using namespace tbb;
-using namespace std;
 
 //Used to handle identifying and handling number of threads
 #include <tbb/task_scheduler_observer.h>
@@ -43,6 +37,17 @@ public:
 
     int get_concurrency() { return num_threads; }
 };
+
+#endif
+
+#ifdef __USE_TAU
+#include <TAU.h>
+#endif
+
+using namespace std;
+
+
+
 
 
 
@@ -77,17 +82,9 @@ public:
 // }
 // }
 
-void subMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB])
-{
-	 for (size_t i=0; i<rows; i++) {
-     for (size_t j=0; j<ncb; k++) {
-			c[i][k] = 0.0;
-			for (size_t k=0; k<nca; k++)
-				 c[i][j] += a[i][k] * b[k][j];
-	 }
- }
-};
 
+
+#if defined (__USE_TBB)
 void tbb_SubMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB]){
 	  parallel_for( 0,ncb, [&](int k){
 #if defined(__USE_TAU)
@@ -104,6 +101,18 @@ TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
 			});
 
 }
+#else
+void subMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB])
+{
+	 for (size_t i=0; i<rows; i++) {
+     for (size_t j=0; j<ncb; k++) {
+			c[i][k] = 0.0;
+			for (size_t k=0; k<nca; k++)
+				 c[i][j] += a[i][k] * b[k][j];
+	 }
+ }
+};
+#endif
 
 /******************/
 
@@ -123,8 +132,10 @@ double	a[NRA][NCA],           /* matrix A to be multiplied */
 	c[NRA][NCB];           /* result matrix C */
 MPI_Status status;
 
+#if defined (__USE_TBB)
 ParseCommandLine cmd("mpi_tbb_mm");
 cmd.addoption("threads", ParseCommandLine::INT, "Number of threads to use (default number cores + ht)", 1);
+#endif
 
 MPI_Init(&argc,&argv);
 MPI_Comm_rank(MPI_COMM_WORLD,&taskid);
@@ -141,6 +152,7 @@ TAU_PROFILE("main","",TAU_DEFAULT);
 numworkers = numtasks-1;
 //int n = task_scheduler_init::default_num_threads();
 
+#if defined (__USE_TBB)
 #if defined (__LIKE_GRAVIT)
   cmd.parse(argc, argv);
 
@@ -157,6 +169,7 @@ if (!cmd.isSet("threads")) {
 #else
 //tbb::task_scheduler_init init;  // Automatic number of threads
 tbb::task_scheduler_init init(tbb::task_scheduler_init::default_num_threads());  // Explicit number of threads
+#endif
 #endif
 
 // Report thread id's
