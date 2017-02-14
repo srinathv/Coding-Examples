@@ -79,13 +79,13 @@ public:
 
 void subMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB])
 {
-for (size_t k=0; k<ncb; k++)
-	 for (size_t i=0; i<rows; i++)
-	 {
+	 for (size_t i=0; i<rows; i++) {
+     for (size_t j=0; j<ncb; k++) {
 			c[i][k] = 0.0;
-			for (size_t j=0; j<nca; j++)
-				 c[i][k] += a[i][j] * b[j][k];
+			for (size_t k=0; k<nca; k++)
+				 c[i][j] += a[i][k] * b[k][j];
 	 }
+ }
 };
 
 void tbb_SubMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB]){
@@ -240,9 +240,11 @@ TAU_PROFILE("worker tasks","",TAU_DEFAULT);
       //       for (j=0; j<NCA; j++)
       //          c[i][k] = c[i][k] + a[i][j] * b[j][k];
       //    }
-
-			//subMatrixMultiply(NCA,NCB,rows,a,b,c);
+#if defined(__USE_TBB)
 			tbb_SubMatrixMultiply(NCA,NCB,rows,a,b,c);
+#else
+			subMatrixMultiply(NCA,NCB,rows,a,b,c);
+#endif
 
 
       mtype = FROM_WORKER;
