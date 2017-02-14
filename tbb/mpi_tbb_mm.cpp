@@ -52,9 +52,9 @@ using namespace std;
 
 
 
-#define NRA 15                 /* number of rows in matrix A */
-#define NCA 15                 /* number of columns in matrix A */
-#define NCB 15                  /* number of columns in matrix B */
+#define NRA 2                 /* number of rows in matrix A */
+#define NCA 2                 /* number of columns in matrix A */
+#define NCB NRA                 /* number of columns in matrix B */
 #define MASTER 0               /* taskid of first task */
 #define FROM_MASTER 1          /* setting a message type */
 #define FROM_WORKER 2          /* setting a message type */
