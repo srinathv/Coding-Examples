@@ -17,3 +17,8 @@ Parallel:
 3)with tbb using class
 4)with tbb using lambda expression
 5)user thread count specification
+
+
+Profiling:
+1)insert simple timers so show different implemenation performance
+2)interface with TAU
