@@ -170,9 +170,7 @@ double	a[NRA][NCA],           /* matrix A to be multiplied */
   		c[i][j] = 0.0;
 
 #if defined(__USE_TBB)
-#if defined(__USE_CLASS)
-      parallel_for(blocked_range<int>(0,nca), Multiply());
-#elif defined(__USE_TBB_FUNC)
+#if defined(__USE_TBB_FUNC)
       tbbApplyColumnMultiply(NCA,NCB,rows,a,b,c);
 #else
 			tbb_SubMatrixMultiply(NCA,NCB,rows,a,b,c);
