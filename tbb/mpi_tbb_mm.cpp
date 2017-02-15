@@ -94,7 +94,19 @@ public:
 };
 #endif
 
+void columMultipy(size_t i, int nca, int ncb, double a[][NCA],double b[][NCB], double c[][NCB])
+{
+  for (size_t j=0; j<ncb; j++) {
+    for (size_t k=0; k<nca; k++)
+      c[i][j] += a[i][k] * b[k][j];
+    }
+};
 
+void serialApplyColumnMultiply( int nca, int ncb, int rows, double a[][NCA],double b[][NCB], double c[][NCB])
+{
+  for (size_t i = 0 ; i < rows; i++ )
+    columMultipy(i, nca, ncb, a, b, c);
+};
 
 #if defined (__USE_TBB)
 void tbb_SubMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB]){
@@ -112,20 +124,21 @@ TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
 					}
       }
 			});
-
 }
 
-// void tbbApplyColumnMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB]){
-//   parallel_for( blocked_range<size_t>(0,nca), [=](const blocked_range<size_t>& r){
-// #if defined(__USE_TAU)
-// TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
-// #endif
-// std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
-//     for (size_t i=r.begin(); i!=r.end(); i++){
-//       columMultipy(i, nca, ncb, a, b, c);
-//     }
-//   }
-// };
+void tbbApplyColumnMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB]){
+  parallel_for( blocked_range<size_t>(0,nca), [=](const blocked_range<size_t>& r){
+#if defined(__USE_TAU)
+TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
+#endif
+std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
+    for (size_t i=r.begin(); i!=r.end(); i++){
+      columMultipy(i, nca, ncb, a, b, c);
+    }
+  });
+}
+
+
 #else
 void subMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB])
 {
@@ -139,19 +152,7 @@ void subMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][N
 };
 #endif
 
-void columMultipy(size_t i, int nca, int ncb, double a[][NCA],double b[][NCB], double c[][NCB])
-{
-  for (size_t j=0; j<ncb; j++) {
-    for (size_t k=0; k<nca; k++)
-      c[i][j] += a[i][k] * b[k][j];
-    }
-};
 
-void serialApplyColumnMultiply( int nca, int ncb, int rows, double a[][NCA],double b[][NCB], double c[][NCB])
-{
-  for (size_t i = 0 ; i < rows; i++ )
-    columMultipy(i, nca, ncb, a, b, c);
-};
 /******************/
 
 int main (int argc, char *argv[])
