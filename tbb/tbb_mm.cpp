@@ -101,15 +101,16 @@ std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::ge
   });
 }
 
-
 #else
 void subMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB])
 {
  for (size_t i=0; i<rows; i++) {
          for (size_t j=0; j<ncb; j++) {
-			c[i][j] = 0.0;
+	//		c[i][j] = 0.0;
 			for (size_t k=0; k<nca; k++)
-				 c[i][j] += a[i][k] * b[k][j];
+      {
+				c[i][j] += a[i][k] * b[k][j];
+      }
 	 }
  }
 };
@@ -120,7 +121,7 @@ void subMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][N
 
 int main (int argc, char *argv[])
 {
-	int rows,                  /* rows of matrix A sent to each worker */
+	int rows = NRA,                  /* rows of matrix A sent to each worker */
     i, j, k, rc;           /* misc */
 double	a[NRA][NCA],           /* matrix A to be multiplied */
 	b[NCA][NCB],           /* matrix B to be multiplied */
