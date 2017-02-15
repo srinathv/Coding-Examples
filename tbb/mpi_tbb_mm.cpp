@@ -114,6 +114,18 @@ TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
 			});
 
 }
+
+// void tbbApplyColumnMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB]){
+//   parallel_for( blocked_range<size_t>(0,nca), [=](const blocked_range<size_t>& r){
+// #if defined(__USE_TAU)
+// TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
+// #endif
+// std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
+//     for (size_t i=r.begin(); i!=r.end(); i++){
+//       columMultipy(i, nca, ncb, a, b, c);
+//     }
+//   }
+// };
 #else
 void subMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB])
 {
@@ -137,11 +149,6 @@ void columMultipy(size_t i, int nca, int ncb, double a[][NCA],double b[][NCB], d
 
 void serialApplyColumnMultiply( int nca, int ncb, int rows, double a[][NCA],double b[][NCB], double c[][NCB])
 {
-  for (size_t i=0; i<rows; i++) {
-    for (size_t j=0; j<ncb; j++) {
-			c[i][j] = 0.0;
-    }
-  }
   for (size_t i = 0 ; i < rows; i++ )
     columMultipy(i, nca, ncb, a, b, c);
 };
@@ -216,6 +223,10 @@ std::cout << "outside of parallel_for loop, the ThreadId is " << tbb::this_tbb_t
       for (i=0; i<NCA; i++)
         for (j=0; j<NCB; j++)
             b[i][j]= i*j;
+      for ( i=0; i<NCA; i++)
+        for ( j=0; j<NCB; j++)
+    			c[i][j] = 0.0;
+
 
       /* Send matrix data to the worker tasks
       send a set of A rows to worker task
@@ -282,6 +293,8 @@ TAU_PROFILE("worker tasks","",TAU_DEFAULT);
 #if defined(__USE_TBB)
 #if defined(__USE_CLASS)
       parallel_for(blocked_range<int>(0,nca), Multiply());
+#elif defined(__USE_TBB_FUNC)
+      tbbApplyColumnMultiply(NCA,NCB,rows,a,b,c);
 #else
 			tbb_SubMatrixMultiply(NCA,NCB,rows,a,b,c);
 #endif
