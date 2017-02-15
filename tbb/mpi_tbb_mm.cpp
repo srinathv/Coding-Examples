@@ -16,6 +16,7 @@
 #include "mpi.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 
 #if defined (__USE_TBB)
 #include "tbb/tbb.h"
@@ -86,9 +87,9 @@ public:
     }
   }
   Multiply( double a[][NCA], double b[][NCB], double c[][NCB] ) :
-    my_a(a)
-    my_b(b)
-    my_c(c)
+    // my_a(a)
+    // my_b(b)
+    // my_c(c)
   {}
 };
 #endif
@@ -126,6 +127,24 @@ void subMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][N
 };
 #endif
 
+void columMultipy(size_t i, int nca, int ncb, double a[][NCA],double b[][NCB], double c[][NCB])
+{
+  for (size_t j=0; j<ncb; j++) {
+    for (size_t k=0; k<nca; k++)
+      c[i][j] += a[i][k] * b[k][j];
+    }
+};
+
+void serialApplyColumnMultiply( int nca, int ncb, int rows, double a[][NCA],double b[][NCB], double c[][NCB])
+{
+  for (size_t i=0; i<rows; i++) {
+    for (size_t j=0; j<ncb; j++) {
+			c[i][j] = 0.0;
+    }
+  }
+  for (size_t i = 0 ; i < rows; i++ )
+    columMultipy(i, nca, ncb, a, b, c);
+};
 /******************/
 
 int main (int argc, char *argv[])
@@ -192,10 +211,10 @@ std::cout << "outside of parallel_for loop, the ThreadId is " << tbb::this_tbb_t
       printf("mpi_mm has started with %d tasks.\n",numtasks);
       printf("Initializing arrays...\n");
       for (i=0; i<NRA; i++)
-         for (j=0; j<NCA; j++)
+        for (j=0; j<NCA; j++)
             a[i][j]= i+j;
       for (i=0; i<NCA; i++)
-         for (j=0; j<NCB; j++)
+        for (j=0; j<NCB; j++)
             b[i][j]= i*j;
 
       /* Send matrix data to the worker tasks
@@ -215,6 +234,7 @@ std::cout << "outside of parallel_for loop, the ThreadId is " << tbb::this_tbb_t
          MPI_Send(&a[offset][0], rows*NCA, MPI_DOUBLE, dest, mtype,
                    MPI_COMM_WORLD);
          MPI_Send(&b, NCA*NCB, MPI_DOUBLE, dest, mtype, MPI_COMM_WORLD);
+         MPI_Send(&c, NCA*NCB, MPI_DOUBLE, dest, mtype, MPI_COMM_WORLD);
          offset = offset + rows;
       }
 
@@ -257,14 +277,8 @@ TAU_PROFILE("worker tasks","",TAU_DEFAULT);
       MPI_Recv(&rows, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
       MPI_Recv(&a, rows*NCA, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD, &status);
       MPI_Recv(&b, NCA*NCB, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD, &status);
+      MPI_Recv(&c, NCA*NCB, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD, &status);
 
-      // for (k=0; k<NCB; k++)
-      //    for (i=0; i<rows; i++)
-      //    {
-      //       c[i][k] = 0.0;
-      //       for (j=0; j<NCA; j++)
-      //          c[i][k] = c[i][k] + a[i][j] * b[j][k];
-      //    }
 #if defined(__USE_TBB)
 #if defined(__USE_CLASS)
       parallel_for(blocked_range<int>(0,nca), Multiply());
@@ -272,7 +286,13 @@ TAU_PROFILE("worker tasks","",TAU_DEFAULT);
 			tbb_SubMatrixMultiply(NCA,NCB,rows,a,b,c);
 #endif
 #else
+#if defined (__USE_FUNC)
+      serialApplyColumnMultiply(NCA,NCB,rows,a,b,c);
+      std::cout << " ran serialApplyColumnMultiply " << std::endl ;
+#else
 			subMatrixMultiply(NCA,NCB,rows,a,b,c);
+      std::cout << " ran subMatrixMultiply " << std::endl ;
+#endif
 #endif
 
 
