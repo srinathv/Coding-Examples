@@ -48,6 +48,11 @@ public:
 using namespace std;
 
 
+
+
+
+
+
 #define NRA 10                 /* number of rows in matrix A */
 #define NCA 10                 /* number of columns in matrix A */
 #define NCB NRA                 /* number of columns in matrix B */
@@ -57,6 +62,37 @@ using namespace std;
 
 
 /*************sub matrix multipy **********************/
+
+#if defined (__USE_CLASS)
+class Multiply
+{
+  double *const my_a;
+  double *const my_b;
+  double *const my_c;
+public:
+  void operator()(blocked_range<int> r) const {
+    double *a = my_a;
+    double *b = my_b;
+    double *c = my_c;
+    std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
+#if defined (__USE_TAU)
+    TAU_PROFILE("inside Multiply class","",TAU_DEFAULT);
+#endif
+    for (int i = r.begin(); i != r.end(); ++i) {
+    	 for (size_t j=0; j<NCB; j++) {
+    			c[i][j] = 0.0;
+    			for (size_t k=0; k<NCA; k++)
+    				 c[i][j] += a[i][k] * b[k][j];
+    	 }
+    }
+  }
+  Multiply( double a[][NCA], double b[][NCB], double c[][NCB] ) :
+    // my_a(a)
+    // my_b(b)
+    // my_c(c)
+  {}
+};
+#endif
 
 void columMultipy(size_t i, int nca, int ncb, double a[][NCA],double b[][NCB], double c[][NCB])
 {
