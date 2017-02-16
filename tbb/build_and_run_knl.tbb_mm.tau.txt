@@ -1,0 +1,8 @@
+ cat build.tau.link.sh
+ export TAU_MAKEFILE=/work/02463/srinathv/tau2/x86_64/lib/Makefile.tau-knl_17-icpc-papi-mpi-tbb
+ tau_cxx.sh -optLinkOnly -D__USE_TAU -DTAU_STDCXXLIB -DPROFILING_ON -D__USE_TBB tbb_mm.cpp -tbb -std=c++0x -O3 -o tbb_tbb_mm.tau.exe
+ module show papi
+ module load papi
+ tau_exec -T knl_17,icpc,papi,mpi,tbb ./tbb_tbb_mm.tau.exe
+ export LD_LIBRARY_PATH=/opt/apps/papi/5.5.0/lib:$LD_LIBRARY_PATH
+ tau_exec -T knl_17,icpc,papi,mpi,tbb ./tbb_tbb_mm.tau.exe
