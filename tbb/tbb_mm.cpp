@@ -20,7 +20,7 @@
 #if defined (__USE_TBB)
 #include "tbb/tbb.h"
 #include "tbb/task_scheduler_init.h"
-
+#include "tbb/partitioner.h"
 #include <thread>
 #include "tbb/enumerable_thread_specific.h"
 #include "ParseCommandLine.h"
@@ -47,8 +47,8 @@ public:
 using namespace std;
 
 
-#define NRA 10                 /* number of rows in matrix A */
-#define NCA 10                 /* number of columns in matrix A */
+#define NRA 66 /* number of rows in matrix A */
+#define NCA 66                 /* number of columns in matrix A */
 #define NCB NRA                 /* number of columns in matrix B */
 #define MASTER 0               /* taskid of first task */
 #define FROM_MASTER 1          /* setting a message type */
@@ -73,8 +73,11 @@ void serialApplyColumnMultiply( int nca, int ncb, int rows, double a[][NCA],doub
 };
 
 #if defined (__USE_TBB)
+__forceinline
 void tbb_SubMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB]){
-	  parallel_for( blocked_range<size_t>(0,nca), [=](const blocked_range<size_t>& r){
+	  //simple_partitioner sp;
+	  static_partitioner sp;
+	  parallel_for( blocked_range<size_t>(0,nca,1), [&](const blocked_range<size_t>& r){
 #if defined(__USE_TAU)
 TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
 #endif
@@ -90,13 +93,13 @@ mi.unlock();
 							c[i][j] += a[i][k] * b[k][j];
 					}
       }
-			});
+			},sp);
 }
 
 void tbbApplyColumnMultiply(int nca, int ncb, int rows, double a[][NCA], double b[][NCB], double c[][NCB]){
-  parallel_for( blocked_range<size_t>(0,nca), [=](const blocked_range<size_t>& r){
+  parallel_for( blocked_range<size_t>(0,nca), [&](const blocked_range<size_t>& r){
 #if defined(__USE_TAU)
-TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
+TAU_PROFILE("inside tbbApplyColumnMultipy loop","",TAU_DEFAULT);
 #endif
 std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
 mi.lock();
@@ -195,6 +198,8 @@ double	a[NRA][NCA],           /* matrix A to be multiplied */
       std::cout << " ran subMatrixMultiply " << std::endl ;
 #endif
 #endif
+
+#if 0
     /* Print results */
     printf("******************************************************\n");
     printf("Result Matrix:\n");
@@ -206,6 +211,6 @@ double	a[NRA][NCA],           /* matrix A to be multiplied */
     }
     printf("\n******************************************************\n");
     printf ("Done.\n");
-
+#endif
 	 return 0;
 }
