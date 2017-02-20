@@ -54,7 +54,8 @@ using namespace std;
 #define FROM_MASTER 1          /* setting a message type */
 #define FROM_WORKER 2          /* setting a message type */
 
-
+std::mutex mi; // Mutex for update
+std::set<std::thread::id> ids;
 /*************sub matrix multipy **********************/
 
 void columMultipy(size_t i, int nca, int ncb, double a[][NCA],double b[][NCB], double c[][NCB])
@@ -77,6 +78,9 @@ void tbb_SubMatrixMultiply(int nca, int ncb, int rows, double a[][NCA], double b
 #if defined(__USE_TAU)
 TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
 #endif
+mi.lock();
+ids.insert(std::this_thread::get_id());
+mi.unlock();
 	std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
       for (size_t i=r.begin(); i!=r.end(); i++){
 					for (size_t j=0; j<ncb; j++)
@@ -95,6 +99,9 @@ void tbbApplyColumnMultiply(int nca, int ncb, int rows, double a[][NCA], double 
 TAU_PROFILE("inside tbb_SubMatrixMultiply loop","",TAU_DEFAULT);
 #endif
 std::cout << "This threadID inside parallel_for is " << tbb::this_tbb_thread::get_id() << std::endl;
+mi.lock();
+ids.insert(std::this_thread::get_id());
+mi.unlock();
     for (size_t i=r.begin(); i!=r.end(); i++){
       columMultipy(i, nca, ncb, a, b, c);
     }
@@ -169,12 +176,16 @@ double	a[NRA][NCA],           /* matrix A to be multiplied */
     for ( j=0; j<NCB; j++)
   		c[i][j] = 0.0;
 
+
+
+
 #if defined(__USE_TBB)
 #if defined(__USE_TBB_FUNC)
       tbbApplyColumnMultiply(NCA,NCB,rows,a,b,c);
 #else
 			tbb_SubMatrixMultiply(NCA,NCB,rows,a,b,c);
 #endif
+    std::cout << "Saw " << ids.size() << " threads" << std::endl;
 #else
 #if defined (__USE_FUNC)
       serialApplyColumnMultiply(NCA,NCB,rows,a,b,c);
