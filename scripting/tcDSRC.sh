@@ -7,6 +7,7 @@ configLine="./configure --prefix=$PET_HOME/pkgs/taucmdr-latest"
 setPerm="chmod -R go+rX,g+w ${installDir}"
 setGrp="chgrp -R petttace  ${installDir}"
 tsInstallDir="$PET_HOME/pkgs/threadspotter-1.3.10"
+mkInstCmd="make install"
 
 if ${cloneCMD} ; then
   echo "git clone succeeded"
@@ -26,6 +27,14 @@ if ${configLine} ; then
    echo "Tau Commander configured."
 else
   echo "Tau Commander configure failed."
+  exit 1
+fi
+
+echo "Trying to make and install."
+if ${mkInstCmd}; then
+  echo "Tau Commander SUCCESFULLY installed."
+else
+  echo "Tau Commander FAILED to installed."
   exit 1
 fi
 
