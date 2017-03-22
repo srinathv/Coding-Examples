@@ -12,8 +12,6 @@ branchCmd="git checkout unstable"
 
 if ${cloneCMD} ; then
   echo "git clone succeeded"
-  ${branchCmd}
-  echo "checkouted unstable branch"
 else
   echo "git clone failed"
   exit 1
@@ -27,6 +25,10 @@ if [ -d "$installDir" ]; then
 fi
 
 cd taucmdr
+${branchCmd}
+echo "checkouted unstable branch"
+
+
 echo "Trying to configure Tau Commander."
 if ${configLine} ; then
    echo "Tau Commander configured."
