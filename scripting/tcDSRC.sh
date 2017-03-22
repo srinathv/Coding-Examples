@@ -8,13 +8,18 @@ setPerm="chmod -R go+rX,g+w ${installDir}"
 setGrp="chgrp -R petttace  ${installDir}"
 tsInstallDir="$PET_HOME/pkgs/threadspotter-1.3.10"
 mkInstCmd="make install"
+branchCmd="git checkout unstable"
 
 if ${cloneCMD} ; then
   echo "git clone succeeded"
+  ${branchCmd}
+  echo "checkouted unstable branch"
 else
   echo "git clone failed"
   exit 1
 fi
+
+
 
 if [ -d "$installDir" ]; then
   echo "Moving old installtion."
