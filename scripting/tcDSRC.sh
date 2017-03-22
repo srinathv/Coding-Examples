@@ -6,6 +6,7 @@ installDir="$PET_HOME/pkgs/taucmdr-latest"
 configLine="./configure --prefix=$PET_HOME/pkgs/taucmdr-latest"
 setPerm="chmod -R go+rX,g+w ${installDir}"
 setGrp="chgrp -R petttace  ${installDir}"
+tsInstallDir="$PET_HOME/pkgs/threadspotter-1.3.10"
 
 if ${cloneCMD} ; then
   echo "git clone succeeded"
@@ -44,7 +45,13 @@ else
 fi
 
 
+#*****
+echo "Is  threadspotter-1.3.10 installed???"
 
+if [ -d "$tsInstallDir" ]; then
+  echo "YES!!"
+else
+  echo "NO!!!"
 
 
 
