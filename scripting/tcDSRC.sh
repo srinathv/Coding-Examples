@@ -1,5 +1,9 @@
 #! /bin/bash
 
+#####
+# on Lightning:  need to module swap PrgEnv-cray PrgEnv-intel"
+
+
 
 cloneCMD="git clone git@github.com:ParaToolsInc/taucmdr.git"
 installDir="$PET_HOME/pkgs/taucmdr-latest"
@@ -20,8 +24,8 @@ fi
 
 
 if [ -d "$installDir" ]; then
-  echo "Moving old installtion."
-  mv "$installDir" ${installDir}.mv
+  echo "Removing old installtion."
+  rm -rf "$installDir"
 fi
 
 cd taucmdr
