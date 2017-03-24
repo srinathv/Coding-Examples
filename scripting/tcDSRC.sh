@@ -8,7 +8,7 @@
 cloneCMD="git clone git@github.com:ParaToolsInc/taucmdr.git"
 installDir="$PET_HOME/pkgs/taucmdr-latest"
 configLine="./configure --prefix=$PET_HOME/pkgs/taucmdr-latest"
-setPerm="chmod -R go+rX,g+w ${installDir}"
+setPerm="chmod -R a+rX,g+w ${installDir}"
 setGrp="chgrp -R petttace  ${installDir}"
 tsInstallDir="$PET_HOME/pkgs/threadspotter-1.3.10"
 mkInstCmd="make install"
