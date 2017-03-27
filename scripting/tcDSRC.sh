@@ -22,12 +22,15 @@ else
 fi
 
 
-
-
 cd taucmdr
 ${branchCmd}
 echo "checkouted unstable branch"
 
+
+if [ -d "$installDir" ]; then
+  echo "Moving old installtion."
+  mv  "$installDir" ${installDir}.mv
+fi
 
 echo "Trying to configure Tau Commander."
 if ${configLine} ; then
@@ -37,10 +40,7 @@ else
   exit 1
 fi
 
-if [ -d "$installDir" ]; then
-  echo "Removing old installtion."
-  rm -rf "$installDir"
-fi
+
 
 echo "Trying to make and install."
 if ${mkInstCmd}; then
