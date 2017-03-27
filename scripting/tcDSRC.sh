@@ -23,10 +23,6 @@ fi
 
 
 
-if [ -d "$installDir" ]; then
-  echo "Removing old installtion."
-  rm -rf "$installDir"
-fi
 
 cd taucmdr
 ${branchCmd}
@@ -39,6 +35,11 @@ if ${configLine} ; then
 else
   echo "Tau Commander configure failed."
   exit 1
+fi
+
+if [ -d "$installDir" ]; then
+  echo "Removing old installtion."
+  rm -rf "$installDir"
 fi
 
 echo "Trying to make and install."
