@@ -73,7 +73,7 @@ if [ -d "$tsInstallDir" ]; then
   echo "YES!!"
 else
   echo "NO!!!"
-
+fi
 
 
 
