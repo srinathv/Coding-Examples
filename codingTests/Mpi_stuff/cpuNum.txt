@@ -1,0 +1,3 @@
+ 1024  icc -c mycpu.c
+ 1025  ls
+ 1026  ftn -o omp_hello.f90 -openmp mycpu.o omp_hello.f90
