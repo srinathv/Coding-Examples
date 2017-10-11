@@ -28,10 +28,11 @@ program hello
      call MPI_ABORT(MPI_COMM_WORLD, rc, ierr)
   end if
 
-!$omp parallel default(shared) private(iam,np)
+!$omp parallel default(shared) private(iam,np,mycpu)
   np = omp_get_num_threads()
    iam = omp_get_thread_num()
    mycpu =  findmycpu()
+   print *, mycpu
   print "('hello_parallel.f: Number of tasks=',I3,' My rank=',I3,' My name=',A, &
           ' total theads= ',I2, ' thread num=',I2,  ' my cpu id=',I2,'')",&
        numtasks, rank, trim(name), np, iam , mycpu 

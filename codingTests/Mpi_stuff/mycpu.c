@@ -1,4 +1,5 @@
-#include <utmpx.h>
+//#include <utmpx.h>
+#include <sched.h>
 int sched_getcpu();
 
 int findmycpu_ ()
