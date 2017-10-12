@@ -6,6 +6,7 @@ program hello
   integer numtasks, rank, ierr, rc, len, i
   character*(MPI_MAX_PROCESSOR_NAME) name
   integer omp_get_num_threads, iam,  omp_get_thread_num , mycpu
+  integer, external :: findmycpu
 
   ! Initialize the MPI library:
   call MPI_INIT(ierr)
@@ -32,7 +33,6 @@ program hello
   np = omp_get_num_threads()
    iam = omp_get_thread_num()
    mycpu =  findmycpu()
-   print *, mycpu
   print "('hello_parallel.f: Number of tasks=',I3,' My rank=',I3,' My name=',A, &
           ' total theads= ',I2, ' thread num=',I2,  ' my cpu id=',I2,'')",&
        numtasks, rank, trim(name), np, iam , mycpu 
