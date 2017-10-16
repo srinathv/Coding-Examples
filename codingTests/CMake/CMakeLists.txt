@@ -11,8 +11,17 @@ message(STATUS "let's see what is test var = ${testVar}")
 if (${testVar} MATCHES "^${badDir}")
   message (STATUS "testVar I think we know regex")
 else(${testVar} MATCHES "^${badDir}")
-  message (STATIS "testVar I don't know how to regex")
+  message (STATUS "testVar I don't know how to regex")
 endif (${testVar} MATCHES "^${badDir}")
+
+message(STATUS,"The system is ${CMAKE_SYSTEM_NAME}")
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set (MACOSX "yes")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+if (${MACOSX})
+  message(STATUS," On a mac os X")
+endif(${MACOSX})
 
 
 # if (${badVar} MATCHES "^${badDir}")
