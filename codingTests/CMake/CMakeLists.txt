@@ -17,11 +17,12 @@ endif (${testVar} MATCHES "^${badDir}")
 message(STATUS,"The system is ${CMAKE_SYSTEM_NAME}")
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    set (MACOSX "yes")
+  set (MACOSX YES)
+    add_definitions(-DMACOSX)
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-if (${MACOSX})
+if (MACOSX)
   message(STATUS," On a mac os X")
-endif(${MACOSX})
+endif(MACOSX)
 
 
 # if (${badVar} MATCHES "^${badDir}")
