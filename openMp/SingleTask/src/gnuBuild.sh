@@ -15,12 +15,16 @@ $FC $SRC $BASIC_FLAGS -DSINGLE -DTASKLOOP -o single_taskloop.${TYPE}.exe
 
 echo " OMP_NUM_THREADS=5 ./no_single_task.${TYPE}.exe"
 OMP_NUM_THREADS=5 ./no_single_task.${TYPE}.exe
+sleep 1
 echo " OMP_NUM_THREADS=5 ./single_task.${TYPE}.exe"
 OMP_NUM_THREADS=5 ./single_task.${TYPE}.exe
+sleep 1
 echo " OMP_NUM_THREADS=5 ./single_moretask.${TYPE}.exe"
 OMP_NUM_THREADS=5 ./single_moretask.${TYPE}.exe
+sleep 1
 echo " OMP_NUM_THREADS=5 ./no_single_taskloop.${TYPE}.exe"
 OMP_NUM_THREADS=5 ./no_single_taskloop.${TYPE}.exe
+sleep 1
 echo " OMP_NUM_THREADS=5 ./single_taskloop.${TYPE}.exe"
 OMP_NUM_THREADS=5 ./single_taskloop.${TYPE}.exe
 
