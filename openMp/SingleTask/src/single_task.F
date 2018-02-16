@@ -31,8 +31,8 @@ c$omp end task
 #ifdef TASKLOOP
 c$omp taskloop private(i)
       do i=1,num_threads
-      write(*,*) " Iteration i=",i," in the taskLoop, my thread id is "&
-      & , omp_get_thread_num()
+      write(*,*) " Iteration i=",i," in the taskLoop, my thread id is " &
+     & , omp_get_thread_num()
       end do
 c$omp end taskloop
 #endif
