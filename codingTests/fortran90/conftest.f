@@ -1,4 +1,4 @@
-    program main
+        program main
 
 
-    end
+         end

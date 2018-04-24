@@ -1,15 +1,16 @@
 !Trying to test speed of accessing working with arrays
 
-  program workingarrays 
+  program workingarrays
   implicit none
 
-  integer,parameter :: maxsize = 30000
+  !integer,parameter :: maxsize = 30000
+  integer,parameter :: maxsize = 60000
   real :: a(maxsize,maxsize)
   integer :: i,j
   real :: time1start,time1end
   real :: time2start,time2end
   real :: time3start,time3end
-  
+
   a=0.
   call cpu_time(time1start)
   a=a+1.
@@ -44,4 +45,4 @@
 
 
 
-  end program workingarrays 
+  end program workingarrays
