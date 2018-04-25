@@ -9,6 +9,7 @@ int main (int argc, char *argv[])
     char processor_name[MPI_MAX_PROCESSOR_NAME];
     char hostname[MPI_MAX_PROCESSOR_NAME];
     int processor_name_len;
+    int j,k ;
 
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &np);
@@ -22,7 +23,8 @@ int main (int argc, char *argv[])
 
     long* l_buffer[entrySize];
 
-    for (int j = 0; j < entrySize; j++)
+    //for (int j = 0; j < entrySize; j++)
+    for (j = 0; j < entrySize; j++)
     {
         l_buffer[j] = 0;
     }
@@ -33,7 +35,8 @@ int main (int argc, char *argv[])
 
     if (id == 0)
     {
-        for (int k = 0; k < np; k++)
+        //for (int k = 0; k < np; k++)
+        for (k = 0; k < np; k++)
         {
             printf("Process %03d: VmRSS = %6ld KB, VmSize = %6ld KB\n",
                 k, vmrss_per_process[k], vmsize_per_process[k]);

@@ -28,6 +28,7 @@ int get_global_memory_usage_kb(long* global_vmrss, long* global_vmsize, int np)
     long vmrss_per_process[np];
     long vmsize_per_process[np];
     int ret_code = get_cluster_memory_usage_kb(vmrss_per_process, vmsize_per_process, 0, np);
+    int i;
 
     if (ret_code != 0)
     {
@@ -36,7 +37,8 @@ int get_global_memory_usage_kb(long* global_vmrss, long* global_vmsize, int np)
 
     *global_vmrss = 0;
     *global_vmsize = 0;
-    for (int i = 0; i < np; i++)
+    //for (int i = 0; i < np; i++)
+    for (i = 0; i < np; i++)
     {
         *global_vmrss += vmrss_per_process[i];
         *global_vmsize += vmsize_per_process[i];
