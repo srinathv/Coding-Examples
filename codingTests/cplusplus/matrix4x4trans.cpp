@@ -7,15 +7,11 @@ int main()
     int   r = 4, c = 4;
     int  i, j;
 
-//    cout << "Enter rows and columns of matrix: ";
-//    cin >> r >> c;
 
     // Storing element of matrix entered by user in array a[][].
-//    cout << endl << "Enter elements of matrix: " << endl;
     for(i = 0; i < r; ++i)
     for(j = 0; j < c; ++j)
     {
-//        cout << "Enter elements a" << i + 1 << j + 1 << ": ";
         a[i][j] = rand() % 10 + 1.1;
     }
 
