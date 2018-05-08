@@ -6,8 +6,9 @@ int main()
     int entrySize = 10000000;
     int* buffer[n];
     long vmrss, vmsize;
-
-    for (int i = 0; i < n; i++)
+    int i,j ;
+    //for (int i = 0; i < n; i++)
+    for (i = 0; i < n; i++)
     {
         buffer[i] = malloc( entrySize * sizeof(int) );
 
@@ -17,7 +18,8 @@ int main()
             exit(1);
         }
 
-        for (int j = 0; j < entrySize; j++)
+        //for (int j = 0; j < entrySize; j++)
+        for (j = 0; j < entrySize; j++)
         {
             buffer[i][j] = 0;
         }
