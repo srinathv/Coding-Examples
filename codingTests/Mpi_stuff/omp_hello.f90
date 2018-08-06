@@ -33,9 +33,10 @@ program hello
   np = omp_get_num_threads()
    iam = omp_get_thread_num()
    mycpu =  findmycpu()
-  print "('hello_parallel.f: Number of tasks=',I3,' My rank=',I3,' My name=',A, &
-          ' total theads= ',I2, ' thread num=',I2,  ' my cpu id=',I2,'')",&
-       numtasks, rank, trim(name), np, iam , mycpu 
+!  print "('hello_parallel.f: Number of tasks=',I3,' My rank=',I3,' My name=',A, &
+!          ' total theads= ',I2, ' thread num=',I2,  ' my cpu id=',I3,'')",&
+!       numtasks, rank, trim(name), np, iam , mycpu 
+   write (*,*) mycpu
 !$omp end parallel
   ! Tell the MPI library to release all resources it is using:
   call MPI_FINALIZE(ierr)
