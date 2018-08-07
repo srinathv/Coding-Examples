@@ -41,7 +41,10 @@ int main()
         printf("__ARM_ARCH false \n");
 #endif
 
-
+// armclang -mcpu=native -march=armv8-a+sve ifDefNeon.c -o ifDefNeon.armclang.exe 
+// to get SVE true with armclang 18.4
+// --enable-gen-simd-width=32 (targeting 256-bit SVE)
+// --enable-gen-simd-width=64 (targeting 512-bit SVE)
 #ifdef __ARM_FEATURE_SVE
         printf("__ARM_FEATURE_SVE true \n" );
 #else
