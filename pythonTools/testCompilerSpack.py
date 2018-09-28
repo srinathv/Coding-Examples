@@ -28,8 +28,9 @@ else:
 for package in packageList:
     tpwcompiler = package + '%' + args.compiler
     result=subprocess.check_output(['spack','install','--fake',tpwcompiler]).split()
-    didItInstall=result[2] + " is " + result[8]
-    file.write(didItInstall + '\n')
+#    didItInstall=result[2] + " is " + result[8]
+#    file.write(didItInstall + '\n')
+#    print result
 
 installedFiles=subprocess.check_output(['spack','find'])
 file.write(installedFiles)
