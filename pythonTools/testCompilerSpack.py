@@ -1,26 +1,34 @@
 #!/usr/bin/env python
+import argparse
 
+parser = argparse.ArgumentParser(description='Spack install test given compiler.')
+#parser.add_argument('integers', metavar='N', type=int, nargs='+',
+#                   help='an integer for the accumulator')
+parser.add_argument('compiler',help='give compiler syntax')
+
+args = parser.parse_args()
+#print(args.accumulate(args.integers))
+print(args.compiler)
+fileName='spackInstall_' + args.compiler + '.txt'
 
 import subprocess
+
 result = subprocess.check_output(['spack','list']).split()
 for package in result:
     print package
 
 #subprocess.call(['spack','clone','${HOME}/spack-test'])
 subprocess.call(['spack','uninstall','--a','--y'])
-file = open(“spackInstall_arm_18.4.1.txt”,”w”) 
+file = open(fileName,'w') 
 
 
 testPlist=['zip','zlib','zsh']
 for testPackage in testPlist:
-    tpwcompiler=testPackage+'%arm@18.4.1'
-#    print tpwcompiler
+    #tpwcompiler=testPackage+'%arm@18.4.1'
+    tpwcompiler=testPackage + '%' + args.compiler
     result=subprocess.check_output(['spack','install','--fake',tpwcompiler]).split()
-#    print result
-#    print result[2] + " is " + result[8]
     didItInstall=result[2] + " is " + result[8]
-    file.write(didItInstall)
-    #print subprocess.call(['spack','install','--fake',tpwcompiler])
+    file.write(didItInstall + '\n')
 
 file.close()
 def main():
