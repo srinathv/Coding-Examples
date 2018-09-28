@@ -50,8 +50,8 @@ int main()
     printf("\n");
   }
 
-  printf(" Here is A_tr. using a x4 spread load instruction over 4 sections of the array \n");
   printf("\n");
+  printf(" Here is A_tr. using a x4 spread load instruction over 4 sections of the array \n");
   for(i=0;i<4;i++)
   {
     for(j=0;j<4;j++)

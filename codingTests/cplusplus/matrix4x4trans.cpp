@@ -25,6 +25,10 @@ int main()
                 cout << endl << endl;
         }
 
+ #ifdef NEON
+
+    // Want to do VTRN,64 d0,d1, then VTRN,64 d2,d3, then VTRN,64 q0,q1
+
     // Finding transpose of matrix a[][] and storing it in array trans[][].
     for(i = 0; i < r; ++i)
         for(j = 0; j < c; ++j)
