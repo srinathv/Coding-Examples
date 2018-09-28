@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import argparse
+import sys
 
 parser = argparse.ArgumentParser(description='Spack install test given compiler.')
 #parser.add_argument('integers', metavar='N', type=int, nargs='+',
@@ -7,7 +8,7 @@ parser = argparse.ArgumentParser(description='Spack install test given compiler.
 parser.add_argument('compiler',help='give compiler syntax')
 
 args = parser.parse_args()
-#print(args.accumulate(args.integers))
+
 print(args.compiler)
 fileName='spackInstall_' + args.compiler + '.txt'
 
@@ -30,6 +31,8 @@ for testPackage in testPlist:
     didItInstall=result[2] + " is " + result[8]
     file.write(didItInstall + '\n')
 
+installedFiles=subprocess.check_output(['spack','find'])
+file.write(installedFiles)
 file.close()
 def main():
     pass
