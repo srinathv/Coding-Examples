@@ -28,6 +28,8 @@ else:
 for package in packageList:
     tpwcompiler = package + '%' + args.compiler
     result=subprocess.check_output(['spack','install','--fake',tpwcompiler]).split()
+    if 'fail' in result:
+        file.write('package ' + package + 'failed to install')
 #    didItInstall=result[2] + " is " + result[8]
 #    file.write(didItInstall + '\n')
 #    print result
