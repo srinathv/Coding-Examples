@@ -1,9 +1,32 @@
-import os
+import os,sys
 File = "LICENSE"
+
+packages={}#package name : license type
+licensesPhrase=["BSD ","CeCILL-C ", "Apache ", "MIT ","SCIPY ","GENERAL PUBLIC LICENSE"]
+#licensesPhrase=["GENERAL PUBLIC LICENSE","BSD","CeCILL-C", "Apache", "MIT"]
+#licensesPhrase=["GENERAL PUBLIC LICENSE","LESSER GENERAL PUBLIC LICENSE","BSD","CeCILL-C", "Apache", "MIT"]
+versions={"Version 2.0":"v2.0", "Version 2":"v2", "Version 3":"v3"}
+#http://trilinos.sandia.gov/license.html
+
+#if GPL, then determine version 2 or version3 .. GPL_v2, GPL_v3
 
 for root, dirs, files in os.walk('.'):
     for file in files: # loops through directories and files
         if file == File: # compares to your specified conditions
-            print ("File exists")
-            print (root)
-            print (dirs)
+            packageName=root.split('/')[-1]
+            fullFileName=root + "/"+ file
+            with open(fullFileName) as myfile:
+              data=myfile.read()
+              for licenseType in licensesPhrase:
+                if licenseType.lower() in data.lower():
+                  if licenseType.lower()=="GENERAL PUBLIC LICENSE".lower():
+                    for key, value in versions.items():
+                      if key.lower() in data.lower():
+                        licenseType="GPL_" + value
+                        break
+                  packages[packageName]=licenseType
+                  break
+                print(licenseType.lower() + " NOT in " + fullFileName)
+
+print (packages)
+print (len(packages))
