@@ -2,9 +2,7 @@ import os,sys
 File = "LICENSE"
 
 packages={}#package name : license type
-licensesPhrase=["BSD ","CeCILL-C ", "Apache ", "MIT ","SCIPY ","GENERAL PUBLIC LICENSE"]
-#licensesPhrase=["GENERAL PUBLIC LICENSE","BSD","CeCILL-C", "Apache", "MIT"]
-#licensesPhrase=["GENERAL PUBLIC LICENSE","LESSER GENERAL PUBLIC LICENSE","BSD","CeCILL-C", "Apache", "MIT"]
+licensesPhrase=["GENERAL PUBLIC LICENSE","BSD ","CeCILL-C ", "Apache ", "MIT "]
 versions={"Version 2.0":"v2.0", "Version 2":"v2", "Version 3":"v3"}
 #http://trilinos.sandia.gov/license.html
 
@@ -30,5 +28,9 @@ for root, dirs, files in os.walk('.'):
                   break
             if name not in packages:
               packages[name]="OTHER"
-print (packages)
 print (len(packages))
+
+for k in sorted(packages, key=packages.get, reverse=False):
+ print (k + " has license type " + packages[k])
+
+
