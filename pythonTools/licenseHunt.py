@@ -15,6 +15,8 @@ for root, dirs, files in os.walk('.'):
         if file == File: # compares to your specified conditions
             packageName=root.split('/')[-1]
             fullFileName=root + "/"+ file
+            name=fullFileName
+            #name=packageName
             with open(fullFileName) as myfile:
               data=myfile.read()
               for licenseType in licensesPhrase:
@@ -24,9 +26,9 @@ for root, dirs, files in os.walk('.'):
                       if key.lower() in data.lower():
                         licenseType="GPL_" + value
                         break
-                  packages[packageName]=licenseType
+                  packages[name]=licenseType
                   break
-                print(licenseType.lower() + " NOT in " + fullFileName)
-
+            if name not in packages:
+              packages[name]="OTHER"
 print (packages)
 print (len(packages))
