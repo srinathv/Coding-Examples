@@ -1,0 +1,22 @@
+On my ThunderX2 running at 2.2GHz I see:
+
+[johlin02@pacu01 benchmarks]$ g++ -Wno-pointer-arith peak_4x.cc && ./a.out 
+256000000 Flops in 0.0146343 seconds
+17.5838 GFlops
+
+[johlin02@pacu01 benchmarks]$ cpupower frequency-info
+analyzing CPU 0:
+  driver: cppc_cpufreq
+  CPUs which run at the same hardware frequency: 0 32 64 96
+  CPUs which need to have their frequency coordinated by software: 0 32 64 96
+  maximum transition latency:  Cannot determine or is not supported.
+  hardware limits: 1000 MHz - 2.50 GHz
+  available cpufreq governors: conservative ondemand userspace powersave performance
+  current policy: frequency should be within 1.20 GHz and 2.50 GHz.
+                  The governor "performance" may decide which speed to use
+                  within this range.
+  current CPU frequency: Unable to call hardware
+  current CPU frequency: 2.20 GHz (asserted by call to kernel)
+
+Pretty much getting theoretical peak with the double precision FMLA, so I think the performance loss is not due to FMLA vs composed MUL/ADD necessarily.  TX2 has two lanes for double issue, four for single, so I need to unroll the loop at least 2x.  Without unrolling we score just 50% of peak.  If you could strip this down to a simple, single-core problem it might be easier to see what's going on.
+
