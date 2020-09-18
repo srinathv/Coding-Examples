@@ -1,0 +1,4 @@
+These fmla type of tests were created by george.steed@arm.com
+
+EX compile: gcc test.s -nostdlib -static
+EX run/test: perf stat ./a.out
