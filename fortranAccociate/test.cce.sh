@@ -11,6 +11,6 @@
 	 echo $cce
 	 exeName=testAssociate.${cce/\//_}
 	 echo $exeName
-#	 ftn -g -O0 testAssociate.f90 -o testAssociate.${cce/\//_}
+	 ftn -g -O0 testAssociate.f90 -o $exeName
 
   done 

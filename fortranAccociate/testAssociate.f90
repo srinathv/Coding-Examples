@@ -8,15 +8,21 @@
     implicit none
     integer:: i12 = 12
     integer:: i = 1
+    integer:: j
  
     print *,'start t2'
  
     associate (i=>i12,j=>i12)
+      print *, 'in associate'
       print *,'i=',i
       print *,'j=',j
     end associate
 
-
+    print *, ''
+    print *, ''
+    print *, ''
+    print *, ''
+    print  *, 'original variables'
     print *, 'i12 =', i12
     print *, 'i =', i
  
