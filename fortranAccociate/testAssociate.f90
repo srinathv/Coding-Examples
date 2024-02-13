@@ -15,6 +15,10 @@
       print *,'i=',i
       print *,'j=',j
     end associate
+
+
+    print *, 'i12 =', i12
+    print *, 'i =', i
  
     print *,'end t2'
   end
