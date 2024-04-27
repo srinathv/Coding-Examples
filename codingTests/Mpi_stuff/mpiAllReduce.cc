@@ -2,6 +2,28 @@
 #include <stdio.h>
 #include <iostream>
 
+
+void globalSum_debug(int& x, int numpe, int mype) {
+    if (numpe == 1) return;
+    int y = 0;
+    int mpi_err;
+    printf(" My PE: %d and x is %d \n", mype, x);
+    mpi_err=MPI_Allreduce(&x, &y, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
+    printf(" My PE: %d and y is %d AND MPI_allreduce error is %d \n", mype, y, mpi_err);
+    x = y;
+    printf(" My PE: %d AND NOE x is %d \n", mype, x);
+}
+
+void globalSum_debug_64(int64_t& x, int numpe, int mype) {
+    if (numpe == 1) return;
+    int64_t y=0;
+    int mpi_err;
+    printf(" D64 My PE: %d and x is %ld \n", mype, x);
+    mpi_err=MPI_Allreduce(&x, &y, 1, MPI_INT64_T, MPI_SUM, MPI_COMM_WORLD);
+    printf(" D64 My PE: %d and y is %ld AND MPI_allreduce error is %d \n", mype, y, mpi_err);
+    x = y;
+    printf(" D64 My PE: %d AND NOE x is %ld \n", mype, x);
+}
 int main(int argc, char** argv) {
     // Initialize the MPI environment
     MPI_Init(NULL, NULL);
@@ -29,7 +51,15 @@ int main(int argc, char** argv) {
 //      printf("%d \n",world_rank);
     //printf("%d",world_rank); //may not want return character because of file name
     
-    
+
+    int nums=5372136;
+    int64_t nums_64t=5372136;
+    globalSum_debug(nums, world_size, world_rank);
+    globalSum_debug_64(nums_64t, world_size, world_rank);
+
     // Finalize the MPI environment.
     MPI_Finalize();
 }
+
+
+
