@@ -55,7 +55,9 @@ int main(int argc, char** argv) {
     int nums=5372136;
     int64_t nums_64t=5372136;
     globalSum_debug(nums, world_size, world_rank);
+    for (int i= 0; i < 1000 ; i++) {
     globalSum_debug_64(nums_64t, world_size, world_rank);
+    }
 
     // Finalize the MPI environment.
     MPI_Finalize();
