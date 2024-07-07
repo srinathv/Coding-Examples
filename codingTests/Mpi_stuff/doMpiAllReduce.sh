@@ -19,7 +19,7 @@ PROFILE=`pat_run -w -g mpi`
 #pass 1: 1 mpi rank per node
 #always do 10 trials per setting
 
-NODE_SET={1..16..1} #tiaga
+NODE_SET=$(seq 1 16 1) #tiaga
 #NODE_SET={1..1000..10} #tiaga
 
 for j in $NODE_SET;
