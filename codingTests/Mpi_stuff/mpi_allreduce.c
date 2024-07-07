@@ -13,18 +13,18 @@ int main(int argc, char *argv[]) {
     int64_t global_energy_int;
 
     // Floating point energy value
-    double local_energy_float = (rank + 1) * 1.5; // Example local value
-    double global_energy_float;
+//    double local_energy_float = (rank + 1) * 1.5; // Example local value
+//    double global_energy_float;
 
     // Perform the MPI Allreduce operation for integer
     MPI_Allreduce(&local_energy_int, &global_energy_int, 1, MPI_INT64_T, MPI_SUM, MPI_COMM_WORLD);
 
     // Perform the MPI Allreduce operation for floating point
-    MPI_Allreduce(&local_energy_float, &global_energy_float, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
+//    MPI_Allreduce(&local_energy_float, &global_energy_float, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
 
     if (rank == 0) {
         printf("Global energy (integer): %ld\n", global_energy_int);
-        printf("Global energy (float): %f\n", global_energy_float);
+//        printf("Global energy (float): %f\n", global_energy_float);
     }
 
     MPI_Finalize();
