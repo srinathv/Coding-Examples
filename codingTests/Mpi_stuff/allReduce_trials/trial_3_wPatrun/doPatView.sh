@@ -18,4 +18,4 @@ mpiAllReducePlusDirs=(mpiAllReduce+*)
 echo "${mpiAllReducePlusDirs[@]}"
 
 
-pat_view --pdf -o tioga_mpiAllreduce.pdf ${mpiAllReducePlusDirs[@]}
+pat_view --pdf --pes 10 -o tioga_mpiAllreduce_pe10.pdf ${mpiAllReducePlusDirs[@]}
