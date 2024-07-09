@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+
+pat_view --pdf -o tioga_mpiAllreduce_scale.pdf mpiAllReduce+1020092-1662642154t mpiAllReduce+862909-1662641509t  mpiAllReduce+375615-1661315241t   mpiAllReduce+730638-1661319386t   mpiAllReduce+714417-1661312767t   mpiAllReduce+722061-1661311528t  mpiAllReduce+1021146-1661314645t  mpiAllReduce+988575-1662648128t  mpiAllReduce+1020279-1662642154t  mpiAllReduce+989473-1662641081t   mpiAllReduce+2402113-1662643212t  mpiAllReduce+1975509-1662643395t  mpiAllReduce+1440755-1662641302t mpiAllReduce+863344-1662641509t  mpiAllReduce+1531103-1662623032t  mpiAllReduce+68647-1662623119t   
